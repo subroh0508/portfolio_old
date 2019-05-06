@@ -5,6 +5,7 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**",
+      "buildSrc/**",
       "gradle/**",
       "src/**",
       "**/*.@(kt|kts|properties|bat)",
