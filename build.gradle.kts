@@ -1,4 +1,3 @@
-
 import org.jetbrains.kotlin.gradle.frontend.webpack.WebPackBundleTask
 import org.jetbrains.kotlin.gradle.frontend.webpack.WebPackExtension
 import org.jetbrains.kotlin.gradle.frontend.webpack.WebPackRunTask
@@ -25,18 +24,21 @@ repositories {
 dependencies {
     implementation(Dep.kotlinJs)
     implementation(Dep.kotlinxHtml)
+    implementation(Dep.kotlinReact)
+    implementation(Dep.kotlinReactDom)
+    implementation(Dep.kotlinJsWrapper)
+    implementation(Dep.kotlinMaterialUi)
+    testImplementation(Dep.kotlinTestJs)
 }
 
 kotlinFrontend {
     sourceMaps = true
 
     npm {
-        dependency("core-js", "3.0.0")
         dependency("react")
         dependency("react-dom")
         dependency("react-router")
         dependency("react-markdown")
-        dependency("styled-components", "3.4.10")
         dependency("inline-style-prefixer")
 
         devDependency("css-loader")
