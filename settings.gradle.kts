@@ -1,8 +1,14 @@
 pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
+    }
+
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id == "kotlin2js") {
-                useModule(Dep.kotlin)
+            when (requested.id.id) {
+                "kotlin2js", "kotlin-dce-js" -> useModule(Dep.kotlinGradlePlugin)
+                "org.jetbrains.kotlin.frontend" -> useModule(Dep.kotlinFrontendPlugin)
             }
         }
     }
