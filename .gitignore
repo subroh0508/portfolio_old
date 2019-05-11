@@ -110,4 +110,4 @@ node_modules/
 # dotenv environment variables file
 .env
 
-public/main.bundle.js
+public/
