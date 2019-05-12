@@ -1,6 +1,5 @@
-import org.jetbrains.kotlin.gradle.frontend.webpack.WebPackBundleTask
+
 import org.jetbrains.kotlin.gradle.frontend.webpack.WebPackExtension
-import org.jetbrains.kotlin.gradle.frontend.webpack.WebPackRunTask
 import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinJsDce
 
@@ -51,7 +50,7 @@ kotlinFrontend {
     bundle<WebPackExtension>("webpack") {
         (this as WebPackExtension).apply {
             bundleName = "main"
-            contentPath = file("src/main/resources")
+            contentPath = file(project.buildDir.path + "/js/min")
             mode = "production"
         }
     }
@@ -78,17 +77,15 @@ val compileTestKotlin2Js by tasks.getting(Kotlin2JsCompile::class) {
     }
 }
 
-/*
 val copyResources by tasks.registering(Copy::class) {
     val mainSrc = kotlin.sourceSets["main"]
     from(mainSrc.resources.srcDirs)
     into(file(project.buildDir.path + "/js/min"))
 }
-*/
 
 val runDceKotlinJs by tasks.getting(KotlinJsDce::class)
 
 afterEvaluate {
-    tasks.getting(WebPackBundleTask::class) { dependsOn(runDceKotlinJs) }
-    tasks.getting(WebPackRunTask::class) { dependsOn(runDceKotlinJs)  }
+    tasks["webpack-bundle"].dependsOn(copyResources, runDceKotlinJs)
+    tasks["webpack-run"].dependsOn(copyResources, runDceKotlinJs)
 }
