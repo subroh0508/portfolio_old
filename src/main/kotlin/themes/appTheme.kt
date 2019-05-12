@@ -9,15 +9,15 @@ import materialui.styles.palette.options.*
 val appTheme: MuiTheme = createMuiTheme {
     palette {
         primary {
-            main = Color("#99b7dc")
-            light = Color("#cbe9ff")
-            dark = Color("#6987aa")
+            main = Color("#fff98e")
+            light = Color("#ffffc0")
+            dark = Color("#cac65e")
             contrastText = Color("#000")
         }
         secondary {
-            main = Color("#6bb6b0")
-            light = Color("#9ce8e2")
-            dark = Color("#3a8681")
+            main = Color("#99b7dc")
+            light = Color("#cbe9ff")
+            dark = Color("#6987aa")
             contrastText = Color("#000")
         }
     }
