@@ -11,6 +11,7 @@ val appFrameStyle: StylesSet.() -> Unit = {
     }
     "appBar" {
         flexGrow = 1.0
+        padding(horizontal = (theme.spacing.unit * 6).px)
     }
     "toolbar" {
         flexDirection = FlexDirection.column
@@ -33,7 +34,9 @@ val appFrameStyle: StylesSet.() -> Unit = {
         margin(vertical = 10.px, horizontal = 30.px)
     }
     "contents" {
+        width = 100.pct
         position = Position.relative
         top = 176.px
+        padding(horizontal = (theme.spacing.unit * 9).px)
     }
 }

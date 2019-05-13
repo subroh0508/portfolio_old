@@ -42,6 +42,8 @@ kotlinFrontend {
 
         devDependency("css-loader")
         devDependency("style-loader")
+        devDependency("file-loader")
+        devDependency("url-loader")
         devDependency("babel-loader")
         devDependency("babel-core")
         devDependency("karma")
@@ -51,7 +53,7 @@ kotlinFrontend {
         (this as WebPackExtension).apply {
             bundleName = "main"
             contentPath = file(project.buildDir.path + "/js/min")
-            mode = "production"
+            //mode = "production"
         }
     }
 }

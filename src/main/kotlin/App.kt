@@ -1,4 +1,5 @@
 
+import components.biography.biography
 import components.header.AppFrame
 import materialui.styles.childWithStyles
 import materialui.styles.muithemeprovider.muiThemeProvider
@@ -11,7 +12,7 @@ class App : RComponent<RProps, RState>() {
         muiThemeProvider(appTheme) {
             childWithStyles(AppFrame::class, appFrameStyle) {
                 attrs.views = listOfNotNull(
-                    buildElement { +"biography" },
+                    biography { },
                     buildElement { +"works" },
                     buildElement { +"links" }
                 ).toTypedArray()
