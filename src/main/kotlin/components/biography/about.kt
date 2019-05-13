@@ -23,7 +23,7 @@ val RBuilder.about
                         attrs.variant = TypographyVariant.h5
                         attrs.color = TypographyColor.inherit
 
-                        +"About"
+                        +"About Me"
                     }
                 }
             }

@@ -1,6 +1,7 @@
 package styles
 
 import kotlinx.css.*
+import kotlinx.css.FontWeight.Companion.w400
 import materialui.styles.StylesSet
 
 val biographyStyle: StylesSet.() -> Unit = {
@@ -30,6 +31,9 @@ val aboutStyle: StylesSet.() -> Unit = {
         paddingLeft = 16.px
 
         children("p") {
+            fontWeight = w400
+            fontSize = 1.20.rem
+
             firstChild {
                 paddingBottom = 16.px
             }
@@ -45,6 +49,9 @@ val profileStyle: StylesSet.() -> Unit = {
         alignItems = Align.center
     }
     "paragraph" {
-
+        children("p") {
+            fontWeight = w400
+            fontSize = 1.20.rem
+        }
     }
 }
