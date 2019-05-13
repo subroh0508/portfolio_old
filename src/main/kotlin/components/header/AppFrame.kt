@@ -8,8 +8,10 @@ import materialui.components.tab.tab
 import materialui.components.tabs.enums.TabsIndicatorColor
 import materialui.components.tabs.enums.TabsStyle
 import materialui.components.tabs.tabs
+import materialui.components.toolbar.enums.ToolbarStyle
 import materialui.components.toolbar.toolbar
 import materialui.components.typography.enums.TypographyColor
+import materialui.components.typography.enums.TypographyStyle
 import materialui.components.typography.enums.TypographyVariant
 import materialui.components.typography.typography
 import react.RBuilder
@@ -31,12 +33,16 @@ class AppFrame : RComponent<AppFrameProps, AppFrameState>() {
             appBar(AppBarStyle.root to props.appBar) {
                 attrs.color = AppBarColor.primary
 
-                toolbar {
-                    typography {
-                        attrs.variant = TypographyVariant.h6
+                toolbar(ToolbarStyle.root to props.toolbar) {
+                    typography(TypographyStyle.root to props.title) {
+                        attrs.variant = TypographyVariant.h5
                         attrs.color = TypographyColor.inherit
 
                         +"Subroh Nishikori's Portfolio"
+                    }
+
+                    div(props.subtitle) {
+                        +"Admiral, Idol Producer, and Application Developer"
                     }
                 }
 
@@ -56,12 +62,15 @@ class AppFrame : RComponent<AppFrameProps, AppFrameState>() {
                     }
 
                     tab {
+                        attrs.disableRipple = true
                         attrs.label { +"biography" }
                     }
                     tab {
+                        attrs.disableRipple = true
                         attrs.label { +"works" }
                     }
                     tab {
+                        attrs.disableRipple = true
                         attrs.label { +"links" }
                     }
                 }

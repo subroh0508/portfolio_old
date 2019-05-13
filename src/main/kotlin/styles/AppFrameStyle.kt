@@ -3,6 +3,7 @@ package styles
 import kotlinx.css.*
 import materialui.styles.StylesSet
 import materialui.styles.palette.main
+import materialui.styles.typography.typography
 
 val appFrameStyle: StylesSet.() -> Unit = {
     "root" {
@@ -10,6 +11,17 @@ val appFrameStyle: StylesSet.() -> Unit = {
     }
     "appBar" {
         flexGrow = 1.0
+    }
+    "toolbar" {
+        flexDirection = FlexDirection.column
+        alignItems = Align.flexStart
+        padding(top = (theme.spacing.unit * 3).px, bottom = (theme.spacing.unit * 5).px)
+    }
+    "title" {
+        paddingBottom = 4.px
+    }
+    "subtitle" {
+        typography(theme.typography.caption)
     }
     "tabs" {
         justifyContent = JustifyContent.flexEnd
@@ -22,6 +34,6 @@ val appFrameStyle: StylesSet.() -> Unit = {
     }
     "contents" {
         position = Position.relative
-        top = 112.px
+        top = 176.px
     }
 }
