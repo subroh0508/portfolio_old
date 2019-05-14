@@ -1,5 +1,6 @@
 package components.biography
 
+import components.biography.maps.googleMap
 import materialui.components.card.card
 import materialui.components.cardcontent.cardContent
 import materialui.components.cardheader.cardHeader
@@ -45,6 +46,10 @@ val RBuilder.profile
 
                         +"在住: 東京・秋葉原"
                     }
+                }
+
+                div(props.googleMapStyle) {
+                    googleMap {  }
                 }
             }
         }

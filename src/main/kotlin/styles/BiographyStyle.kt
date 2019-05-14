@@ -12,7 +12,17 @@ val biographyStyle: StylesSet.() -> Unit = {
         alignItems = Align.center
 
         children("div") {
-            margin((theme.spacing.unit * 4).px)
+            nthChild("1") {
+                margin((theme.spacing.unit * 4).px)
+            }
+            nthChild("2") {
+                margin(
+                    top = (theme.spacing.unit * 4).px,
+                    bottom = (theme.spacing.unit * 4).px,
+                    right = (theme.spacing.unit * 16).px,
+                    left = (theme.spacing.unit * 4).px
+                )
+            }
         }
     }
 }
@@ -45,7 +55,7 @@ val aboutStyle: StylesSet.() -> Unit = {
 val profileStyle: StylesSet.() -> Unit = {
     "cardContent" {
         display = Display.flex
-        maxWidth = 640.px
+        maxWidth = 690.px
         alignItems = Align.center
     }
     "paragraph" {
@@ -53,5 +63,15 @@ val profileStyle: StylesSet.() -> Unit = {
             fontWeight = w400
             fontSize = 1.20.rem
         }
+    }
+    "googleMap" {
+        paddingLeft = 16.px
+    }
+}
+
+val googleMapStyle: StylesSet.() -> Unit = {
+    "root" {
+        width = 350.px
+        height = 350.px
     }
 }
