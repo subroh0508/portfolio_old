@@ -6,10 +6,6 @@ import materialui.styles.StylesSet
 val profileStyle: StylesSet.() -> Unit = {
     "root" {
         +"card-root" {
-            descendants(".divider") {
-                backgroundColor = Color("#3b91c4")
-            }
-
             descendants(".card-content") {
                 children("div") {
                     nthChild("1") {
@@ -22,10 +18,18 @@ val profileStyle: StylesSet.() -> Unit = {
         +"birthday-card-root" {
             gridColumnStart = GridColumnStart("1")
             gridColumnEnd = GridColumnEnd("9")
+
+            descendants(".divider") {
+                backgroundColor = Color("#3b91c4")
+            }
         }
         +"from-card-root" {
             gridColumnStart = GridColumnStart("3")
             gridColumnEnd = GridColumnEnd("13")
+
+            descendants(".divider") {
+                backgroundColor = Color("#e5488a")
+            }
         }
     }
 
