@@ -6,6 +6,8 @@ import materialui.components.card.card
 import materialui.components.cardcontent.cardContent
 import materialui.components.cardheader.cardHeader
 import materialui.components.divider.divider
+import materialui.components.divider.enums.DividerVariant
+import materialui.components.paper.enums.PaperStyle
 import materialui.components.typography.enums.TypographyColor
 import materialui.components.typography.enums.TypographyVariant
 import materialui.components.typography.typography
@@ -16,7 +18,7 @@ import styles.aboutStyle
 
 val RBuilder.about
     get() = childWithStyles<AboutProps>("About", aboutStyle) { props ->
-        card {
+        card(PaperStyle.root to props.cardRootStyle) {
             cardHeader {
                 attrs.title {
                     typography {
@@ -28,7 +30,10 @@ val RBuilder.about
                 }
             }
 
-            divider { }
+            divider {
+                attrs.className = "divider"
+                attrs.variant = DividerVariant.middle
+            }
 
             cardContent(props.cardContentStyle) {
                 avatar(AvatarStyle.root to props.avatarStyle) {

@@ -11,26 +11,29 @@ val biographyStyle: StylesSet.() -> Unit = {
         flexDirection = FlexDirection.column
         alignItems = Align.center
 
-        children("div") {
-            nthChild("1") {
-                margin((theme.spacing.unit * 4).px)
-            }
-            nthChild("2") {
-                margin(
-                    top = (theme.spacing.unit * 4).px,
-                    bottom = (theme.spacing.unit * 4).px,
-                    right = (theme.spacing.unit * 16).px,
-                    left = (theme.spacing.unit * 4).px
-                )
+        descendants(".grid-root") {
+            display = Display.grid
+            gridTemplateColumns = GridTemplateColumns.repeat("12, ${1.fr}")
+            gridAutoRows = GridAutoRows.minMax(300.px, LinearDimension.auto)
+
+            children("div") {
+                margin(vertical = (theme.spacing.unit * 4).px)
             }
         }
     }
 }
 
 val aboutStyle: StylesSet.() -> Unit = {
+    "cardRoot" {
+        gridColumnStart = GridColumnStart("3")
+        gridColumnEnd = GridColumnEnd("11")
+
+        descendants(".divider") {
+            backgroundColor = Color("#e33830")
+        }
+    }
     "cardContent" {
         display = Display.flex
-        maxWidth = 720.px
         alignItems = Align.center
     }
     "avatar" {
@@ -48,30 +51,5 @@ val aboutStyle: StylesSet.() -> Unit = {
                 paddingBottom = 16.px
             }
         }
-    }
-}
-
-
-val profileStyle: StylesSet.() -> Unit = {
-    "cardContent" {
-        display = Display.flex
-        maxWidth = 690.px
-        alignItems = Align.center
-    }
-    "paragraph" {
-        children("p") {
-            fontWeight = w400
-            fontSize = 1.20.rem
-        }
-    }
-    "googleMap" {
-        paddingLeft = 16.px
-    }
-}
-
-val googleMapStyle: StylesSet.() -> Unit = {
-    "root" {
-        width = 350.px
-        height = 350.px
     }
 }
