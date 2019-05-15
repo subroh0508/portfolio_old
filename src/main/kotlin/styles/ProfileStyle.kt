@@ -9,14 +9,23 @@ val profileStyle: StylesSet.() -> Unit = {
             descendants(".divider") {
                 backgroundColor = Color("#3b91c4")
             }
+
+            descendants(".card-content") {
+                children("div") {
+                    nthChild("1") {
+                        display = Display.flex
+                        alignItems = Align.center
+                    }
+                }
+            }
         }
         +"birthday-card-root" {
             gridColumnStart = GridColumnStart("1")
             gridColumnEnd = GridColumnEnd("9")
         }
-        descendants(".card-content") {
-            display = Display.flex
-            alignItems = Align.center
+        +"from-card-root" {
+            gridColumnStart = GridColumnStart("3")
+            gridColumnEnd = GridColumnEnd("13")
         }
     }
 
@@ -50,5 +59,21 @@ val birthdayStyle: StylesSet.() -> Unit = {
                 margin(bottom = (theme.spacing.unit * 4).px)
             }
         }
+    }
+}
+
+val fromStyle: StylesSet.() -> Unit = {
+    "paragraph" {
+        children("p") {
+            fontWeight = FontWeight.w400
+            fontSize = 1.20.rem
+        }
+
+        children("div") {
+            margin(top = (theme.spacing.unit * 4).px)
+        }
+    }
+    "googleMap" {
+        paddingLeft = 16.px
     }
 }

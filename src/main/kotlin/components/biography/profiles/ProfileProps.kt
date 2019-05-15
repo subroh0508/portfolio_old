@@ -7,6 +7,7 @@ import react.RBuilder
 import react.RProps
 import react.ReactElement
 import react.buildElement
+import react.dom.div
 
 external interface ProfileProps : CardProps {
     var classNamePrefix: String
@@ -21,7 +22,9 @@ fun <P: RProps> ProfileProps.cardContent(
     render: RBuilder.(P) -> Unit
 ) {
     cardContent = buildElement {
-        childWithStyles(displayName, paragraphStylesSet, render = render).invoke {  }
+        childWithStyles(displayName, paragraphStylesSet, render = { props: P ->
+            div { render(props) }
+        }).invoke {  }
     }
 }
 

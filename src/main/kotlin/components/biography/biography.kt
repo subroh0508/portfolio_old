@@ -1,6 +1,7 @@
 package components.biography
 
 import components.biography.profiles.birthday
+import components.biography.profiles.from
 import materialui.styles.childWithStyles
 import react.RBuilder
 import react.dom.div
@@ -12,6 +13,7 @@ val RBuilder.biography
             div("grid-root") {
                 about { }
                 birthday {  }
+                from { }
                 //profile { }
             }
         }
