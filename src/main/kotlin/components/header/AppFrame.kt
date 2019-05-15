@@ -67,11 +67,13 @@ class AppFrame : RComponent<AppFrameProps, AppFrameState>() {
                     }
                     tab {
                         attrs.disableRipple = true
-                        attrs.label { +"works" }
+                        attrs.disabled = true
+                        attrs.label { +"works(coming soon)" }
                     }
                     tab {
                         attrs.disableRipple = true
-                        attrs.label { +"links" }
+                        attrs.disabled = true
+                        attrs.label { +"links(coming soon)" }
                     }
                 }
             }
