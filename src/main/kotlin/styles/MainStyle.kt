@@ -4,7 +4,7 @@ import kotlinx.css.*
 import kotlinx.css.FontWeight.Companion.w400
 import materialui.styles.StylesSet
 
-val biographyStyle: StylesSet.() -> Unit = {
+val mainStyle: StylesSet.() -> Unit = {
     "root" {
         display = Display.flex
         width = 100.pct
@@ -13,6 +13,7 @@ val biographyStyle: StylesSet.() -> Unit = {
 
         descendants(".grid-root") {
             display = Display.grid
+            width = 100.pct
             gridTemplateColumns = GridTemplateColumns.repeat("12, ${1.fr}")
             gridAutoRows = GridAutoRows.minMax(300.px, LinearDimension.auto)
 
