@@ -3,6 +3,7 @@ package components.biography.maps
 import org.w3c.dom.Window
 
 inline fun Window.initMap()
+    //language=js
     = js("""
         new window.google.maps.Map(
           document.getElementById('googleMap'),
