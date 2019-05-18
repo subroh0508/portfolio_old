@@ -39,6 +39,7 @@ kotlinFrontend {
         dependency("react-router")
         dependency("react-markdown")
         dependency("inline-style-prefixer")
+        dependency("react-swipeable-views")
 
         devDependency("css-loader")
         devDependency("style-loader")

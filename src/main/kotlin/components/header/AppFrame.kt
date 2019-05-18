@@ -18,6 +18,8 @@ import react.RBuilder
 import react.RComponent
 import react.dom.div
 import react.setState
+import reactswipableviews.onChangeIndex
+import reactswipableviews.swipeableViews
 
 class AppFrame : RComponent<AppFrameProps, AppFrameState>() {
     override fun AppFrameState.init() {
@@ -67,19 +69,22 @@ class AppFrame : RComponent<AppFrameProps, AppFrameState>() {
                     }
                     tab {
                         attrs.disableRipple = true
-                        attrs.disabled = true
-                        attrs.label { +"works(coming soon)" }
+                        attrs.label { +"works" }
                     }
                     tab {
                         attrs.disableRipple = true
-                        attrs.disabled = true
-                        attrs.label { +"links(coming soon)" }
+                        attrs.label { +"links" }
                     }
                 }
             }
 
             div(props.contents) {
-                child(props.views[state.tabNumber])
+                swipeableViews {
+                    attrs.index = state.tabNumber
+                    attrs.onChangeIndex { index -> onChangeTab(index) }
+
+                    props.views.forEach { view -> child(view) }
+                }
             }
         }
     }
