@@ -20,5 +20,8 @@ val appTheme: MuiTheme = createMuiTheme {
             dark = Color("#6987aa")
             contrastText = Color("#000")
         }
+        background {
+            default = Color("#eeeeee")
+        }
     }
 }

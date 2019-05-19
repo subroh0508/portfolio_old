@@ -28,7 +28,7 @@ val profileStyle: StylesSet.() -> Unit = {
             gridColumnEnd = GridColumnEnd("13")
 
             descendants(".divider") {
-                backgroundColor = Color("#e5488a")
+                backgroundColor = Color("#3b91c4")
             }
         }
     }

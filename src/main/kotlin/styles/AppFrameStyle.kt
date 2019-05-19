@@ -2,12 +2,14 @@ package styles
 
 import kotlinx.css.*
 import materialui.styles.StylesSet
+import materialui.styles.palette.default
 import materialui.styles.palette.main
 import materialui.styles.typography.typography
 
 val appFrameStyle: StylesSet.() -> Unit = {
     "root" {
         display = Display.flex
+        background = theme.palette.background.default.toString()
     }
     "appBar" {
         flexGrow = 1.0
@@ -34,6 +36,7 @@ val appFrameStyle: StylesSet.() -> Unit = {
         margin(vertical = 10.px, horizontal = 30.px)
     }
     "contents" {
+        background = theme.palette.background.default.toString()
         width = 100.pct
         position = Position.relative
         top = 176.px

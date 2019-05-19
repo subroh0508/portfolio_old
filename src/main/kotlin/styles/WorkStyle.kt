@@ -5,8 +5,8 @@ import materialui.styles.StylesSet
 
 val projectStyle: StylesSet.() -> Unit = {
     "cardRoot" {
-        gridColumnStart = GridColumnStart("3")
-        gridColumnEnd = GridColumnEnd("11")
+        gridColumnStart = GridColumnStart("1")
+        gridColumnEnd = GridColumnEnd("13")
 
         descendants(".divider") {
             backgroundColor = Color("#e33830")
@@ -36,8 +36,8 @@ val projectStyle: StylesSet.() -> Unit = {
 
 val speakStyle: StylesSet.() -> Unit = {
     "cardRoot" {
-        gridColumnStart = GridColumnStart("3")
-        gridColumnEnd = GridColumnEnd("11")
+        gridColumnStart = GridColumnStart("1")
+        gridColumnEnd = GridColumnEnd("13")
 
         descendants(".divider") {
             backgroundColor = Color("#e33830")
