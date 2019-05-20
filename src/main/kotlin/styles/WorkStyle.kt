@@ -10,7 +10,7 @@ val projectStyle: StylesSet.() -> Unit = {
         gridColumnEnd = GridColumnEnd("13")
 
         descendants(".divider") {
-            backgroundColor = Color("#e33830")
+            backgroundColor = Color("#a9d053")
         }
     }
     "cardContent" {
@@ -57,7 +57,7 @@ val speakStyle: StylesSet.() -> Unit = {
         gridColumnEnd = GridColumnEnd("13")
 
         descendants(".divider") {
-            backgroundColor = Color("#e33830")
+            backgroundColor = Color("#a9d053")
         }
     }
     "cardContent" {

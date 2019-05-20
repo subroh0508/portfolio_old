@@ -1,11 +1,14 @@
 
 import components.biography.biography
 import components.header.AppFrame
+import components.links.links
 import components.works.work
 import materialui.styles.childWithStyles
 import materialui.styles.muithemeprovider.muiThemeProvider
-import react.*
-import react.dom.div
+import react.RBuilder
+import react.RComponent
+import react.RProps
+import react.RState
 import styles.appFrameStyle
 import themes.appTheme
 
@@ -16,7 +19,7 @@ class App : RComponent<RProps, RState>() {
                 attrs.views = listOfNotNull(
                     biography { },
                     work { },
-                    buildElement { div { +"links" } }
+                    links { }
                 ).toTypedArray()
             }
         }
