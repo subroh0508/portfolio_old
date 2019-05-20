@@ -20,6 +20,7 @@ import react.dom.div
 import react.setState
 import reactswipableviews.onChangeIndex
 import reactswipableviews.swipeableViews
+import kotlin.browser.window
 
 class AppFrame : RComponent<AppFrameProps, AppFrameState>() {
     override fun AppFrameState.init() {
@@ -28,6 +29,8 @@ class AppFrame : RComponent<AppFrameProps, AppFrameState>() {
 
     private fun onChangeTab(number: Int) {
         setState { tabNumber = number }
+
+        window.scrollTo(0.0, 0.0)
     }
 
     override fun RBuilder.render() {
