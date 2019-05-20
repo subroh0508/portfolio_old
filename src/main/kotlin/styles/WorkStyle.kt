@@ -49,22 +49,6 @@ val projectStyle: StylesSet.() -> Unit = {
             }
         }
     }
-    "avatar" {
-        height = 240.px
-        width = 240.px
-    }
-    "paragraph" {
-        paddingLeft = 16.px
-
-        children("p") {
-            fontWeight = FontWeight.w400
-            fontSize = 1.20.rem
-
-            firstChild {
-                paddingBottom = 16.px
-            }
-        }
-    }
 }
 
 val speakStyle: StylesSet.() -> Unit = {
@@ -77,23 +61,9 @@ val speakStyle: StylesSet.() -> Unit = {
         }
     }
     "cardContent" {
-        display = Display.flex
-        alignItems = Align.center
-    }
-    "avatar" {
-        height = 240.px
-        width = 240.px
-    }
-    "paragraph" {
-        paddingLeft = 16.px
-
-        children("p") {
+        descendants("p") {
             fontWeight = FontWeight.w400
             fontSize = 1.20.rem
-
-            firstChild {
-                paddingBottom = 16.px
-            }
         }
     }
 }
