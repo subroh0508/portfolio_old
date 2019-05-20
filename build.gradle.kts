@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "net.subroh0508"
-version = "20190521.4-beta"
+version = "20190521.5-beta"
 
 repositories {
     mavenCentral()
