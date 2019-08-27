@@ -41,7 +41,8 @@ val RBuilder.speak
                         span { +"2019年" }
                         ul {
                             li {
-                                +"DroidKaigi 2019: 「Spek2+MockK+JaCoCoでイケてるUnit Test環境を手に入れろ！」 "
+                                b { +"DroidKaigi 2019:" }
+                                +" 「Spek2+MockK+JaCoCoでイケてるUnit Test環境を手に入れろ！」 "
 
                                 +"("
                                 a {
@@ -53,7 +54,8 @@ val RBuilder.speak
                                 +")"
                             }
                             li {
-                                +"Kotlin愛好会 Vol.10: 「Kotlinでクエリ言語のクライアントを作った話」 "
+                                b { +"Kotlin愛好会 Vol.10:" }
+                                +" 「Kotlinでクエリ言語のクライアントを作った話」 "
 
                                 +"("
                                 a {
@@ -66,11 +68,38 @@ val RBuilder.speak
                                 +")"
                             }
                             li {
-                                +"アイマスハッカソン2019 in 名古屋: 「Otonashi meets im@sparql」 "
+                                b { +"アイマスハッカソン2019 in 名古屋:" }
+                                +" 「Otonashi meets im@sparql」 "
 
                                 +"("
                                 a {
                                     attrs.href = "https://speakerdeck.com/subroh0508/otonashi-meets-im-at-sparql"
+                                    attrs.target = "_blank"
+
+                                    +"SpeakerDeck"
+                                }
+                                +")"
+                            }
+                            li {
+                                b { +"IM@S Engineer Talks 2019:" }
+                                +" 「小鳥さんとKotlinを勉強できるサイトを100%Kotlinで作る」 "
+
+                                +"("
+                                a {
+                                    attrs.href = "https://youtu.be/8oB-JudUejE?t=6375"
+                                    attrs.target = "_blank"
+
+                                    +"YouTube"
+                                }
+                                +")"
+                            }
+                            li {
+                                b { +"Kotlin Fest 2019:" }
+                                +"「フロントエンドもKotlinで書きたい！ -WebページをKotlin/JSで作った軌跡-」"
+
+                                +"("
+                                a {
+                                    attrs.href = "https://speakerdeck.com/subroh0508/jsdezuo-tutagui-ji"
                                     attrs.target = "_blank"
 
                                     +"SpeakerDeck"
@@ -82,7 +111,8 @@ val RBuilder.speak
                         span { +"2018年" }
                         ul {
                             li {
-                                +"高専カンファレンス in 東京 2018: 「Flutterで生み出せ圧倒的成果💪 -クロスプラットフォーム開発の未来-」 "
+                                b { +"高専カンファレンス in 東京 2018:" }
+                                +" 「Flutterで生み出せ圧倒的成果💪 -クロスプラットフォーム開発の未来-」 "
 
                                 +"("
                                 a {
