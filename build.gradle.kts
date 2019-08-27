@@ -1,3 +1,4 @@
+
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jetbrains.kotlin.gradle.tasks.KotlinJsDce
 
@@ -17,17 +18,17 @@ repositories {
     maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
 }
 
+val runDceKotlin by tasks.getting(KotlinJsDce::class)
+
 kotlin {
     target {
         useCommonJs()
         browser {
             runTask {
-                val mainSrc = kotlin.sourceSets["main"]
-
                 sourceMaps = true
                 devServer = KotlinWebpackConfig.DevServer(
                     port = 8088,
-                    contentBase = mainSrc.resources.srcDirs.map { it.toString() }
+                    contentBase = listOf("${runDceKotlin.destinationDir}/resources")
                 )
                 archiveFileName = "main.bundle.js"
             }
@@ -65,8 +66,14 @@ kotlin {
     }
 }
 
-val runDceKotlin by tasks.getting(KotlinJsDce::class)
+val copyResources by tasks.registering(Copy::class) {
+    val mainSrc = kotlin.sourceSets["main"]
+
+    from(mainSrc.resources.srcDirs)
+    into("${runDceKotlin.destinationDir}/resources")
+}
 
 afterEvaluate {
-    tasks["browserWebpack"].dependsOn(runDceKotlin)
+    tasks["browserWebpack"].dependsOn(copyResources, runDceKotlin)
+    tasks["browserRun"].dependsOn(copyResources)
 }
