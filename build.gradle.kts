@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+import org.jetbrains.kotlin.gradle.tasks.KotlinJsDce
 
 plugins {
     kotlin("js")
@@ -62,4 +63,10 @@ kotlin {
             }
         }
     }
+}
+
+val runDceKotlin by tasks.getting(KotlinJsDce::class)
+
+afterEvaluate {
+    tasks["browserWebpack"].dependsOn(runDceKotlin)
 }
