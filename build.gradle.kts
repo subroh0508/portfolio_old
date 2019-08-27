@@ -18,17 +18,17 @@ repositories {
     maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
 }
 
-val runDceKotlin by tasks.getting(KotlinJsDce::class)
-
 kotlin {
     target {
         useCommonJs()
         browser {
             runTask {
+                val mainSrc = kotlin.sourceSets["main"]
+
                 sourceMaps = true
                 devServer = KotlinWebpackConfig.DevServer(
                     port = 8088,
-                    contentBase = listOf("${runDceKotlin.destinationDir}/resources")
+                    contentBase = mainSrc.resources.srcDirs.map { it.absolutePath }
                 )
                 archiveFileName = "main.bundle.js"
             }
@@ -65,6 +65,8 @@ kotlin {
         }
     }
 }
+
+val runDceKotlin by tasks.getting(KotlinJsDce::class)
 
 val copyResources by tasks.registering(Copy::class) {
     val mainSrc = kotlin.sourceSets["main"]
