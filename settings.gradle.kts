@@ -7,8 +7,8 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             when (requested.id.id) {
-                "kotlin2js", "kotlin-dce-js" -> useModule(Dep.kotlinGradlePlugin)
-                "org.jetbrains.kotlin.frontend" -> useModule(Dep.kotlinFrontendPlugin)
+                "kotlin-dce-js" -> useModule(Libraries.Plugins.kotlinGradle)
+                "org.jetbrains.kotlin.js" -> useModule(Libraries.Plugins.kotlinFrontend)
             }
         }
     }

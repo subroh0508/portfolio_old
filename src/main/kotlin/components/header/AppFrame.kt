@@ -1,6 +1,7 @@
 package components.header
 
 import kotlinx.css.px
+import kotlinx.css.width
 import materialui.components.appbar.appBar
 import materialui.components.appbar.enums.AppBarColor
 import materialui.components.appbar.enums.AppBarStyle
