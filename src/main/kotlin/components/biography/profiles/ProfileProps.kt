@@ -1,7 +1,7 @@
 package components.biography.profiles
 
 import components.biography.CardProps
-import materialui.styles.StylesSet
+import materialui.styles.StylesBuilder
 import materialui.styles.childWithStyles
 import react.RBuilder
 import react.RProps
@@ -18,7 +18,7 @@ external interface ProfileProps : CardProps {
 fun ProfileProps.title(block: RBuilder.() -> Unit) { title = buildElement(block) }
 fun <P: RProps> ProfileProps.cardContent(
     displayName: String,
-    paragraphStylesSet: StylesSet.() -> Unit,
+    paragraphStylesSet: StylesBuilder<P>.() -> Unit,
     render: RBuilder.(P) -> Unit
 ) {
     cardContent = buildElement {

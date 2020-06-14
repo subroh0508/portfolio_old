@@ -27,11 +27,11 @@ kotlin {
                     port = 8088,
                     contentBase = mainSrc.resources.srcDirs.map { it.absolutePath }
                 )
-                archiveFileName = "main.bundle.js"
+                outputFileName = "main.bundle.js"
             }
             webpackTask {
                 sourceMaps = false
-                archiveFileName = "main.bundle.js"
+                outputFileName = "main.bundle.js"
             }
         }
     }
