@@ -36,5 +36,7 @@ object Libraries {
         const val inlineStyledPrefixer = "^5.1.2"
         const val reactSwipeableViews = "^0.13.9"
         const val materialUi = "^4.10.0"
+
+        const val storybook = "^5.3.19"
     }
 }
