@@ -38,5 +38,8 @@ object Libraries {
         const val materialUi = "^4.10.0"
 
         const val storybook = "^5.3.19"
+
+        const val babel = "^7.10.2"
+        const val babelLoader = "^8.1.0"
     }
 }
