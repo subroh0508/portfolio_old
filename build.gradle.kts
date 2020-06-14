@@ -1,10 +1,7 @@
-
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-import org.jetbrains.kotlin.gradle.tasks.KotlinJsDce
 
 plugins {
     kotlin("js")
-    id("kotlin-dce-js")
 }
 
 group = Packages.group
@@ -42,40 +39,38 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
-                implementation(Libraries.kotlinJs)
-                implementation(Libraries.kotlinxHtml)
-                implementation(Libraries.kotlinReact)
-                implementation(Libraries.kotlinReactDom)
-                implementation(Libraries.kotlinJsWrapper)
-                implementation(Libraries.kotlinMaterialUi)
+                implementation(Libraries.Kotlin.js)
+                implementation(Libraries.Kotlin.html)
+                implementation(Libraries.Kotlin.react)
+                implementation(Libraries.Kotlin.reactDom)
+                implementation(Libraries.Kotlin.extensions)
+                implementation(Libraries.Kotlin.materialUi)
 
-                implementation(npm("react", Versions.Npm.react))
-                implementation(npm("react-dom", Versions.Npm.react))
-                implementation(npm("styled-components", Versions.Npm.styledComponent))
-                implementation(npm("inline-style-prefixer", Versions.Npm.inlineStyledPrefixer))
-                implementation(npm("react-swipeable-views"))
-                implementation(npm("@material-ui/core", Versions.Npm.materialUi))
-            }
-        }
-
-        val test by getting {
-            dependencies {
-                implementation(Libraries.kotlinTestJs)
+                implementation(npm("react", Libraries.Npm.react))
+                implementation(npm("react-dom", Libraries.Npm.react))
+                implementation(npm("styled-components", Libraries.Npm.styledComponent))
+                implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
+                implementation(npm("react-swipeable-views", Libraries.Npm.reactSwipeableViews))
+                implementation(npm("@material-ui/core", Libraries.Npm.materialUi))
             }
         }
     }
 }
 
-val runDceKotlin by tasks.getting(KotlinJsDce::class)
+val browserWebpack = tasks.getByName("browserProductionWebpack")
 
-val copyResources by tasks.registering(Copy::class) {
-    val mainSrc = kotlin.sourceSets["main"]
-
-    from(mainSrc.resources.srcDirs)
-    into("${runDceKotlin.destinationDir}/resources")
+val copyDistributions by tasks.registering {
+    doLast {
+        copy {
+            val destinationDir = File("$rootDir/public")
+            if (!destinationDir.exists()) {
+                destinationDir.mkdir()
+            }
+            val distributions = File("$buildDir/distributions/")
+            from(distributions)
+            into(destinationDir)
+        }
+    }
 }
 
-afterEvaluate {
-    tasks["browserWebpack"].dependsOn(copyResources, runDceKotlin)
-    tasks["browserRun"].dependsOn(copyResources)
-}
+browserWebpack.finalizedBy(copyDistributions)
