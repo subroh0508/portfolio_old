@@ -1,9 +1,14 @@
 package styles
 
+import components.biography.maps.MapProps
+import components.biography.profiles.BirthdayProps
+import components.biography.profiles.FromProps
+import components.biography.profiles.ProfileProps
 import kotlinx.css.*
-import materialui.styles.StylesSet
+import materialui.styles.StylesBuilder
+import react.RProps
 
-val profileStyle: StylesSet.() -> Unit = {
+val profileStyle: StylesBuilder<ProfileProps>.() -> Unit = {
     "root" {
         +"card-root" {
             descendants(".card-content") {
@@ -44,14 +49,14 @@ val profileStyle: StylesSet.() -> Unit = {
     }
 }
 
-val googleMapStyle: StylesSet.() -> Unit = {
+val googleMapStyle: StylesBuilder<MapProps>.() -> Unit = {
     "root" {
         width = 350.px
         height = 350.px
     }
 }
 
-val birthdayStyle: StylesSet.() -> Unit = {
+val birthdayStyle: StylesBuilder<BirthdayProps>.() -> Unit = {
     "root" {
         descendants("p") {
             descendants("li") {
@@ -60,13 +65,13 @@ val birthdayStyle: StylesSet.() -> Unit = {
             }
 
             nthChild("1") {
-                margin(bottom = (theme.spacing.unit * 4).px)
+                margin(bottom = (theme.spacing(4)).px)
             }
         }
     }
 }
 
-val fromStyle: StylesSet.() -> Unit = {
+val fromStyle: StylesBuilder<FromProps>.() -> Unit = {
     "paragraph" {
         children("p") {
             fontWeight = FontWeight.w400
@@ -74,7 +79,7 @@ val fromStyle: StylesSet.() -> Unit = {
         }
 
         children("div") {
-            margin(top = (theme.spacing.unit * 4).px)
+            margin(top = (theme.spacing(4)).px)
         }
     }
     "googleMap" {

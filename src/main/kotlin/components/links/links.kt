@@ -20,7 +20,7 @@ import react.dom.tag
 import styles.linksStyle
 
 val RBuilder.links
-    get() = childWithStyles<MainProps>("Links", linksStyle) { props ->
+    get() = childWithStyles("Links", linksStyle) { props ->
         div(props.root) {
             typography(p = true) {
                 attrs.variant = TypographyVariant.h6

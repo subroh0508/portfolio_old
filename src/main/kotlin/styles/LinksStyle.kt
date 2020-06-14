@@ -1,10 +1,11 @@
 package styles
 
+import components.links.LinksProps
 import kotlinx.css.*
-import materialui.styles.StylesSet
+import materialui.styles.StylesBuilder
 import materialui.styles.palette.secondary
 
-val linksStyle: StylesSet.() -> Unit = {
+val linksStyle: StylesBuilder<LinksProps>.() -> Unit = {
     "root" {
         display = Display.flex
         width = 100.pct
@@ -14,7 +15,7 @@ val linksStyle: StylesSet.() -> Unit = {
         descendants(".grid-root") {
             display = Display.grid
             backgroundColor = Color("#fafafa")
-            padding((theme.spacing.unit * 2).px)
+            padding((theme.spacing(2)).px)
             width = 100.pct
             gridTemplateColumns = GridTemplateColumns.repeat("12, ${1.fr}")
             gridAutoRows = GridAutoRows.minMax(300.px, LinearDimension.auto)
@@ -38,7 +39,5 @@ val linksStyle: StylesSet.() -> Unit = {
                 marginRight = 8.px
             }
         }
-
-
     }
 }

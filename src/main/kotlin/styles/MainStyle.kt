@@ -1,10 +1,11 @@
 package styles
 
+import components.MainProps
+import components.biography.AboutProps
 import kotlinx.css.*
-import kotlinx.css.FontWeight.Companion.w400
-import materialui.styles.StylesSet
+import materialui.styles.StylesBuilder
 
-val mainStyle: StylesSet.() -> Unit = {
+val mainStyle: StylesBuilder<MainProps>.() -> Unit = {
     "root" {
         display = Display.flex
         width = 100.pct
@@ -18,13 +19,13 @@ val mainStyle: StylesSet.() -> Unit = {
             gridAutoRows = GridAutoRows.minMax(300.px, LinearDimension.auto)
 
             children("div") {
-                margin(vertical = (theme.spacing.unit * 4).px)
+                margin(vertical = (theme.spacing(4)).px)
             }
         }
     }
 }
 
-val aboutStyle: StylesSet.() -> Unit = {
+val aboutStyle: StylesBuilder<AboutProps>.() -> Unit = {
     "cardRoot" {
         gridColumnStart = GridColumnStart("3")
         gridColumnEnd = GridColumnEnd("11")
@@ -45,7 +46,7 @@ val aboutStyle: StylesSet.() -> Unit = {
         paddingLeft = 16.px
 
         children("p") {
-            fontWeight = w400
+            fontWeight = FontWeight.w400
             fontSize = 1.20.rem
 
             firstChild {

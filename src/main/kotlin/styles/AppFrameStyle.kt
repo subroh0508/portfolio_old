@@ -1,24 +1,25 @@
 package styles
 
+import components.header.AppFrameProps
 import kotlinx.css.*
-import materialui.styles.StylesSet
+import materialui.styles.StylesBuilder
 import materialui.styles.palette.default
 import materialui.styles.palette.main
 import materialui.styles.typography.typography
 
-val appFrameStyle: StylesSet.() -> Unit = {
+val appFrameStyle: StylesBuilder<AppFrameProps>.() -> Unit = {
     "root" {
         display = Display.flex
         background = theme.palette.background.default.toString()
     }
     "appBar" {
         flexGrow = 1.0
-        padding(horizontal = (theme.spacing.unit * 6).px)
+        padding(horizontal = (theme.spacing(6)).px)
     }
     "toolbar" {
         flexDirection = FlexDirection.column
         alignItems = Align.flexStart
-        padding(top = (theme.spacing.unit * 3).px, bottom = (theme.spacing.unit * 5).px)
+        padding(top = (theme.spacing(3)).px, bottom = (theme.spacing(5)).px)
     }
     "title" {
         paddingBottom = 4.px
@@ -40,6 +41,6 @@ val appFrameStyle: StylesSet.() -> Unit = {
         width = 100.pct
         position = Position.relative
         top = 176.px
-        padding(horizontal = (theme.spacing.unit * 9).px)
+        padding(horizontal = (theme.spacing(9)).px)
     }
 }

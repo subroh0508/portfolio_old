@@ -1,10 +1,12 @@
 package styles
 
+import components.works.ProjectProps
+import components.works.SpeakProps
 import kotlinx.css.*
-import materialui.styles.StylesSet
+import materialui.styles.StylesBuilder
 import materialui.styles.palette.light
 
-val projectStyle: StylesSet.() -> Unit = {
+val projectStyle: StylesBuilder<ProjectProps>.() -> Unit = {
     "cardRoot" {
         gridColumnStart = GridColumnStart("1")
         gridColumnEnd = GridColumnEnd("13")
@@ -14,7 +16,7 @@ val projectStyle: StylesSet.() -> Unit = {
         }
     }
     "cardContent" {
-        margin((theme.spacing.unit * 2).px)
+        margin((theme.spacing(2)).px)
 
         descendants(".panel-summary") {
             backgroundColor = theme.palette.secondary.light
@@ -51,7 +53,7 @@ val projectStyle: StylesSet.() -> Unit = {
     }
 }
 
-val speakStyle: StylesSet.() -> Unit = {
+val speakStyle: StylesBuilder<SpeakProps>.() -> Unit = {
     "cardRoot" {
         gridColumnStart = GridColumnStart("1")
         gridColumnEnd = GridColumnEnd("13")
