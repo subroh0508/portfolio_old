@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+import org.jetbrains.kotlin.gradle.targets.js.npm.NpmDependency
 
 plugins {
     kotlin("js") version Libraries.Kotlin.version
@@ -53,6 +54,9 @@ kotlin {
                 implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
                 implementation(npm("react-swipeable-views", Libraries.Npm.reactSwipeableViews))
                 implementation(npm("@material-ui/core", Libraries.Npm.materialUi))
+
+                implementation(devNpm("style-loader"))
+                implementation(devNpm("css-loader"))
             }
         }
     }
@@ -75,3 +79,5 @@ val copyDistributions by tasks.registering {
 }
 
 browserWebpack.finalizedBy(copyDistributions)
+
+fun devNpm(name: String, version: String = "*") = NpmDependency(project, name, version, NpmDependency.Scope.DEV)
