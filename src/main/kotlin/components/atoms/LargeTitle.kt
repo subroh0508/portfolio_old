@@ -2,8 +2,7 @@
 
 package components.atoms
 
-import kotlinx.css.FontWeight
-import kotlinx.css.fontWeight
+import kotlinx.css.*
 import materialcomponents.Typography
 import materialcomponents.TypographyProps
 import react.RBuilder
@@ -34,6 +33,7 @@ private fun RBuilder.StyledTypographyHeadline4(className: String? = null, handle
     css {
         className?.let(classes::add)
         fontWeight = FontWeight.bold
+        color = Color("mdc-theme-text-primary-on-dark".toCustomProperty())
     }
 
     attrs.use = "headline4"
@@ -45,6 +45,7 @@ private fun RBuilder.StyledTypographyHeadline4(className: String? = null, handle
 private fun RBuilder.StyledTypographyHeadline5(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
     css {
         className?.let(classes::add)
+        color = Color("mdc-theme-text-primary-on-dark".toCustomProperty())
     }
 
     attrs.use = "headline5"

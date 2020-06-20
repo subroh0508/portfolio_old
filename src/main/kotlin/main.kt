@@ -6,6 +6,7 @@ import kotlin.browser.document
 import kotlinx.css.*
 import react.child
 import styled.*
+import themes.ThemeProvider
 
 fun main() {
     injectGlobal {
@@ -15,9 +16,11 @@ fun main() {
     }
 
     render(document.getElementById("root")) {
-        child(IntroductionNameCard) {
-            attrs.name = "にしこりさぶろ〜"
-            attrs.subName = "Subroh Nishikori"
+        ThemeProvider {
+            child(IntroductionNameCard) {
+                attrs.name = "にしこりさぶろ〜"
+                attrs.subName = "Subroh Nishikori"
+            }
         }
     }
 }
