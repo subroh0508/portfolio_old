@@ -1,20 +1,23 @@
 @file:Suppress("FunctionName")
 
-import kotlinx.css.rem
-import kotlinx.css.width
 import materialcomponents.Card
 import materialcomponents.CardProps
 import materialcomponents.Typography
 import react.RBuilder
-import react.ReactElement
 import react.dom.render
 import kotlin.browser.document
 import kotlinext.js.require
-import kotlinx.css.padding
+import kotlinx.css.*
 import kotlinx.html.DIV
 import styled.*
 
 fun main() {
+    injectGlobal {
+        body {
+            backgroundColor = Color("#121212")
+        }
+    }
+
     require("@material/card/dist/mdc.card.min.css")
     require("@material/typography/dist/mdc.typography.min.css")
 

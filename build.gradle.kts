@@ -54,6 +54,7 @@ kotlin {
                 implementation(npm("react-swipeable-views", Libraries.Npm.reactSwipeableViews))
                 implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/typography", Libraries.Npm.materialWebComponents))
+                implementation(npm("@rmwc/theme", Libraries.Npm.materialWebComponents))
 
                 implementation(devNpm("style-loader"))
                 implementation(devNpm("css-loader"))
