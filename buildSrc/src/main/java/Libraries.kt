@@ -25,9 +25,6 @@ object Libraries {
 
         const val extensionsVersion = "1.0.1-$wrappersBuild"
         const val extensions = "org.jetbrains:kotlin-extensions:$extensionsVersion"
-
-        const val materialUiVersion = "0.4.2"
-        const val materialUi = "subroh0508.net.kotlinmaterialui:core:$materialUiVersion"
     }
 
     object Npm {
@@ -35,6 +32,6 @@ object Libraries {
         const val styledComponent = "^4.4.1"
         const val inlineStyledPrefixer = "^5.1.2"
         const val reactSwipeableViews = "^0.13.9"
-        const val materialUi = "^4.10.0"
+        const val materialWebComponents = "^6.1.3"
     }
 }

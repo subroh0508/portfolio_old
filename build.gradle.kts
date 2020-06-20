@@ -46,14 +46,14 @@ kotlin {
                 implementation(Libraries.Kotlin.reactDom)
                 implementation(Libraries.Kotlin.extensions)
                 implementation(Libraries.Kotlin.styled)
-                //implementation(Libraries.Kotlin.materialUi)
 
                 implementation(npm("react", Libraries.Npm.react))
                 implementation(npm("react-dom", Libraries.Npm.react))
                 implementation(npm("styled-components", Libraries.Npm.styledComponent))
                 implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
                 implementation(npm("react-swipeable-views", Libraries.Npm.reactSwipeableViews))
-                implementation(npm("@material-ui/core", Libraries.Npm.materialUi))
+                implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))
+                implementation(npm("@rmwc/typography", Libraries.Npm.materialWebComponents))
 
                 implementation(devNpm("style-loader"))
                 implementation(devNpm("css-loader"))
