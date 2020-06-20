@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
-    kotlin("js")
+    kotlin("js") version Libraries.Kotlin.version
 }
 
 group = Packages.group
@@ -44,7 +44,8 @@ kotlin {
                 implementation(Libraries.Kotlin.react)
                 implementation(Libraries.Kotlin.reactDom)
                 implementation(Libraries.Kotlin.extensions)
-                implementation(Libraries.Kotlin.materialUi)
+                implementation(Libraries.Kotlin.styled)
+                //implementation(Libraries.Kotlin.materialUi)
 
                 implementation(npm("react", Libraries.Npm.react))
                 implementation(npm("react-dom", Libraries.Npm.react))
