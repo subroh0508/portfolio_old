@@ -2,20 +2,24 @@
 
 package components.atoms
 
+import kotlinx.css.FontWeight
+import kotlinx.css.fontWeight
 import materialcomponents.Typography
 import materialcomponents.TypographyProps
 import react.RBuilder
 import react.dom.WithClassName
 import react.functionalComponent
 import styled.StyledHandler
+import styled.StyledProps
+import styled.css
 import styled.styled
 
-external interface LargeTitleProps : WithClassName {
+external interface LargeTitleProps : StyledProps, WithClassName {
     var title: String
 }
 
 val LargeTitle = functionalComponent<LargeTitleProps> { props ->
-    StyledTypographyHeadline3 { +props.title }
+    StyledTypographyHeadline4(props.className) { +props.title }
 }
 
 external interface LargeSubtitleProps: WithClassName {
@@ -23,17 +27,26 @@ external interface LargeSubtitleProps: WithClassName {
 }
 
 val LargeSubtitle = functionalComponent<LargeSubtitleProps> { props ->
-    StyledTypographyHeadline5 { +props.subtitle }
+    StyledTypographyHeadline5(props.className) { +props.subtitle }
 }
 
-private fun RBuilder.StyledTypographyHeadline3(handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
-    attrs.use = "headline3"
+private fun RBuilder.StyledTypographyHeadline4(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
+    css {
+        className?.let(classes::add)
+        fontWeight = FontWeight.bold
+    }
+
+    attrs.use = "headline4"
     attrs.tag = "h1"
 
     handler()
 }
 
-private fun RBuilder.StyledTypographyHeadline5(handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
+private fun RBuilder.StyledTypographyHeadline5(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
+    css {
+        className?.let(classes::add)
+    }
+
     attrs.use = "headline5"
     attrs.tag = "h3"
 

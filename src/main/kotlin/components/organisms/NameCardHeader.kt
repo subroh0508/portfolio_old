@@ -3,18 +3,18 @@
 package components.organisms
 
 import components.atoms.LargeSubtitle
+import components.atoms.LargeSubtitleProps
 import components.atoms.LargeTitle
+import components.atoms.LargeTitleProps
 import kotlinx.css.marginBottom
 import kotlinx.css.marginTop
 import kotlinx.css.px
-import kotlinx.html.DIV
 import react.RBuilder
-import react.child
 import react.dom.WithClassName
 import react.functionalComponent
-import styled.StyledDOMBuilder
+import styled.StyledHandler
 import styled.css
-import styled.styledDiv
+import utilities.styled
 
 external interface NameCardHeaderProps : WithClassName {
     var name: String
@@ -22,23 +22,22 @@ external interface NameCardHeaderProps : WithClassName {
 }
 
 val NameCardHeader = functionalComponent<NameCardHeaderProps> { props ->
-    NameCardHeaderWrapper {
-        child(LargeTitle) { attrs.title = props.name }
-        child(LargeSubtitle) { attrs.subtitle = props.subName }
-    }
+    StyledName { attrs.title = props.name }
+    StyledSubName { attrs.subtitle = props.subName }
 }
 
-private fun RBuilder.NameCardHeaderWrapper(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
+private fun RBuilder.StyledName(handler: StyledHandler<LargeTitleProps>) = (styled(LargeTitle)) {
     css {
-        children("h1") {
-            marginBottom = 0.px
-        }
-
-        children("h3") {
-            marginTop = 0.px
-        }
+        marginBottom = 0.px
     }
 
     handler()
 }
 
+private fun RBuilder.StyledSubName(handler: StyledHandler<LargeSubtitleProps>) = (styled(LargeSubtitle)) {
+    css {
+        marginTop = 0.px
+    }
+
+    handler()
+}
