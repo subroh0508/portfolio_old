@@ -3,9 +3,9 @@
 package materialcomponents
 
 import react.RClass
-import react.RProps
+import react.dom.WithClassName
 
-external interface TypographyProps : RProps {
+external interface TypographyProps : WithClassName {
     var use: String?
     var tag: String?
 }
