@@ -20,6 +20,7 @@ fun main() {
 
     require("@material/card/dist/mdc.card.min.css")
     require("@material/typography/dist/mdc.typography.min.css")
+    require("@material/theme/dist/mdc.theme.min.css")
 
     render(document.getElementById("root")) {
         StyledCard {
