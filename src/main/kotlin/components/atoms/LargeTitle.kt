@@ -3,9 +3,7 @@
 package components.atoms
 
 import kotlinx.css.*
-import materialcomponents.Typography
-import materialcomponents.TypographyProps
-import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
+import materialcomponents.*
 import react.RBuilder
 import react.dom.WithClassName
 import react.functionalComponent
@@ -37,7 +35,7 @@ private fun RBuilder.StyledTypographyHeadline4(className: String? = null, handle
         color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
     }
 
-    attrs.use = "headline4"
+    attrs.use(TypographyUse.headline4)
     attrs.tag = "h1"
 
     handler()
@@ -49,7 +47,7 @@ private fun RBuilder.StyledTypographyHeadline5(className: String? = null, handle
         color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
     }
 
-    attrs.use = "headline5"
+    attrs.use(TypographyUse.headline5)
     attrs.tag = "h3"
 
     handler()
