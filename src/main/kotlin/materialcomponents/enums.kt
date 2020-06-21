@@ -10,6 +10,8 @@ enum class AvatarSize {
     xlarge
 }
 
+fun AvatarProps.size(v: AvatarSize) { size = v.name }
+
 enum class TypographyUse {
     headline1,
     headline2,

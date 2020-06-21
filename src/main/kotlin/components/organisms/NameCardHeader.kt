@@ -2,14 +2,12 @@
 
 package components.organisms
 
-import components.atoms.LargeSubtitle
-import components.atoms.LargeSubtitleProps
-import components.atoms.LargeTitle
-import components.atoms.LargeTitleProps
+import components.atoms.*
 import kotlinx.css.marginBottom
 import kotlinx.css.marginTop
 import kotlinx.css.px
 import react.RBuilder
+import react.child
 import react.dom.WithClassName
 import react.functionalComponent
 import styled.StyledHandler
@@ -19,9 +17,12 @@ import utilities.styled
 external interface NameCardHeaderProps : WithClassName {
     var name: String
     var subName: String
+    var avatarSrc: String
 }
 
 val NameCardHeader = functionalComponent<NameCardHeaderProps> { props ->
+    child(MainAvatar) { attrs.src = props.avatarSrc }
+
     StyledName { attrs.title = props.name }
     StyledSubName { attrs.subtitle = props.subName }
 }

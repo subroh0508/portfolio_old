@@ -12,7 +12,7 @@ import styled.StyledProps
 import styled.css
 import styled.styled
 
-external interface LargeTitleProps : StyledProps, WithClassName {
+external interface LargeTitleProps : WithClassName {
     var title: String
 }
 
