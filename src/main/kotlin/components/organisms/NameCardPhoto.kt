@@ -4,43 +4,45 @@ package components.organisms
 
 import kotlinx.css.*
 import kotlinx.html.DIV
-import kotlinx.html.IMG
+import materialcomponents.VAR_COLOR_SURFACE
 import react.RBuilder
 import react.dom.WithClassName
 import react.functionalComponent
 import styled.StyledDOMBuilder
 import styled.css
 import styled.styledDiv
-import styled.styledImg
 
 external interface NameCardPhotoProps : WithClassName {
     var photoSrc: String
 }
 
 val NameCardPhoto = functionalComponent<NameCardPhotoProps> { props ->
-    StyledPhotoRoot {
-        StyledImg {
-            attrs.src = props.photoSrc
-        }
-    }
+    StyledPhotoRoot { StyledImg(props.photoSrc) }
 }
 
 private fun RBuilder.StyledPhotoRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
     css {
-        margin(LinearDimension.auto, 24.px, 24.px, LinearDimension.auto)
+        margin((-24).px, 24.px, 0.px, LinearDimension.auto)
     }
 
     handler()
 }
 
-private fun RBuilder.StyledImg(handler: StyledDOMBuilder<IMG>.() -> Unit) = styledImg {
+private fun RBuilder.StyledImg(src: String) = styledDiv {
     css {
-        borderRadius = 50.pct
-        height = 240.px
-        width = LinearDimension.auto
+        height = 280.px
+        width = 210.px
+        backgroundImage = Image("url('$src')")
+        backgroundSize = "cover"
     }
 
-    handler()
+    styledDiv {
+        css {
+            backgroundImage = Image("radial-gradient(ellipse, transparent 50%, ${VAR_COLOR_SURFACE.toCustomProperty()} 72%)")
+            height = 280.px
+            width = 210.px
+        }
+    }
 }
 
 
