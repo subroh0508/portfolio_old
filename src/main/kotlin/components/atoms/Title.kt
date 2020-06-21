@@ -63,6 +63,7 @@ private fun RBuilder.StyledTypographySubtitle1(className: String? = null, handle
     }
 
     attrs.use(TypographyUse.subtitle1)
+    attrs.tag = "div"
 
     handler()
 }

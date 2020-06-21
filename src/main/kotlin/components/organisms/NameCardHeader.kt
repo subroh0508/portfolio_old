@@ -6,6 +6,7 @@ import components.atoms.*
 import kotlinx.css.*
 import kotlinx.html.DIV
 import react.RBuilder
+import react.child
 import react.dom.WithClassName
 import react.dom.div
 import react.functionalComponent
@@ -19,7 +20,10 @@ external interface NameCardHeaderProps : WithClassName {
     var name: String
     var subName: String
     var avatarSrc: String
+    var posts: Array<out String>
 }
+
+fun NameCardHeaderProps.posts(vararg post: String) { posts = post }
 
 val NameCardHeader = functionalComponent<NameCardHeaderProps> { props ->
     HeaderRoot {
@@ -28,6 +32,8 @@ val NameCardHeader = functionalComponent<NameCardHeaderProps> { props ->
         div {
             StyledName { attrs.title = props.name }
             StyledSubName { attrs.subtitle = props.subName }
+
+            props.posts.forEach { post -> StyledPost { attrs.subtitle = post } }
         }
     }
 }
@@ -56,9 +62,19 @@ private fun RBuilder.StyledName(handler: StyledHandler<TitleProps>) = (styled(La
     handler()
 }
 
-private fun RBuilder.StyledSubName(handler: StyledHandler<SubtitleProps>) = (styled(LargeSubtitle)) {
+private fun RBuilder.StyledSubName(handler: StyledHandler<SubtitleProps>) = (styled(Subtitle)) {
     css {
         marginTop = 0.px
+        marginBottom = 16.px
+    }
+
+    handler()
+}
+
+private fun RBuilder.StyledPost(handler:  StyledHandler<SubtitleProps>) = (styled(LargeSubtitle)) {
+    css {
+        marginTop = 0.px
+        marginBottom  = 0.px
     }
 
     handler()
