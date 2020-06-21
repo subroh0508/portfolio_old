@@ -2,6 +2,14 @@
 
 package materialcomponents
 
+enum class AvatarSize {
+    xsmall,
+    small,
+    medium,
+    large,
+    xlarge
+}
+
 enum class TypographyUse {
     headline1,
     headline2,

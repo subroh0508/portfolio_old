@@ -18,7 +18,6 @@ fun RBuilder.ThemeProvider(handler: RBuilder.() -> Unit) = Provider {
         textSecondaryOnDark = Color("#3B91C4")
     }
 
-    console.log(attrs)
     handler()
 }
 

@@ -52,6 +52,7 @@ kotlin {
                 implementation(npm("styled-components", Libraries.Npm.styledComponent))
                 implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
                 implementation(npm("react-swipeable-views", Libraries.Npm.reactSwipeableViews))
+                implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/typography", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/theme", Libraries.Npm.materialWebComponents))
