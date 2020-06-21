@@ -10,7 +10,6 @@ import kotlinx.html.DIV
 import kotlinx.html.SPAN
 import react.RBuilder
 import react.dom.WithClassName
-import react.dom.span
 import react.functionalComponent
 import styled.*
 import utilities.styled
@@ -59,7 +58,7 @@ private const val DOMAIN_GITHUB = "github.com"
 
 private fun RBuilder.StyledLinksRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
     css {
-        margin(LinearDimension.auto, LinearDimension.auto, 24.px, 24.px)
+        margin(LinearDimension.auto, 0.px, 24.px, 24.px)
     }
 
     handler()
