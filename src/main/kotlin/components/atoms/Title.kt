@@ -28,7 +28,7 @@ val LargeSubtitle = functionalComponent<SubtitleProps> { props ->
 }
 
 val Subtitle = functionalComponent<SubtitleProps> { props ->
-    StyledTypographySubtitle1(props.className) { +props.subtitle }
+    StyledTypographyHeadline6(props.className) { +props.subtitle }
 }
 
 private fun RBuilder.StyledTypographyHeadline4(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
@@ -39,7 +39,7 @@ private fun RBuilder.StyledTypographyHeadline4(className: String? = null, handle
     }
 
     attrs.use(TypographyUse.headline4)
-    attrs.tag = "h1"
+    attrs.tag = "h2"
 
     handler()
 }
@@ -56,14 +56,15 @@ private fun RBuilder.StyledTypographyHeadline5(className: String? = null, handle
     handler()
 }
 
-private fun RBuilder.StyledTypographySubtitle1(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
+private fun RBuilder.StyledTypographyHeadline6(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
     css {
         className?.let(classes::add)
+        fontWeight = FontWeight.normal
         color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
     }
 
-    attrs.use(TypographyUse.subtitle1)
-    attrs.tag = "div"
+    attrs.use(TypographyUse.headline6)
+    attrs.tag = "h4"
 
     handler()
 }
