@@ -11,19 +11,17 @@ import kotlinx.css.pct
 import kotlinx.html.SPAN
 import react.RBuilder
 import react.child
-import react.dom.span
+import react.dom.WithClassName
 import react.functionalComponent
 import styled.StyledDOMBuilder
 import styled.css
 import styled.styledSpan
 
-external interface IntroductionNameCardProps : NameCardHeaderProps
-
-val IntroductionNameCard = functionalComponent<IntroductionNameCardProps> { props ->
+val IntroductionNameCard = functionalComponent<WithClassName> {
     child(CardFrame) {
         child(NameCardHeader) {
-            attrs.name = props.name
-            attrs.subName = props.subName
+            attrs.name = "にしこりさぶろ〜"
+            attrs.subName = "Subroh Nishikori"
             attrs.avatarSrc = "avatar.jpg"
             attrs.posts(
                 "担当: 速水奏・三峰結華・真壁瑞希",

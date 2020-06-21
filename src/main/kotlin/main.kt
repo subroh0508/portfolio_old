@@ -17,10 +17,7 @@ fun main() {
 
     render(document.getElementById("root")) {
         ThemeProvider {
-            child(IntroductionNameCard) {
-                attrs.name = "にしこりさぶろ〜"
-                attrs.subName = "Subroh Nishikori"
-            }
+            child(IntroductionNameCard) {}
         }
     }
 }
