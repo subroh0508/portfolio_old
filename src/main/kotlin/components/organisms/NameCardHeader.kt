@@ -3,15 +3,16 @@
 package components.organisms
 
 import components.atoms.*
-import kotlinx.css.marginBottom
-import kotlinx.css.marginTop
-import kotlinx.css.px
+import kotlinx.css.*
+import kotlinx.html.DIV
 import react.RBuilder
-import react.child
 import react.dom.WithClassName
+import react.dom.div
 import react.functionalComponent
+import styled.StyledDOMBuilder
 import styled.StyledHandler
 import styled.css
+import styled.styledDiv
 import utilities.styled
 
 external interface NameCardHeaderProps : WithClassName {
@@ -21,13 +22,33 @@ external interface NameCardHeaderProps : WithClassName {
 }
 
 val NameCardHeader = functionalComponent<NameCardHeaderProps> { props ->
-    child(MainAvatar) { attrs.src = props.avatarSrc }
+    HeaderRoot {
+        StyledMainAvatar { attrs.src = props.avatarSrc }
 
-    StyledName { attrs.title = props.name }
-    StyledSubName { attrs.subtitle = props.subName }
+        div {
+            StyledName { attrs.title = props.name }
+            StyledSubName { attrs.subtitle = props.subName }
+        }
+    }
 }
 
-private fun RBuilder.StyledName(handler: StyledHandler<LargeTitleProps>) = (styled(LargeTitle)) {
+private fun RBuilder.HeaderRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
+    css {
+         display = Display.flex
+    }
+
+    handler()
+}
+
+private fun RBuilder.StyledMainAvatar(handler: StyledHandler<MainAvatarProps>) = (styled(MainAvatar)) {
+    css {
+        margin(16.px, 16.px, 16.px)
+    }
+
+    handler()
+}
+
+private fun RBuilder.StyledName(handler: StyledHandler<TitleProps>) = (styled(LargeTitle)) {
     css {
         marginBottom = 0.px
     }
@@ -35,7 +56,7 @@ private fun RBuilder.StyledName(handler: StyledHandler<LargeTitleProps>) = (styl
     handler()
 }
 
-private fun RBuilder.StyledSubName(handler: StyledHandler<LargeSubtitleProps>) = (styled(LargeSubtitle)) {
+private fun RBuilder.StyledSubName(handler: StyledHandler<SubtitleProps>) = (styled(LargeSubtitle)) {
     css {
         marginTop = 0.px
     }

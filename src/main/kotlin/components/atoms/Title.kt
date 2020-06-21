@@ -8,24 +8,27 @@ import react.RBuilder
 import react.dom.WithClassName
 import react.functionalComponent
 import styled.StyledHandler
-import styled.StyledProps
 import styled.css
 import styled.styled
 
-external interface LargeTitleProps : WithClassName {
+external interface TitleProps : WithClassName {
     var title: String
 }
 
-val LargeTitle = functionalComponent<LargeTitleProps> { props ->
-    StyledTypographyHeadline4(props.className) { +props.title }
-}
-
-external interface LargeSubtitleProps: WithClassName {
+external interface SubtitleProps : WithClassName {
     var subtitle: String
 }
 
-val LargeSubtitle = functionalComponent<LargeSubtitleProps> { props ->
+val LargeTitle = functionalComponent<TitleProps> { props ->
+    StyledTypographyHeadline4(props.className) { +props.title }
+}
+
+val LargeSubtitle = functionalComponent<SubtitleProps> { props ->
     StyledTypographyHeadline5(props.className) { +props.subtitle }
+}
+
+val Subtitle = functionalComponent<SubtitleProps> { props ->
+    StyledTypographySubtitle1(props.className) { +props.subtitle }
 }
 
 private fun RBuilder.StyledTypographyHeadline4(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
@@ -44,11 +47,22 @@ private fun RBuilder.StyledTypographyHeadline4(className: String? = null, handle
 private fun RBuilder.StyledTypographyHeadline5(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
     css {
         className?.let(classes::add)
-        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
+        color = Color(VAR_COLOR_TEXT_SECONDARY_ON_DARK.toCustomProperty())
     }
 
     attrs.use(TypographyUse.headline5)
     attrs.tag = "h3"
+
+    handler()
+}
+
+private fun RBuilder.StyledTypographySubtitle1(className: String? = null, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
+    css {
+        className?.let(classes::add)
+        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
+    }
+
+    attrs.use(TypographyUse.subtitle1)
 
     handler()
 }
