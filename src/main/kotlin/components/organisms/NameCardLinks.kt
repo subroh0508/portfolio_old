@@ -53,7 +53,7 @@ val NameCardLinks = functionalComponent<NameCardLinksProps> { props ->
 
 private const val PROTOCOL_HTTPS = "https://"
 private const val PROTOCOL_MAIL = "mailto://"
-private const val DOMAIN_TWITTER = "twiter.com"
+private const val DOMAIN_TWITTER = "twitter.com"
 private const val DOMAIN_GITHUB = "github.com"
 
 private fun RBuilder.StyledLinksRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
