@@ -2,17 +2,13 @@
 
 package components.organisms
 
-import components.atoms.Link
-import components.atoms.LinkProps
-import components.atoms.Subtitle
-import components.atoms.SubtitleProps
+import components.atoms.*
+import components.molecules.LinkWithIcon
+import components.molecules.LinkWithIconProps
 import kotlinx.css.*
 import kotlinx.html.DIV
-import materialcomponents.TypographyProps
 import react.RBuilder
-import react.child
 import react.dom.WithClassName
-import react.dom.div
 import react.functionalComponent
 import styled.StyledDOMBuilder
 import styled.StyledHandler
@@ -29,28 +25,28 @@ external interface NameCardLinksProps : WithClassName {
 
 val NameCardLinks = functionalComponent<NameCardLinksProps> { props ->
     StyledLinksRoot {
-        StyledLink {
+        StyledLinkWithIcon {
             attrs.href = "https://suroh0508.net"
-
-            StyledLinkTypography { attrs.subtitle = props.homepage }
+            attrs.display = props.homepage
+            attrs.icon = HomeIcon
         }
 
-        StyledLink {
+        StyledLinkWithIcon {
             attrs.href = "https://twiter.com/subroh_0508"
-
-            StyledLinkTypography { attrs.subtitle = props.twitter }
+            attrs.display = props.twitter
+            attrs.icon = TwitterIcon
         }
 
-        StyledLink {
+        StyledLinkWithIcon {
             attrs.href = "https://github.com/subroh0508"
-
-            StyledLinkTypography { attrs.subtitle = props.github }
+            attrs.display = props.github
+            attrs.icon = GitHubIcon
         }
 
-        StyledLink {
+        StyledLinkWithIcon {
             attrs.href = "mailto://${props.email}"
-
-            StyledLinkTypography { attrs.subtitle = props.email }
+            attrs.display = props.email
+            attrs.icon = EmailIcon
         }
     }
 }
@@ -63,21 +59,10 @@ private fun RBuilder.StyledLinksRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) 
     handler()
 }
 
-private fun RBuilder.StyledLink(handler: StyledHandler<LinkProps>) = (styled(Link)) {
+private fun RBuilder.StyledLinkWithIcon(handler: StyledHandler<LinkWithIconProps>) = (styled(LinkWithIcon)) {
     css {
-        display = Display.block
+        display = Display.flex
     }
 
     handler()
-}
-
-private fun RBuilder.StyledLinkTypography(handler: StyledHandler<SubtitleProps>) = (styled(Subtitle)) {
-    css {
-        marginTop = 0.px
-        marginBottom = 0.px
-    }
-
-    handler()
-
-    attrs.tag = "span"
 }
