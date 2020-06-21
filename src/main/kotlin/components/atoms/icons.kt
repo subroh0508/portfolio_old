@@ -57,6 +57,7 @@ private fun RBuilder.svg(d: String) = styledSvg {
     css {
         width = 24.px
         height = 24.px
+        put("fill", "currentColor")
     }
 
     attrs["viewBox"] = "0 0 24 24"

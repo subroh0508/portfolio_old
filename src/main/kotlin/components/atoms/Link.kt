@@ -2,12 +2,11 @@
 
 package components.atoms
 
-import kotlinx.css.Cursor
-import kotlinx.css.cursor
+import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import kotlinx.css.properties.TextDecorationLine
-import kotlinx.css.textDecoration
 import kotlinx.html.A
+import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import react.RBuilder
 import react.dom.WithClassName
 import react.functionalComponent
@@ -34,6 +33,7 @@ fun RBuilder.StyledLink(className: String? = null, handler: StyledDOMBuilder<A>.
         className?.let(classes::add)
         textDecoration = TextDecoration.none
         cursor = Cursor.pointer
+        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
 
         hover {
             textDecoration = TextDecoration(setOf(TextDecorationLine.underline))
