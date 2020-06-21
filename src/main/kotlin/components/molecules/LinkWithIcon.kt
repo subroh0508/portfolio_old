@@ -8,7 +8,9 @@ import components.atoms.Subtitle
 import components.atoms.SubtitleProps
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
+import kotlinx.css.properties.TextDecorationLine
 import kotlinx.html.SPAN
+import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import react.FunctionalComponent
 import react.RBuilder
 import react.dom.WithClassName
@@ -38,7 +40,10 @@ val LinkWithIcon = functionalComponent<LinkWithIconProps> { props ->
 }
 
 private fun RBuilder.StyledLink(className: String? = null, handler: StyledHandler<LinkProps>) = (styled(Link)) {
-    css { className?.let(classes::add) }
+    css {
+        className?.let(classes::add)
+        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
+    }
 
     handler()
 }
@@ -54,7 +59,7 @@ private fun RBuilder.StyledLinkSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) 
 
 private fun RBuilder.StyledLinkIcon(icon: FunctionalComponent<WithClassName>) = (styled(icon)) {
     css {
-        marginRight = 4.px
+        marginRight = 8.px
 
         hover { textDecoration = TextDecoration.none }
     }
@@ -64,6 +69,10 @@ private fun RBuilder.StyledLinkTypography(handler: StyledHandler<SubtitleProps>)
     css {
         marginTop = 0.px
         marginBottom = 0.px
+
+        hover {
+            textDecoration = TextDecoration(setOf(TextDecorationLine.underline))
+        }
     }
 
     handler()
