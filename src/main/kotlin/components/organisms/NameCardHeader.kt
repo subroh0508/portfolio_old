@@ -48,7 +48,7 @@ private fun RBuilder.HeaderRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = sty
 
 private fun RBuilder.StyledMainAvatar(handler: StyledHandler<MainAvatarProps>) = (styled(MainAvatar)) {
     css {
-        margin(16.px, 16.px, 16.px)
+        margin(LinearDimension.auto, 24.px)
     }
 
     handler()

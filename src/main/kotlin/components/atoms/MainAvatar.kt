@@ -31,8 +31,8 @@ val MainAvatar = functionalComponent<MainAvatarProps> { props ->
 private fun RBuilder.StyledAvatar(className: String?, handler: StyledHandler<AvatarProps>) = (styled(Avatar)) {
     css {
         className?.let(classes::add)
-        width = 80.px
-        height = 80.px
+        width = 100.px
+        height = 100.px
     }
 
     handler()
