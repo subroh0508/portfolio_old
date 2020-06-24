@@ -5,8 +5,9 @@ package materialcomponents
 import materialcomponents.theme.ThemeProviderOption
 import react.RClass
 import react.RProps
+import react.dom.WithClassName
 
-external interface ThemeProviderProps : RProps {
+external interface ThemeProviderProps : WithClassName {
     var options: ThemeProviderOption?
 }
 
