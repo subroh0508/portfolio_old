@@ -13,13 +13,14 @@ import react.functionalComponent
 import styled.*
 
 val CardFrame = functionalComponent<WithClassName> { props ->
-    NameCardWrapper {
+    NameCardWrapper(props.className) {
         Card { props.children() }
     }
 }
 
-private fun RBuilder.NameCardWrapper(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
+private fun RBuilder.NameCardWrapper(className: String?, handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
     css {
+        className?.let(classes::add)
         position = Position.relative
         maxWidth = 800.px
 

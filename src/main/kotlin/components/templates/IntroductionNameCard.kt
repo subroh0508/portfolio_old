@@ -4,21 +4,20 @@ package components.templates
 
 import components.atoms.CardFrame
 import components.organisms.*
-import kotlinx.css.Display
-import kotlinx.css.display
-import kotlinx.css.height
-import kotlinx.css.pct
+import kotlinx.css.*
 import kotlinx.html.SPAN
 import react.RBuilder
 import react.child
 import react.dom.WithClassName
 import react.functionalComponent
 import styled.StyledDOMBuilder
+import styled.StyledHandler
 import styled.css
 import styled.styledSpan
+import utilities.styled
 
 val IntroductionNameCard = functionalComponent<WithClassName> {
-    child(CardFrame) {
+    StyledCardFrame {
         child(NameCardHeader) {
             attrs.name = "にしこりさぶろ〜"
             attrs.subName = "Subroh Nishikori"
@@ -42,6 +41,14 @@ val IntroductionNameCard = functionalComponent<WithClassName> {
             }
         }
     }
+}
+
+private fun RBuilder.StyledCardFrame(handler: StyledHandler<WithClassName>) = (styled(CardFrame)) {
+    css {
+        margin(0.px, LinearDimension.auto)
+    }
+
+    handler()
 }
 
 private fun RBuilder.StyledRowSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) = styledSpan {
