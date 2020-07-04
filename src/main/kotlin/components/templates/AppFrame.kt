@@ -2,6 +2,7 @@
 
 package components.templates
 
+import components.atoms.title
 import components.organisms.Navigation
 import kotlinx.css.*
 import kotlinx.html.DIV
@@ -16,7 +17,7 @@ import styled.styledDiv
 val AppFrame = functionalComponent<WithClassName> { props ->
     StyledRowDiv {
         child(Navigation) {
-            attrs.title = "Subroh Nishikori's Portfolio"
+            attrs.title("Subroh Nishikori's", "Portfolio")
             attrs.items = arrayOf()
             attrs.selectedIndex = 0
         }
