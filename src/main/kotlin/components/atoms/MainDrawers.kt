@@ -11,6 +11,21 @@ import styled.StyledHandler
 import styled.css
 import styled.styled
 
+val MainDrawer = functionalComponent<WithClassName> { props ->
+    StyledDrawer(props.className) { props.children() }
+}
+
+private fun RBuilder.StyledDrawer(className: String? = null, handler: StyledHandler<DrawerProps>) = (styled(Drawer)) {
+    css {
+        className?.let(classes::add)
+        color = Color.white
+        backgroundColor = Color(VAR_COLOR_BACKGROUND.toCustomProperty())
+        borderColor = Color.white.withAlpha(0.12)
+    }
+
+    handler()
+}
+
 external interface MainDrawerHeaderProps : WithClassName {
     var title: Array<out String>
 }
@@ -45,6 +60,32 @@ private fun RBuilder.StyledMainTypography(handler: StyledHandler<TypographyProps
 
     attrs.use(TypographyUse.headline5)
     attrs.tag = "span"
+
+    handler()
+}
+
+external class MainDrawerListItem {
+    var display: String
+    var href: String
+}
+
+external interface MainDrawerListProps : WithClassName {
+    var items: Array<MainDrawerListItem>
+    var selectedIndex: Int
+}
+
+val MainDrawerLists = functionalComponent<MainDrawerListProps> { props ->
+    DrawerContent {
+        List {
+            props.items.forEach { item -> StyledDrawerListItem { +item.display } }
+        }
+    }
+}
+
+fun RBuilder.StyledDrawerListItem(handler: StyledHandler<ListItemProps>) = (styled(ListItem)) {
+    css {
+
+    }
 
     handler()
 }
