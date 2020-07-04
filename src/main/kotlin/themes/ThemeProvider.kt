@@ -16,7 +16,9 @@ import styled.styled
 
 fun RBuilder.ThemeProvider(handler: RBuilder.() -> Unit) = StyledThemeProvider {
     attrs.options {
+        background = Color("#121212")
         surface = Color("#0D386D")
+        primary = Color("#0D386D")
         textPrimaryOnDark = Color("#99B7DC")
         textSecondaryOnDark = Color("#3B91C4")
     }

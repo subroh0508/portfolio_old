@@ -5,6 +5,8 @@ package components.atoms
 import kotlinx.css.*
 import kotlinx.html.DIV
 import materialcomponents.Card
+import materialcomponents.VAR_COLOR_PRIMARY
+import materialcomponents.VAR_COLOR_SURFACE
 import react.RBuilder
 import react.dom.WithClassName
 import react.functionalComponent
@@ -36,6 +38,7 @@ private fun RBuilder.NameCardWrapper(handler: StyledDOMBuilder<DIV>.() -> Unit) 
 
             borderRadius = 0.px
             padding(16.px)
+            backgroundColor = Color(VAR_COLOR_PRIMARY.toCustomProperty())
         }
     }
 
