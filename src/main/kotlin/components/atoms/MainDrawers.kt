@@ -8,6 +8,7 @@ import materialcomponents.*
 import react.RBuilder
 import react.dom.WithClassName
 import react.functionalComponent
+import react.key
 import styled.StyledHandler
 import styled.css
 import styled.styled
@@ -43,10 +44,11 @@ private fun RBuilder.StyledMainDrawerHeader(className: String?, handler: StyledH
     css {
         className?.let(classes::add)
         display = Display.flex
+        height = 200.px
+        marginRight = 16.px
         flexDirection = FlexDirection.column
         justifyContent = JustifyContent.center
-        alignItems = Align.center
-        height = 200.px
+        alignItems = Align.flexEnd
     }
 
     handler()
@@ -80,42 +82,54 @@ fun MainDrawerListProps.items(vararg item: MainDrawerListItem.() -> Unit) { item
 val MainDrawerLists = functionalComponent<MainDrawerListProps> { props ->
     StyledDrawerContent {
         List {
-            props.items.forEach { item ->
-                StyledDrawerListItem {
-                    StyledListItemTypography { +item.display }
+            props.items.forEachIndexed { i, item ->
+                ListItem {
+                    attrs.key = i.toString()
+                    Ripple { StyledListItemTypography { +item.display } }
                 }
             }
         }
     }
 }
 
-fun RBuilder.StyledDrawerContent(handler: StyledHandler<WithClassName>) = (styled(DrawerContent)) {
+private fun RBuilder.StyledDrawerContent(handler: StyledHandler<WithClassName>) = (styled(DrawerContent)) {
     css {
         descendants(".mdc-list-item") {
+            height = 56.px
+            margin(0.px)
+            padding(0.px)
             color = Color.white
-            fontSize = 20.px
             fontWeight = FontWeight.normal
+            textAlign = TextAlign.end
+        }
+
+        descendants(".mdc-ripple-surface") {
+            before {
+                backgroundColor = Color.white
+            }
+
+            after {
+                backgroundColor = Color.white
+            }
         }
     }
 
     handler()
 }
 
-fun RBuilder.StyledDrawerListItem(handler: StyledHandler<ListItemProps>) = (styled(ListItem)) {
+private fun RBuilder.StyledListItemTypography(handler: RBuilder.() -> Unit) = (styled(Typography)) {
     css {
-        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
-    }
-
-    handler()
-}
-
-fun RBuilder.StyledListItemTypography(handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
-    css {
+        width = 100.pct
+        padding(12.px, 8.px)
+        paddingRight = 32.px
+        borderRadius = 0.5.rem
         fontWeight = FontWeight.normal
     }
 
     attrs.use(TypographyUse.headline6)
-    attrs.tag = "h4"
+    attrs.tag = "div"
 
     handler()
 }
+
+
