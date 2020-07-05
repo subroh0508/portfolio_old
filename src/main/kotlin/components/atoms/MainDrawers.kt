@@ -80,7 +80,11 @@ fun MainDrawerListProps.items(vararg item: MainDrawerListItem.() -> Unit) { item
 val MainDrawerLists = functionalComponent<MainDrawerListProps> { props ->
     StyledDrawerContent {
         List {
-            props.items.forEach { item -> StyledDrawerListItem { +item.display } }
+            props.items.forEach { item ->
+                StyledDrawerListItem {
+                    StyledListItemTypography { +item.display }
+                }
+            }
         }
     }
 }
@@ -89,6 +93,8 @@ fun RBuilder.StyledDrawerContent(handler: StyledHandler<WithClassName>) = (style
     css {
         descendants(".mdc-list-item") {
             color = Color.white
+            fontSize = 20.px
+            fontWeight = FontWeight.normal
         }
     }
 
@@ -99,6 +105,17 @@ fun RBuilder.StyledDrawerListItem(handler: StyledHandler<ListItemProps>) = (styl
     css {
         color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
     }
+
+    handler()
+}
+
+fun RBuilder.StyledListItemTypography(handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
+    css {
+        fontWeight = FontWeight.normal
+    }
+
+    attrs.use(TypographyUse.headline6)
+    attrs.tag = "h4"
 
     handler()
 }
