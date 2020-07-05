@@ -2,6 +2,7 @@
 
 package components.atoms
 
+import kotlinext.js.jsObject
 import kotlinx.css.*
 import materialcomponents.*
 import react.RBuilder
@@ -70,21 +71,33 @@ external class MainDrawerListItem {
 }
 
 external interface MainDrawerListProps : WithClassName {
-    var items: Array<MainDrawerListItem>
+    var items: Array<out MainDrawerListItem>
     var selectedIndex: Int
 }
 
+fun MainDrawerListProps.items(vararg item: MainDrawerListItem.() -> Unit) { items = item.map(::jsObject).toTypedArray() }
+
 val MainDrawerLists = functionalComponent<MainDrawerListProps> { props ->
-    DrawerContent {
+    StyledDrawerContent {
         List {
             props.items.forEach { item -> StyledDrawerListItem { +item.display } }
         }
     }
 }
 
+fun RBuilder.StyledDrawerContent(handler: StyledHandler<WithClassName>) = (styled(DrawerContent)) {
+    css {
+        descendants(".mdc-list-item") {
+            color = Color.white
+        }
+    }
+
+    handler()
+}
+
 fun RBuilder.StyledDrawerListItem(handler: StyledHandler<ListItemProps>) = (styled(ListItem)) {
     css {
-
+        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
     }
 
     handler()
