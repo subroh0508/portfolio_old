@@ -57,6 +57,7 @@ kotlin {
                 implementation(npm("@rmwc/drawer", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/icon", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/list", Libraries.Npm.materialWebComponents))
+                implementation(npm("@rmwc/ripple", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/typography", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/theme", Libraries.Npm.materialWebComponents))
 
