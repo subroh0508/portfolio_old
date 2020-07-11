@@ -1,6 +1,7 @@
 @file:Suppress("FunctionName")
 
 import components.templates.AppFrame
+import components.templates.BiographyCard
 import components.templates.IntroductionNameCard
 import react.dom.render
 import kotlin.browser.document
@@ -20,7 +21,7 @@ fun main() {
             margin(0.px)
             backgroundColor = Color("#121212")
         }
-        "div#root" {
+        "div#roota" {
             height = 100.pct
         }
     }
@@ -29,6 +30,7 @@ fun main() {
         ThemeProvider {
             child(AppFrame) {
                 child(IntroductionNameCard) {}
+                child(BiographyCard) {}
             }
         }
     }
