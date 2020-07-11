@@ -2,7 +2,7 @@
 
 package components.templates
 
-import components.atoms.CardFrame
+import components.atoms.Card
 import components.organisms.*
 import kotlinx.css.*
 import kotlinx.html.SPAN
@@ -43,7 +43,7 @@ val IntroductionNameCard = functionalComponent<WithClassName> {
     }
 }
 
-private fun RBuilder.StyledCardFrame(handler: StyledHandler<WithClassName>) = (styled(CardFrame)) {
+private fun RBuilder.StyledCardFrame(handler: StyledHandler<WithClassName>) = (styled(Card)) {
     css {
         margin(0.px, LinearDimension.auto)
     }

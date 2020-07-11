@@ -6,13 +6,12 @@ import kotlinx.css.*
 import kotlinx.html.DIV
 import materialcomponents.Card
 import materialcomponents.VAR_COLOR_PRIMARY
-import materialcomponents.VAR_COLOR_SURFACE
 import react.RBuilder
 import react.dom.WithClassName
 import react.functionalComponent
 import styled.*
 
-val CardFrame = functionalComponent<WithClassName> { props ->
+val Card = functionalComponent<WithClassName> { props ->
     NameCardWrapper(props.className) {
         Card { props.children() }
     }
