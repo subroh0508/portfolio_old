@@ -44,11 +44,13 @@ kotlin {
                 implementation(Libraries.Kotlin.html)
                 implementation(Libraries.Kotlin.react)
                 implementation(Libraries.Kotlin.reactDom)
+                implementation(Libraries.Kotlin.reactRouterDom)
                 implementation(Libraries.Kotlin.extensions)
                 implementation(Libraries.Kotlin.styled)
 
                 implementation(npm("react", Libraries.Npm.react))
                 implementation(npm("react-dom", Libraries.Npm.react))
+                implementation(npm("react-router-dom", Libraries.Npm.reactRouterDom))
                 implementation(npm("styled-components", Libraries.Npm.styledComponent))
                 implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
                 implementation(npm("react-swipeable-views", Libraries.Npm.reactSwipeableViews))

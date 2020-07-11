@@ -6,13 +6,16 @@ object Libraries {
 
     object Kotlin {
         const val version = "1.3.72"
-        const val wrappersBuild = "pre.109-kotlin-$version"
+        const val wrappersBuild = "pre.110-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
 
         const val reactVersion = "${Npm.react}-$wrappersBuild"
         const val react = "org.jetbrains:kotlin-react:$reactVersion"
         const val reactDom = "org.jetbrains:kotlin-react-dom:$reactVersion"
+
+        const val reactRouterDomVersion = "${Npm.reactRouterDom}-$wrappersBuild"
+        const val reactRouterDom = "org.jetbrains:kotlin-react-router-dom:$reactRouterDomVersion"
 
         const val htmlVersion = "0.6.12"
         const val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
@@ -29,6 +32,7 @@ object Libraries {
 
     object Npm {
         const val react = "16.13.1"
+        const val reactRouterDom = "5.1.2"
         const val styledComponent = "^4.4.1"
         const val inlineStyledPrefixer = "^5.1.2"
         const val reactSwipeableViews = "^0.13.9"
