@@ -13,6 +13,8 @@ import styled.StyledHandler
 import styled.css
 import styled.styled
 
+val MAIN_DRAWER_WIDTH = 224.px
+
 val MainDrawer = functionalComponent<WithClassName> { props ->
     StyledDrawer(props.className) { props.children() }
 }
@@ -20,7 +22,11 @@ val MainDrawer = functionalComponent<WithClassName> { props ->
 private fun RBuilder.StyledDrawer(className: String? = null, handler: StyledHandler<DrawerProps>) = (styled(Drawer)) {
     css {
         className?.let(classes::add)
-        width = 224.px
+        position = Position.fixed
+        top = 0.px
+        left = 0.px
+        height = 100.vh
+        width = MAIN_DRAWER_WIDTH
         color = Color.white
         backgroundColor = Color(VAR_COLOR_BACKGROUND.toCustomProperty())
         borderColor = Color.white.withAlpha(0.12)
