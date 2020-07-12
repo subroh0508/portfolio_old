@@ -6,7 +6,9 @@ import kotlinx.css.*
 import kotlinx.html.DIV
 import materialcomponents.Card as CardComponent
 import materialcomponents.VAR_COLOR_PRIMARY
+import react.Children
 import react.RBuilder
+import react.children
 import react.dom.WithClassName
 import react.functionalComponent
 import styled.*
@@ -39,24 +41,6 @@ private fun RBuilder.NameCardWrapper(className: String?, handler: StyledDOMBuild
             borderRadius = 0.px
             padding(16.px)
             backgroundColor = Color(VAR_COLOR_PRIMARY.toCustomProperty())
-        }
-    }
-
-    handler()
-}
-
-const val CARD_CONTENT_CLASS = "card-content"
-
-val CardContent = functionalComponent<WithClassName> { props ->
-    StyledCardContentRoot { props.children() }
-}
-
-private fun RBuilder.StyledCardContentRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
-    css {
-        display = Display.flex
-
-        children(".$CARD_CONTENT_CLASS") {
-            flex(1.0)
         }
     }
 
