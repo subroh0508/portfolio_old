@@ -3,7 +3,10 @@
 package components.templates
 
 import components.atoms.Card
-import components.organisms.*
+import components.organisms.introduction.NameCardHeader
+import components.organisms.introduction.NameCardLinks
+import components.organisms.introduction.NameCardPhoto
+import components.organisms.introduction.posts
 import kotlinx.css.*
 import kotlinx.html.SPAN
 import react.RBuilder

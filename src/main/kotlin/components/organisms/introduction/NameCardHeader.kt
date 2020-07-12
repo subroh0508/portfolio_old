@@ -1,12 +1,11 @@
 @file:Suppress("FunctionName")
 
-package components.organisms
+package components.organisms.introduction
 
 import components.atoms.*
 import kotlinx.css.*
 import kotlinx.html.DIV
 import react.RBuilder
-import react.child
 import react.dom.WithClassName
 import react.dom.div
 import react.functionalComponent

@@ -1,6 +1,6 @@
 @file:Suppress("FunctionName")
 
-package components.organisms
+package components.organisms.introduction
 
 import kotlinx.css.*
 import kotlinx.html.DIV
