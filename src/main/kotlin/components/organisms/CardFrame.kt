@@ -13,6 +13,8 @@ import styled.StyledHandler
 import styled.css
 import utilities.styled
 
+const val CARD_FRAME_CLASS = "card-frame"
+
 val CardFrame = functionalComponent<WithClassName> { props ->
     StyledCardFrame { props.children() }
 }
@@ -21,6 +23,8 @@ private fun RBuilder.StyledCardFrame(handler: StyledHandler<WithClassName>) = (s
     css {
         margin(0.px, LinearDimension.auto)
     }
+
+    attrs.className = CARD_FRAME_CLASS
 
     handler()
 }

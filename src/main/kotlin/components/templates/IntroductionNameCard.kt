@@ -3,6 +3,7 @@
 package components.templates
 
 import components.atoms.Card
+import components.organisms.CardFrame
 import components.organisms.introduction.NameCardHeader
 import components.organisms.introduction.NameCardLinks
 import components.organisms.introduction.NameCardPhoto
@@ -20,7 +21,7 @@ import styled.styledSpan
 import utilities.styled
 
 val IntroductionNameCard = functionalComponent<WithClassName> {
-    StyledCardFrame {
+    child(CardFrame) {
         child(NameCardHeader) {
             attrs.name = "にしこりさぶろ〜"
             attrs.subName = "Subroh Nishikori"
@@ -44,14 +45,6 @@ val IntroductionNameCard = functionalComponent<WithClassName> {
             }
         }
     }
-}
-
-private fun RBuilder.StyledCardFrame(handler: StyledHandler<WithClassName>) = (styled(Card)) {
-    css {
-        margin(0.px, LinearDimension.auto)
-    }
-
-    handler()
 }
 
 private fun RBuilder.StyledRowSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) = styledSpan {

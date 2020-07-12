@@ -5,6 +5,7 @@ package components.templates
 import components.atoms.MAIN_DRAWER_WIDTH
 import components.atoms.items
 import components.atoms.title
+import components.organisms.CARD_FRAME_CLASS
 import components.organisms.Navigation
 import kotlinx.css.*
 import kotlinx.html.DIV
@@ -45,8 +46,12 @@ private fun RBuilder.StyledRowDiv(handler: StyledDOMBuilder<DIV>.() -> Unit) = s
 
 private fun RBuilder.StyledContent(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
     css {
-        marginLeft = MAIN_DRAWER_WIDTH
         flex(1.0)
+        marginLeft = MAIN_DRAWER_WIDTH
+
+        children(".$CARD_FRAME_CLASS") {
+            marginTop = 64.px
+        }
     }
 
     handler()
