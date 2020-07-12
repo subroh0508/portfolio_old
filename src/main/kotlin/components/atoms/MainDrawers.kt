@@ -20,6 +20,7 @@ val MainDrawer = functionalComponent<WithClassName> { props ->
 private fun RBuilder.StyledDrawer(className: String? = null, handler: StyledHandler<DrawerProps>) = (styled(Drawer)) {
     css {
         className?.let(classes::add)
+        width = 224.px
         color = Color.white
         backgroundColor = Color(VAR_COLOR_BACKGROUND.toCustomProperty())
         borderColor = Color.white.withAlpha(0.12)
@@ -45,7 +46,7 @@ private fun RBuilder.StyledMainDrawerHeader(className: String?, handler: StyledH
         className?.let(classes::add)
         display = Display.flex
         height = 200.px
-        marginRight = 16.px
+        marginRight = 8.px
         flexDirection = FlexDirection.column
         justifyContent = JustifyContent.center
         alignItems = Align.flexEnd
@@ -57,6 +58,7 @@ private fun RBuilder.StyledMainDrawerHeader(className: String?, handler: StyledH
 private fun RBuilder.StyledMainTypography(handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
     css {
         display = Display.block
+        fontSize = 22.px
         fontWeight = FontWeight.bold
         margin(0.px)
     }
@@ -121,7 +123,7 @@ private fun RBuilder.StyledListItemTypography(handler: RBuilder.() -> Unit) = (s
     css {
         width = 100.pct
         padding(12.px, 8.px)
-        paddingRight = 32.px
+        paddingRight = 24.px
         borderRadius = 0.5.rem
         fontWeight = FontWeight.normal
     }
