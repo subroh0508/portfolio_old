@@ -3,6 +3,7 @@
 import components.templates.AppFrame
 import components.templates.BiographyCard
 import components.templates.IntroductionNameCard
+import components.templates.SkillCard
 import react.dom.render
 import kotlin.browser.document
 import kotlinx.css.*
@@ -31,6 +32,7 @@ fun main() {
             child(AppFrame) {
                 child(IntroductionNameCard) {}
                 child(BiographyCard) {}
+                child(SkillCard) {}
             }
         }
     }
