@@ -35,7 +35,6 @@ object Libraries {
         const val reactRouterDom = "5.1.2"
         const val styledComponent = "^4.4.1"
         const val inlineStyledPrefixer = "^5.1.2"
-        const val reactSwipeableViews = "^0.13.9"
         const val materialWebComponents = "^6.0.14"
     }
 }

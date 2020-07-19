@@ -53,7 +53,6 @@ kotlin {
                 implementation(npm("react-router-dom", Libraries.Npm.reactRouterDom))
                 implementation(npm("styled-components", Libraries.Npm.styledComponent))
                 implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
-                implementation(npm("react-swipeable-views", Libraries.Npm.reactSwipeableViews))
                 implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/drawer", Libraries.Npm.materialWebComponents))
