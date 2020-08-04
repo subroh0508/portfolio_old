@@ -30,6 +30,14 @@ val EmailIcon = functionalComponent<WithClassName> { props ->
     StyledIcon(props.className) { attrs.icon("email") }
 }
 
+val ChevronLeft = functionalComponent<WithClassName> { props ->
+    StyledIcon(props.className) { attrs.icon("chevron_left") }
+}
+
+val ChevronRight = functionalComponent<WithClassName> { props ->
+    StyledIcon(props.className) { attrs.icon("chevron_right") }
+}
+
 val TwitterIcon = functionalComponent<WithClassName> { props ->
     StyledIcon(props.className) { attrs.icon { svgTwitter() } }
 }
