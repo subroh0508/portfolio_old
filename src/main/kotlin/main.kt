@@ -37,11 +37,12 @@ fun main() {
     render(document.getElementById("root")) {
         ThemeProvider {
             child(AppFrame) {
-                child(IntroductionNameCard) {}
-                child(BiographyCard) {}
-                child(SkillCard) {}
-                child(WorksCard) {}
-                child(SpeaksCard) {}
+                child(IntroductionNameCard)
+                child(BiographyCard)
+                child(SkillCard)
+                child(WorksCard)
+                child(SpeaksCard)
+                child(LinksCard)
             }
         }
     }

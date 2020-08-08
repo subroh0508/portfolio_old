@@ -111,6 +111,7 @@ private fun RBuilder.Speaks2018() = child(Paragraph) {
     ul {
         li {
             b { +"高専カンファレンス in 東京 2018: " }
+            br {}
             +"「"; Links("https://www.slideshare.net/subroh_0508/flutter-105984178" to "Flutterで生み出せ圧倒的成果\uD83D\uDCAA -クロスプラットフォーム開発の未来-"); +"」"
         }
     }
