@@ -41,6 +41,7 @@ fun main() {
                 child(BiographyCard) {}
                 child(SkillCard) {}
                 child(WorksCard) {}
+                child(SpeaksCard) {}
             }
         }
     }

@@ -26,6 +26,7 @@ val AppFrame = functionalComponent<WithClassName> { props ->
                     { display = "Biography"; href = "#biography" },
                     { display = "Skill"; href = "#skill" },
                     { display = "Works"; href = "#works" },
+                    { display = "Speaks"; href = "#speaks" },
                     { display = "Link"; href = "#link" }
             )
             attrs.selectedIndex = 0
