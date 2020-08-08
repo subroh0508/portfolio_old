@@ -9,6 +9,7 @@ import kotlinx.css.Display
 import kotlinx.css.Visibility
 import kotlinx.css.display
 import kotlinx.css.visibility
+import org.w3c.dom.events.Event
 import react.*
 import react.dom.WithClassName
 import styled.css
@@ -22,9 +23,10 @@ external interface SwitchableContentsProps : WithClassName {
 fun SwitchableContentsProps.titles(vararg title: String) { titles = title }
 
 val SwitchableContents = functionalComponent<SwitchableContentsProps> { props ->
-    val index = props.titles.indexOf("kotlin-material-ui").takeIf { it != -1 } ?: 0
+    val (index, setIndex) = useState(0)
+    // val index = props.titles.indexOf("kotlin-material-ui").takeIf { it != -1 } ?: 0
 
-    StyledSwitcher(index, props.titles)
+    StyledSwitcher(index, props.titles, setIndex)
 
     Children.toArray(props.children).forEachIndexed { i, child ->
         styledDiv {
@@ -35,7 +37,11 @@ val SwitchableContents = functionalComponent<SwitchableContentsProps> { props ->
     }
 }
 
-private fun RBuilder.StyledSwitcher(index: Int, titles: Array<out String>) = (styled(Switcher)) {
+private fun RBuilder.StyledSwitcher(
+        index: Int,
+        titles: Array<out String>,
+        setIndex: (Int) -> Unit
+) = (styled(Switcher)) {
     css {
         descendants(".$CHEVRON_LEFT_CLASS_NAME") {
             visibility = if (index == 0) Visibility.hidden else Visibility.visible
@@ -46,6 +52,8 @@ private fun RBuilder.StyledSwitcher(index: Int, titles: Array<out String>) = (st
     }
 
     attrs.title = titles[index]
+    attrs.onClickedLeft = { setIndex(index - 1) }
+    attrs.onClickedRight = { setIndex(index + 1) }
 }
 
 

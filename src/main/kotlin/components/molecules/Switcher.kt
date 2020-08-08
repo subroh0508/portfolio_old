@@ -7,8 +7,10 @@ import components.atoms.ChevronRight
 import components.atoms.Subtitle
 import kotlinx.css.*
 import kotlinx.html.SPAN
+import kotlinx.html.js.onClickFunction
 import materialcomponents.Ripple
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
+import org.w3c.dom.events.Event
 import react.FunctionalComponent
 import react.RBuilder
 import react.child
@@ -25,15 +27,17 @@ const val CHEVRON_RIGHT_CLASS_NAME = "chevron-right"
 
 external interface SwitcherProps : WithClassName {
     var title: String
+    var onClickedLeft: (e: Event) -> Unit
+    var onClickedRight: (e: Event) -> Unit
 }
 
 val Switcher = functionalComponent<SwitcherProps> { props ->
     StyledSpan {
         props.className?.let(css.classes::add)
 
-        Rippled(CHEVRON_LEFT_CLASS_NAME, ChevronLeft)
+        Rippled(CHEVRON_LEFT_CLASS_NAME, ChevronLeft, props.onClickedLeft)
         StyledSubtitle(props.title)
-        Rippled(CHEVRON_RIGHT_CLASS_NAME, ChevronRight)
+        Rippled(CHEVRON_RIGHT_CLASS_NAME, ChevronRight, props.onClickedRight)
     }
 }
 
@@ -57,7 +61,11 @@ private fun RBuilder.StyledSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) = st
     handler()
 }
 
-private fun RBuilder.Rippled(className: String, functionalComponent: FunctionalComponent<WithClassName>) = Ripple {
+private fun RBuilder.Rippled(
+        className: String,
+        functionalComponent: FunctionalComponent<WithClassName>,
+        onClickFunction: (Event) -> Unit
+) = Ripple {
     attrs.unbounded = true
 
     styledA {
@@ -69,6 +77,7 @@ private fun RBuilder.Rippled(className: String, functionalComponent: FunctionalC
             justifyContent = JustifyContent.center
             cursor = Cursor.pointer
         }
+        attrs.onClickFunction = onClickFunction
 
         child(functionalComponent) {}
     }
