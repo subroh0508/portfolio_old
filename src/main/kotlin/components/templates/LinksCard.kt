@@ -48,6 +48,9 @@ private fun RBuilder.OtherPortfolio() = styledDiv {
                 Links("https://lapras.com/public/6DDUK2W" to "LAPRAS")
             }
             li {
+                Links("https://connpass.com/user/subroh_0508/" to "connpass")
+            }
+            li {
                 Links("https://www.wantedly.com/users/18284613" to "Wantedly")
             }
             li {

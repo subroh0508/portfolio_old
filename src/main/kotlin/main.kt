@@ -1,5 +1,6 @@
 @file:Suppress("FunctionName")
 
+import components.atoms.Footer
 import components.templates.*
 import react.dom.render
 import kotlin.browser.document
@@ -43,6 +44,7 @@ fun main() {
                 child(WorksCard)
                 child(SpeaksCard)
                 child(LinksCard)
+                child(Footer)
             }
         }
     }
