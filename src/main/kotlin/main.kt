@@ -4,6 +4,8 @@ import components.templates.*
 import react.dom.render
 import kotlin.browser.document
 import kotlinx.css.*
+import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
+import materialcomponents.VAR_COLOR_TEXT_SECONDARY_ON_DARK
 import react.child
 import styled.*
 import themes.ThemeProvider
@@ -19,8 +21,16 @@ fun main() {
             margin(0.px)
             backgroundColor = Color("#121212")
         }
-        "div#roota" {
+        "div#root" {
             height = 100.pct
+        }
+        p {
+            a { color = Color(VAR_COLOR_TEXT_SECONDARY_ON_DARK.toCustomProperty()) }
+        }
+        hr {
+            height = 1.px
+            backgroundColor = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
+            border = "0"
         }
     }
 

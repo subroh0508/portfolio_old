@@ -88,6 +88,7 @@ private fun RBuilder.StyledSubtitle(title: String) = (styled(Subtitle)) {
 
     css {
         width = 200.px
+        margin(vertical = 8.px)
         textAlign = TextAlign.center
     }
 }
