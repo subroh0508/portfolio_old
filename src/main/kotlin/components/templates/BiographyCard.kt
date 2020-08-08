@@ -14,6 +14,7 @@ import react.dom.*
 import react.functionalComponent
 import styled.css
 import styled.styledDiv
+import utilities.Links
 
 val BiographyCard = functionalComponent<WithClassName> {
     child(CardFrame) {
@@ -58,7 +59,11 @@ private fun RBuilder.CareerContent() = styledDiv {
 
     child(Paragraph) {
         ul {
-            li { +"2016.04 株式会社BearTail入社、現職" }
+            li {
+                +"2016.04 "
+                Links("https://beartail.jp/" to "株式会社BearTail")
+                +"入社、現職"
+            }
         }
     }
 }

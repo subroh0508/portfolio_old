@@ -16,6 +16,7 @@ import react.functionalComponent
 import styled.css
 import styled.styledDiv
 import styled.styledImg
+import utilities.Links
 
 val WorksCard = functionalComponent<WithClassName> {
     child(CardFrame) {
@@ -110,7 +111,7 @@ private fun RBuilder.Otonashi() = styledDiv {
         child(Paragraph) {
             +"RDF用クエリ言語「"
             Links("https://www.w3.org/TR/rdf-sparql-query/" to "SPARQL")
-            +"」のKotlinクライアントライブラリです。"
+            +"」のKotlin製クライアントライブラリです。"
         }
 
         child(Paragraph) {
@@ -154,13 +155,4 @@ private fun RBuilder.Introduction(block: RBuilder.() -> Unit) = styledDiv {
     css { width = 50.pct }
 
     block()
-}
-
-private fun RBuilder.Links(vararg links: Pair<String, String>) = links.forEachIndexed { i, (href, text) ->
-    a {
-        attrs.href = href
-        attrs.target = "_blank"
-        +text
-    }
-    if (i != links.size - 1) +"/"
 }
