@@ -4,6 +4,7 @@ package components.atoms
 
 import kotlinx.css.*
 import react.dom.WithClassName
+import react.dom.br
 import react.functionalComponent
 import styled.css
 import styled.styledDiv
@@ -14,7 +15,7 @@ val Footer = functionalComponent<WithClassName> {
         css {
             display = Display.flex
             height = 100.vh - (800 * 55.0 / 91.0).px - 64.px
-            minHeight = 104.px
+            minHeight = 128.px
             alignItems = Align.flexEnd
             color = Color.white.withAlpha(0.38)
         }
@@ -26,6 +27,8 @@ val Footer = functionalComponent<WithClassName> {
                 padding(vertical = 40.px)
             }
 
+            +"Last Modified: 2020-08-09T22:29:49+0900"
+            br {}
             +"Copyright© 2020 subroh_0508 Official Website. All Rights Reserved."
         }
     }
