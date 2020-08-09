@@ -11,8 +11,8 @@ fun RBuilder.routing() = browserRouter {
                 { attrs.to = "/"; attrs.title = "Home" },
                 { attrs.to = "/biography"; attrs.title= "Biography" },
                 { attrs.to = "/skill"; attrs.title= "Skill" },
-                { attrs.to = "/works"; attrs.title= "Works" },
-                { attrs.to = "/speaks"; attrs.title= "Speaks" },
+                { attrs.to = "/works?p=0"; attrs.title= "Works" },
+                { attrs.to = "/speaks?p=0"; attrs.title= "Speaks" },
                 { attrs.to = "/link"; attrs.title= "Link" }
         )
 

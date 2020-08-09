@@ -5,39 +5,43 @@ package components.molecules
 import components.atoms.ChevronLeft
 import components.atoms.ChevronRight
 import components.atoms.Subtitle
+import kotlinext.js.jsObject
 import kotlinx.css.*
 import kotlinx.html.SPAN
-import kotlinx.html.js.onClickFunction
 import materialcomponents.Ripple
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
-import org.w3c.dom.events.Event
-import react.FunctionalComponent
-import react.RBuilder
-import react.child
+import react.*
 import react.dom.WithClassName
-import react.functionalComponent
+import react.router.dom.RouteResultLocation
 import styled.StyledDOMBuilder
 import styled.css
-import styled.styledA
 import styled.styledSpan
-import utilities.styled
+import utilities.*
 
 const val CHEVRON_LEFT_CLASS_NAME = "chevron-left"
 const val CHEVRON_RIGHT_CLASS_NAME = "chevron-right"
 
+private const val SWITCHER_ANCHOR_CLASS_NAME = "switcher-anchor"
+
 external interface SwitcherProps : WithClassName {
     var title: String
-    var onClickedLeft: (e: Event) -> Unit
-    var onClickedRight: (e: Event) -> Unit
+    var location: RouteResultLocation
 }
 
 val Switcher = functionalComponent<SwitcherProps> { props ->
+    val prevLinkTo = linkTo<SwitcherState>(props.location.pathname, search = props.location.prevPageQuery()).apply {
+        state(props.location.getPageQuery())
+    }
+    val nextLinkTo = linkTo<SwitcherState>(props.location.pathname, search = props.location.nextPageQuery()).apply {
+        state(props.location.getPageQuery())
+    }
+
     StyledSpan {
         props.className?.let(css.classes::add)
 
-        Rippled(CHEVRON_LEFT_CLASS_NAME, ChevronLeft, props.onClickedLeft)
+        Rippled(CHEVRON_LEFT_CLASS_NAME, prevLinkTo, ChevronLeft)
         StyledSubtitle(props.title)
-        Rippled(CHEVRON_RIGHT_CLASS_NAME, ChevronRight, props.onClickedRight)
+        Rippled(CHEVRON_RIGHT_CLASS_NAME, nextLinkTo, ChevronRight)
     }
 }
 
@@ -56,30 +60,34 @@ private fun RBuilder.StyledSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) = st
                 backgroundColor = Color.white
             }
         }
-    }
 
-    handler()
-}
-
-private fun RBuilder.Rippled(
-        className: String,
-        functionalComponent: FunctionalComponent<WithClassName>,
-        onClickFunction: (Event) -> Unit
-) = Ripple {
-    attrs.unbounded = true
-
-    styledA {
-        css {
-            classes.add(className)
+        descendants(".$SWITCHER_ANCHOR_CLASS_NAME") {
             display = Display.flex
             width = 24.px
             height = 24.px
             justifyContent = JustifyContent.center
             cursor = Cursor.pointer
         }
-        attrs.onClickFunction = onClickFunction
+    }
 
-        child(functionalComponent) {}
+    handler()
+}
+
+external interface SwitcherState {
+    var prev: Int
+}
+
+private fun LinkTo<SwitcherState>.state(prev: Int) { state = jsObject { this.prev = prev } }
+
+private fun RBuilder.Rippled(
+        className: String,
+        linkTo: LinkTo<SwitcherState>,
+        functionalComponent: FunctionalComponent<WithClassName>
+): ReactElement = Ripple {
+    attrs.unbounded = true
+
+    routeLink(to = linkTo, className = "$className $SWITCHER_ANCHOR_CLASS_NAME") {
+        child(functionalComponent)
     }
 }
 
