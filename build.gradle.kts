@@ -50,7 +50,7 @@ kotlin {
 
                 implementation(npm("react", Libraries.Npm.react))
                 implementation(npm("react-dom", Libraries.Npm.react))
-                implementation(npm("react-router-dom", Libraries.Npm.reactRouterDom))
+                implementation(npm("react-router-dom", "^5.1.2"))
                 implementation(npm("styled-components", Libraries.Npm.styledComponent))
                 implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
                 implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
