@@ -7,6 +7,7 @@ import components.atoms.ChevronRight
 import components.atoms.Subtitle
 import kotlinext.js.jsObject
 import kotlinx.css.*
+import kotlinx.css.properties.TextDecoration
 import kotlinx.html.SPAN
 import materialcomponents.Ripple
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
@@ -20,8 +21,6 @@ import utilities.*
 
 const val CHEVRON_LEFT_CLASS_NAME = "chevron-left"
 const val CHEVRON_RIGHT_CLASS_NAME = "chevron-right"
-
-private const val SWITCHER_ANCHOR_CLASS_NAME = "switcher-anchor"
 
 external interface SwitcherProps : WithClassName {
     var title: String
@@ -61,12 +60,14 @@ private fun RBuilder.StyledSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) = st
             }
         }
 
-        descendants(".$SWITCHER_ANCHOR_CLASS_NAME") {
+        a {
             display = Display.flex
             width = 24.px
             height = 24.px
             justifyContent = JustifyContent.center
             cursor = Cursor.pointer
+            color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
+            textDecoration = TextDecoration.none
         }
     }
 
@@ -86,7 +87,7 @@ private fun RBuilder.Rippled(
 ): ReactElement = Ripple {
     attrs.unbounded = true
 
-    routeLink(to = linkTo, className = "$className $SWITCHER_ANCHOR_CLASS_NAME") {
+    routeLink(to = linkTo, className = className) {
         child(functionalComponent)
     }
 }

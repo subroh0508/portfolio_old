@@ -12,7 +12,6 @@ import react.*
 import react.dom.WithClassName
 import react.router.dom.RouteResultLocation
 import react.router.dom.useHistory
-import react.router.dom.useRouteMatch
 import styled.animation
 import styled.css
 import styled.styledDiv
@@ -27,9 +26,6 @@ external interface SwitchableContentsProps : WithClassName {
 fun SwitchableContentsProps.titles(vararg title: String) { titles = title }
 
 val SwitchableContents = functionalComponent<SwitchableContentsProps> { props ->
-    console.log("aaa")
-    val match = useRouteMatch<RProps>("/works")
-    console.log(match)
     val location = useHistory().location
     val (index, prevIndex) = location.let {
         it.getPageQuery() to (it.switcherState?.prev ?: -1)
@@ -62,7 +58,7 @@ private fun CSSBuilder.slideInRight() = slideIn(true)
 private fun CSSBuilder.slideInLeft() = slideIn(false)
 
 private fun CSSBuilder.slideIn(right: Boolean) = animation(duration = 0.5.s, fillMode = FillMode.forwards) {
-    from { opacity = 0; transform { translateX((if (right) 48 else -48).px) } }
+    from { opacity = 0; transform { translateX((if (right) 24 else -24).px) } }
     to { opacity = 1.0; transform { translateX(0.px) } }
 }
 
