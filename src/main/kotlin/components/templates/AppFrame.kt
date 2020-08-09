@@ -3,13 +3,15 @@
 package components.templates
 
 import components.atoms.MAIN_DRAWER_WIDTH
-import components.atoms.items
+import components.atoms.MainDrawerListItem
+import components.atoms.MainDrawerListItemProps
 import components.atoms.title
 import components.organisms.CARD_FRAME_CLASS
 import components.organisms.Navigation
 import kotlinx.css.*
 import kotlinx.html.DIV
 import react.RBuilder
+import react.RHandler
 import react.child
 import react.dom.WithClassName
 import react.functionalComponent
@@ -17,19 +19,21 @@ import styled.StyledDOMBuilder
 import styled.css
 import styled.styledDiv
 
-val AppFrame = functionalComponent<WithClassName> { props ->
+external interface AppFrameProps : WithClassName {
+    var drawerItems: Array<out RHandler<MainDrawerListItemProps>>
+}
+
+fun AppFrameProps.navItems(vararg navItems: RHandler<MainDrawerListItemProps>) { this.drawerItems = navItems }
+
+val AppFrame = functionalComponent<AppFrameProps> { props ->
     StyledRowDiv {
         child(Navigation) {
             attrs.title("Subroh Nishikori's", "Portfolio")
-            attrs.items(
-                    { display = "Home"; href = "/" },
-                    { display = "Biography"; href = "#biography" },
-                    { display = "Skill"; href = "#skill" },
-                    { display = "Works"; href = "#works" },
-                    { display = "Speaks"; href = "#speaks" },
-                    { display = "Link"; href = "#link" }
-            )
             attrs.selectedIndex = 0
+
+            props.drawerItems.forEach {
+                child(MainDrawerListItem, handler = it)
+            }
         }
 
         StyledContent { props.children() }

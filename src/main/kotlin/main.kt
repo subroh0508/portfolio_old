@@ -37,6 +37,8 @@ fun main() {
 
     render(document.getElementById("root")) {
         ThemeProvider {
+            routing()
+            /*
             child(AppFrame) {
                 child(IntroductionNameCard)
                 child(BiographyCard)
@@ -46,6 +48,7 @@ fun main() {
                 child(LinksCard)
                 child(Footer)
             }
+            */
         }
     }
 }

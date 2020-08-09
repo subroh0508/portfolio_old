@@ -2,13 +2,12 @@
 
 package components.atoms
 
-import kotlinext.js.jsObject
 import kotlinx.css.*
+import kotlinx.css.properties.TextDecoration
 import materialcomponents.*
-import react.RBuilder
+import react.*
 import react.dom.WithClassName
-import react.functionalComponent
-import react.key
+import react.router.dom.routeLink
 import styled.StyledHandler
 import styled.css
 import styled.styled
@@ -75,29 +74,30 @@ private fun RBuilder.StyledMainTypography(handler: StyledHandler<TypographyProps
     handler()
 }
 
-external class MainDrawerListItem {
-    var display: String
-    var href: String
-}
-
 external interface MainDrawerListProps : WithClassName {
-    var items: Array<out MainDrawerListItem>
     var selectedIndex: Int
 }
-
-fun MainDrawerListProps.items(vararg item: MainDrawerListItem.() -> Unit) { items = item.map(::jsObject).toTypedArray() }
 
 val MainDrawerLists = functionalComponent<MainDrawerListProps> { props ->
     StyledDrawerContent {
         List {
-            props.items.forEachIndexed { i, item ->
+            Children.toArray(props.children).forEachIndexed { i, item ->
                 ListItem {
                     attrs.key = i.toString()
-                    Ripple { StyledListItemTypography { +item.display } }
+                    child(item)
                 }
             }
         }
     }
+}
+
+external interface MainDrawerListItemProps : WithClassName {
+    var title: String
+    var to: String
+}
+
+val MainDrawerListItem = functionalComponent<MainDrawerListItemProps> { props ->
+    routeLink(props.to) { Ripple { StyledListItemTypography { +props.title } } }
 }
 
 private fun RBuilder.StyledDrawerContent(handler: StyledHandler<WithClassName>) = (styled(DrawerContent)) {
@@ -106,8 +106,6 @@ private fun RBuilder.StyledDrawerContent(handler: StyledHandler<WithClassName>) 
             height = 56.px
             margin(0.px)
             padding(0.px)
-            color = Color.white
-            fontWeight = FontWeight.normal
             textAlign = TextAlign.end
         }
 
@@ -119,6 +117,13 @@ private fun RBuilder.StyledDrawerContent(handler: StyledHandler<WithClassName>) 
             after {
                 backgroundColor = Color.white
             }
+        }
+
+        a {
+            display = Display.flex
+            width = 100.pct
+            color = Color.white
+            textDecoration = TextDecoration.none
         }
     }
 

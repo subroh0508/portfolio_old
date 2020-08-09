@@ -18,8 +18,9 @@ val Navigation = functionalComponent<NavigationProps> { props ->
             attrs.title = props.title
         }
         child(MainDrawerLists) {
-            attrs.items = props.items
             attrs.selectedIndex = props.selectedIndex
+
+            props.children()
         }
     }
 }
