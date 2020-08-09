@@ -6,8 +6,6 @@ import components.atoms.LargeTitle
 import components.atoms.Paragraph
 import components.atoms.Subtitle
 import components.organisms.CardFrame
-import components.organisms.SwitchableContents
-import components.organisms.titles
 import kotlinx.css.Display
 import kotlinx.css.display
 import kotlinx.css.pct

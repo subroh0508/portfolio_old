@@ -3,7 +3,6 @@
 package components.templates
 
 import components.atoms.LargeTitle
-import components.atoms.Link
 import components.atoms.Paragraph
 import components.organisms.CardFrame
 import components.organisms.SwitchableContents

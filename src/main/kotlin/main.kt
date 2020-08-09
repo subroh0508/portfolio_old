@@ -1,13 +1,10 @@
 @file:Suppress("FunctionName")
 
-import components.atoms.Footer
-import components.templates.*
 import react.dom.render
 import kotlin.browser.document
 import kotlinx.css.*
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import materialcomponents.VAR_COLOR_TEXT_SECONDARY_ON_DARK
-import react.child
 import styled.*
 import themes.ThemeProvider
 
