@@ -36,19 +36,6 @@ fun main() {
     }
 
     render(document.getElementById("root")) {
-        ThemeProvider {
-            routing()
-            /*
-            child(AppFrame) {
-                child(IntroductionNameCard)
-                child(BiographyCard)
-                child(SkillCard)
-                child(WorksCard)
-                child(SpeaksCard)
-                child(LinksCard)
-                child(Footer)
-            }
-            */
-        }
+        ThemeProvider { routing() }
     }
 }

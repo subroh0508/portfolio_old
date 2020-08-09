@@ -2,10 +2,7 @@
 
 package components.templates
 
-import components.atoms.MAIN_DRAWER_WIDTH
-import components.atoms.MainDrawerListItem
-import components.atoms.MainDrawerListItemProps
-import components.atoms.title
+import components.atoms.*
 import components.organisms.CARD_FRAME_CLASS
 import components.organisms.Navigation
 import kotlinx.css.*
@@ -36,7 +33,11 @@ val AppFrame = functionalComponent<AppFrameProps> { props ->
             }
         }
 
-        StyledContent { props.children() }
+        StyledContent {
+            props.children()
+
+            child(Footer)
+        }
     }
 }
 

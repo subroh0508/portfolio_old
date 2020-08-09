@@ -14,7 +14,7 @@ val Footer = functionalComponent<WithClassName> {
         css {
             display = Display.flex
             height = 100.vh - (800 * 55.0 / 91.0).px - 64.px
-            minHeight = 80.px
+            minHeight = 104.px
             alignItems = Align.flexEnd
             color = Color.white.withAlpha(0.38)
         }
@@ -23,8 +23,7 @@ val Footer = functionalComponent<WithClassName> {
             css {
                 width = 100.pct
                 textAlign = TextAlign.center
-                paddingTop = 16.px
-                paddingBottom = 40.px
+                padding(vertical = 40.px)
             }
 
             +"Copyright© 2020 subroh_0508 Official Website. All Rights Reserved."
