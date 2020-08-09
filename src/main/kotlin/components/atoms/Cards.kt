@@ -3,6 +3,10 @@
 package components.atoms
 
 import kotlinx.css.*
+import kotlinx.css.properties.FillMode
+import kotlinx.css.properties.s
+import kotlinx.css.properties.transform
+import kotlinx.css.properties.translateX
 import kotlinx.html.DIV
 import materialcomponents.Card as CardComponent
 import materialcomponents.VAR_COLOR_PRIMARY
@@ -41,6 +45,11 @@ private fun RBuilder.NameCardWrapper(className: String?, handler: StyledDOMBuild
             borderRadius = 0.px
             padding(16.px)
             backgroundColor = Color(VAR_COLOR_PRIMARY.toCustomProperty())
+
+            animation(duration = 0.75.s, fillMode = FillMode.forwards) {
+                from { opacity = 0; transform { translateX(100.px) } }
+                to { opacity = 1.0; transform { translateX(0.px) } }
+            }
         }
     }
 
