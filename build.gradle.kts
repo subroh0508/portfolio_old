@@ -64,6 +64,8 @@ kotlin {
 
                 implementation(devNpm("style-loader"))
                 implementation(devNpm("css-loader"))
+                implementation(devNpm("html-webpack-plugin", "^3.2.0"))
+                implementation(devNpm("webpack-cdn-plugin", "^3.2.2"))
             }
         }
     }
