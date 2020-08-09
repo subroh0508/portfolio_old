@@ -5,13 +5,16 @@ import react.RBuilder
 import react.RHandler
 import react.RProps
 import react.router.dom.LinkComponent
+import react.router.dom.RouteResultHistory
 import react.router.dom.RouteResultLocation
+
+inline fun <T> RouteResultHistory.replace(linkTo: LinkTo<T>) = asDynamic().replace(linkTo)
 
 external interface LinkTo<T> {
     var pathname: String?
     var search: String?
     var hash: String?
-    var state: T
+    var state: T?
 }
 
 val RouteResultLocation.state: dynamic get() = asDynamic()["state"]

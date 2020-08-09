@@ -2,10 +2,8 @@
 
 package components.organisms
 
-import components.molecules.CHEVRON_LEFT_CLASS_NAME
-import components.molecules.CHEVRON_RIGHT_CLASS_NAME
-import components.molecules.Switcher
-import components.molecules.SwitcherState
+import components.molecules.*
+import kotlinext.js.jsObject
 import kotlinx.css.*
 import kotlinx.css.properties.*
 import react.*
@@ -15,9 +13,7 @@ import react.router.dom.useHistory
 import styled.animation
 import styled.css
 import styled.styledDiv
-import utilities.getPageQuery
-import utilities.state
-import utilities.styled
+import utilities.*
 
 external interface SwitchableContentsProps : WithClassName {
     var titles: Array<out String>
@@ -26,9 +22,16 @@ external interface SwitchableContentsProps : WithClassName {
 fun SwitchableContentsProps.titles(vararg title: String) { titles = title }
 
 val SwitchableContents = functionalComponent<SwitchableContentsProps> { props ->
-    val location = useHistory().location
+    val history = useHistory()
+    val location = history.location
     val (index, prevIndex) = location.let {
         it.getPageQuery() to (it.switcherState?.prev ?: -1)
+    }
+
+    // Redirect to first page when access out of range
+    if (index !in 0..props.titles.size) {
+        history.replace(firstLinkTo(location))
+        return@functionalComponent
     }
 
     StyledSwitcher(index, props.titles, location)
@@ -77,7 +80,24 @@ private fun RBuilder.StyledSwitcher(
     }
 
     attrs.title = titles[index]
-    attrs.location = location
+    attrs.prevLinkTo = prevLinkTo(location)
+    attrs.nextLinkTo = nextLinkTo(location, titles.size - 1)
 }
+
+private fun firstLinkTo(location: RouteResultLocation) = linkTo<SwitcherState>(
+        location.pathname, search = FIRST_PAGE_QUERY
+)
+
+private fun prevLinkTo(location: RouteResultLocation) = linkTo<SwitcherState>(
+        location.pathname,
+        search = location.prevPageQuery()
+).apply { state(location.getPageQuery()) }
+
+private fun nextLinkTo(location: RouteResultLocation, max: Int) = linkTo<SwitcherState>(
+        location.pathname,
+        search = location.nextPageQuery(max)
+).apply { state(location.getPageQuery()) }
+
+private fun LinkTo<SwitcherState>.state(prev: Int) { state = jsObject { this.prev = prev } }
 
 

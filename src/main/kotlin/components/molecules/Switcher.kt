@@ -24,23 +24,17 @@ const val CHEVRON_RIGHT_CLASS_NAME = "chevron-right"
 
 external interface SwitcherProps : WithClassName {
     var title: String
-    var location: RouteResultLocation
+    var prevLinkTo: LinkTo<SwitcherState>
+    var nextLinkTo: LinkTo<SwitcherState>
 }
 
 val Switcher = functionalComponent<SwitcherProps> { props ->
-    val prevLinkTo = linkTo<SwitcherState>(props.location.pathname, search = props.location.prevPageQuery()).apply {
-        state(props.location.getPageQuery())
-    }
-    val nextLinkTo = linkTo<SwitcherState>(props.location.pathname, search = props.location.nextPageQuery()).apply {
-        state(props.location.getPageQuery())
-    }
-
     StyledSpan {
         props.className?.let(css.classes::add)
 
-        Rippled(CHEVRON_LEFT_CLASS_NAME, prevLinkTo, ChevronLeft)
+        Rippled(CHEVRON_LEFT_CLASS_NAME, props.prevLinkTo, ChevronLeft)
         StyledSubtitle(props.title)
-        Rippled(CHEVRON_RIGHT_CLASS_NAME, nextLinkTo, ChevronRight)
+        Rippled(CHEVRON_RIGHT_CLASS_NAME, props.nextLinkTo, ChevronRight)
     }
 }
 
@@ -77,8 +71,6 @@ private fun RBuilder.StyledSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) = st
 external interface SwitcherState {
     var prev: Int
 }
-
-private fun LinkTo<SwitcherState>.state(prev: Int) { state = jsObject { this.prev = prev } }
 
 private fun RBuilder.Rippled(
         className: String,
