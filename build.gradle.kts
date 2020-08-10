@@ -17,16 +17,18 @@ repositories {
 }
 
 kotlin {
-    target {
+    js(IR) {
         useCommonJs()
+        binaries.executable()
+
         browser {
             runTask {
                 val mainSrc = kotlin.sourceSets["main"]
 
                 sourceMaps = true
                 devServer = KotlinWebpackConfig.DevServer(
-                    port = 8088,
-                    contentBase = mainSrc.resources.srcDirs.map { it.absolutePath }
+                        port = 8088,
+                        contentBase = mainSrc.resources.srcDirs.map { it.absolutePath }
                 )
                 outputFileName = "main.bundle.js"
             }
@@ -62,8 +64,7 @@ kotlin {
                 implementation(npm("@rmwc/typography", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/theme", Libraries.Npm.materialWebComponents))
 
-                implementation(devNpm("style-loader"))
-                implementation(devNpm("css-loader"))
+                implementation(devNpm("style-loader", "*"))
                 implementation(devNpm("html-webpack-plugin", "^3.2.0"))
                 implementation(devNpm("webpack-cdn-plugin", "^3.2.2"))
             }
@@ -88,5 +89,3 @@ val copyDistributions by tasks.registering {
 }
 
 browserWebpack.finalizedBy(copyDistributions)
-
-fun devNpm(name: String, version: String = "*") = NpmDependency(project, name, version, NpmDependency.Scope.DEV)
