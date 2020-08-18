@@ -5,8 +5,8 @@ object Libraries {
     }
 
     object Kotlin {
-        const val version = "1.4.0-rc"
-        const val wrappersBuild = "pre.110-kotlin-$version"
+        const val version = "1.4.0"
+        const val wrappersBuild = "pre.111-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
 
