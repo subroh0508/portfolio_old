@@ -27,7 +27,7 @@ val Footer = functionalComponent<WithClassName> {
                 padding(vertical = 40.px)
             }
 
-            +"Last Modified: 2020-08-11T01:00:53+0900"
+            +"Last Modified: 2020-08-19T00:36:00+0900"
             br {}
             +"Copyright© 2020 subroh_0508 Official Website. All Rights Reserved."
         }
