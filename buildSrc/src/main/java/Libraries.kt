@@ -6,7 +6,7 @@ object Libraries {
 
     object Kotlin {
         const val version = "1.4.0"
-        const val wrappersBuild = "pre.111-kotlin-$version"
+        const val wrappersBuild = "pre.113-kotlin-$version"
 
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
 
@@ -17,7 +17,7 @@ object Libraries {
         const val reactRouterDomVersion = "${Npm.reactRouterDom}-$wrappersBuild"
         const val reactRouterDom = "org.jetbrains:kotlin-react-router-dom:$reactRouterDomVersion"
 
-        const val htmlVersion = "0.6.12"
+        const val htmlVersion = "0.7.2"
         const val html = "org.jetbrains.kotlinx:kotlinx-html-js:$htmlVersion"
 
         const val cssVersion = "1.0.0-$wrappersBuild"
