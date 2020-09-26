@@ -60,6 +60,14 @@ private fun RBuilder.Speaks2020() = child(Paragraph) {
             b { +"Kotlin愛好会 vol.23: " }
             +"「"; Links("https://speakerdeck.com/subroh0508/jsfalsebandoruhuairuwotiyotutowan-zhang-tutexue-jian-suru" to "Kotlin/JSのバンドルファイルをちょっと頑張って削減する"); +"」"
         }
+        li {
+            b { +"ITエンジニア怪談 ～背筋も凍る、ゾッとする話Night～ #3: " }
+            +"「"; Links("https://speakerdeck.com/subroh0508/oyuan-ida-kanhuarensuzhi-qian-niatupudetosinaidekure" to "お願いだ、カンファレンス直前にアップデートしないでくれ\uD83E\uDD7A"); +"」"
+        }
+        li {
+            b { +"IM@S ENGINEERS ON@IR!!!! 2020: " }
+            +"「"; Links("https://speakerdeck.com/subroh0508/xiao-niao-santoaidorufalsepasonarukarawo-jian-suo-dekiruwebapuriwo-100-percent-kotlindezuo-ru" to "小鳥さんとアイドルのパーソナルカラーを検索できるWebアプリを100%Kotlinで作る"); +"」"
+        }
     }
 }
 
