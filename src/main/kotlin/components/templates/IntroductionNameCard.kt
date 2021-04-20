@@ -27,7 +27,7 @@ val IntroductionNameCard = functionalComponent<WithClassName> {
             attrs.subName = "Subroh Nishikori"
             attrs.avatarSrc = "avatar.jpg"
             attrs.posts(
-                "担当: 速水奏・三峰結華・真壁瑞希",
+                "担当: 速水奏・三峰結華・真壁瑞希・樋口円香",
                 "副業: Android/Webエンジニア"
             )
         }
