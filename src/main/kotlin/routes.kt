@@ -1,5 +1,6 @@
 import components.templates.*
 import react.RBuilder
+import react.createElement
 import react.router.Route
 import react.router.Routes
 import react.router.dom.BrowserRouter
@@ -19,46 +20,43 @@ fun RBuilder.routing() = BrowserRouter {
             Route {
                 attrs {
                     path = "/"
-                    caseSensitive = true
+                    element = createElement(IntroductionNameCard)
                 }
-
-                child(IntroductionNameCard)
             }
 
             Route {
                 attrs {
                     path = "/biography"
-                    caseSensitive = true
+                    element = createElement(BiographyCard)
                 }
-
-                child(BiographyCard)
             }
 
             Route {
                 attrs {
                     path = "/skill"
-                    caseSensitive = true
+                    element = createElement(SkillCard)
                 }
+            }
 
-                child(SkillCard)
+            Route {
+                attrs {
+                    path = "/works"
+                    element = createElement(WorksCard)
+                }
             }
 
             Route {
                 attrs {
                     path = "/speaks"
-                    caseSensitive = true
+                    element = createElement(SpeaksCard)
                 }
-
-                child(SpeaksCard)
             }
 
             Route {
                 attrs {
                     path = "/link"
-                    caseSensitive = true
+                    element = createElement(LinksCard)
                 }
-
-                child(LinksCard)
             }
         }
     }

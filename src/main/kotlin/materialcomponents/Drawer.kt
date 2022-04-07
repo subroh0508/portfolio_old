@@ -1,4 +1,5 @@
 @file:JsModule("@rmwc/drawer")
+@file:JsNonModule
 
 package materialcomponents
 

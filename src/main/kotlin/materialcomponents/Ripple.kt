@@ -1,4 +1,5 @@
 @file:JsModule("@rmwc/ripple")
+@file:JsNonModule
 
 package materialcomponents
 

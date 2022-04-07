@@ -1,4 +1,5 @@
 @file:JsModule("@rmwc/avatar")
+@file:JsNonModule
 
 package materialcomponents
 

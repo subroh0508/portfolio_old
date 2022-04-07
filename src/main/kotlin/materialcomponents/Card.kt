@@ -1,4 +1,5 @@
 @file:JsModule("@rmwc/card")
+@file:JsNonModule
 
 package materialcomponents
 

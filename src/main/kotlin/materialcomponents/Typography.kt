@@ -1,4 +1,5 @@
 @file:JsModule("@rmwc/typography")
+@file:JsNonModule
 
 package materialcomponents
 

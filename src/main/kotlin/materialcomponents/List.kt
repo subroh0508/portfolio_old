@@ -1,4 +1,5 @@
 @file:JsModule("@rmwc/list")
+@file:JsNonModule
 
 package materialcomponents
 

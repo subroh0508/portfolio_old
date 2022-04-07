@@ -2,7 +2,6 @@
 
 package components.atoms
 
-import csstype.ClassName
 import kotlinx.css.*
 import kotlinx.css.properties.FillMode
 import kotlinx.css.properties.s

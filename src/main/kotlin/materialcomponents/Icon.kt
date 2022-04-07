@@ -1,4 +1,5 @@
 @file:JsModule("@rmwc/icon")
+@file:JsNonModule
 
 package materialcomponents
 

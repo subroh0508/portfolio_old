@@ -15,32 +15,23 @@ repositories {
 
 kotlin {
     js(IR) {
-        useCommonJs()
         binaries.executable()
 
         browser {
-            runTask {
-                val mainSrc = kotlin.sourceSets["main"]
-
-                sourceMaps = true
-                /*
-                devServer = KotlinWebpackConfig.DevServer(
-                        port = 8088,
-                        contentBase = mainSrc.resources.srcDirs.map { it.absolutePath }.toMutableList()
-                )
-                */
+            commonWebpackConfig {
                 outputFileName = "main.bundle.js"
+            }
+            runTask {
+                sourceMaps = true
             }
             webpackTask {
                 sourceMaps = false
-                outputFileName = "main.bundle.js"
             }
         }
     }
 }
 
 dependencies {
-    //implementation(Libraries.Kotlin.js)
     implementation(Libraries.Kotlin.html)
     implementation(Libraries.Kotlin.react)
     implementation(Libraries.Kotlin.reactDom)
@@ -49,11 +40,6 @@ dependencies {
     implementation(Libraries.Kotlin.extensions)
     implementation(Libraries.Kotlin.styled)
 
-    implementation(npm("react", Libraries.Npm.react))
-    implementation(npm("react-dom", Libraries.Npm.react))
-    implementation(npm("react-router-dom", "^5.1.2"))
-    implementation(npm("styled-components", Libraries.Npm.styledComponent))
-    implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
     implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
     implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))
     implementation(npm("@rmwc/drawer", Libraries.Npm.materialWebComponents))

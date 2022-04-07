@@ -1,4 +1,5 @@
 @file:JsModule("@rmwc/theme")
+@file:JsNonModule
 
 package materialcomponents
 
