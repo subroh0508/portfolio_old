@@ -29,7 +29,7 @@ val Footer = fc<StyledProps> {
 
             +"Last Modified: 2022-04-07T23:47:06+0900"
             br {}
-            +"Copyright© 2020 subroh_0508 Official Website. All Rights Reserved."
+            +"Copyright© 2022 subroh_0508 Official Website. All Rights Reserved."
         }
     }
 }
