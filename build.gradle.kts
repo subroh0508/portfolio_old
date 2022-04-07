@@ -2,7 +2,8 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jetbrains.kotlin.gradle.targets.js.npm.NpmDependency
 
 plugins {
-    kotlin("js") version Libraries.Kotlin.version
+    kotlin("js")
+    `node-conventions`
 }
 
 group = Packages.group
@@ -10,10 +11,6 @@ version = Packages.version
 
 repositories {
     mavenCentral()
-    jcenter()
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
-    maven(url = "http://dl.bintray.com/kotlinx/kotlinx")
-    maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
 }
 
 kotlin {
@@ -28,7 +25,7 @@ kotlin {
                 sourceMaps = true
                 devServer = KotlinWebpackConfig.DevServer(
                         port = 8088,
-                        contentBase = mainSrc.resources.srcDirs.map { it.absolutePath }
+                        contentBase = mainSrc.resources.srcDirs.map { it.absolutePath }.toMutableList()
                 )
                 outputFileName = "main.bundle.js"
             }
@@ -42,7 +39,7 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
-                implementation(Libraries.Kotlin.js)
+                //implementation(Libraries.Kotlin.js)
                 implementation(Libraries.Kotlin.html)
                 implementation(Libraries.Kotlin.react)
                 implementation(Libraries.Kotlin.reactDom)
