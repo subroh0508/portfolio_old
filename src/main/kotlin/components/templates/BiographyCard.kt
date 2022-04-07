@@ -42,7 +42,7 @@ private fun RBuilder.AboutMeContent() = div {
     }
 
     child(Paragraph) {
-        +"東京高専情報工学科を卒業後、2016年4月に株式会社BearTailに新卒入社。"
+        +"東京高専情報工学科を卒業後、2016年4月に株式会社TOKIUMに新卒入社。"
         +"複数のAndroidアプリの新機能開発・保守運用をメインとしつつ、Rails/React ReduxによるWebアプリ開発、およびエンジニア採用の業務にも携わる。"
     }
 
@@ -61,7 +61,7 @@ private fun RBuilder.CareerContent() = styledDiv {
         ul {
             li {
                 +"2016.04 "
-                Links("https://beartail.jp/" to "株式会社BearTail")
+                Links("https://tokium.jp/" to "株式会社TOKIUM")
                 +"入社、現職"
             }
         }

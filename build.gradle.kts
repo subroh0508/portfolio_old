@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-import org.jetbrains.kotlin.gradle.targets.js.npm.NpmDependency
-
 plugins {
     kotlin("js")
     `node-conventions`
