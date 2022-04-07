@@ -1,11 +1,11 @@
 import components.templates.*
 import react.RBuilder
-import react.child
-import react.router.dom.browserRouter
-import react.router.dom.route
-import react.router.dom.switch
+import react.createElement
+import react.router.Route
+import react.router.Routes
+import react.router.dom.BrowserRouter
 
-fun RBuilder.routing() = browserRouter {
+fun RBuilder.routing() = BrowserRouter {
     child(AppFrame) {
         attrs.navItems(
                 { attrs.to = "/"; attrs.title = "Home" },
@@ -16,13 +16,48 @@ fun RBuilder.routing() = browserRouter {
                 { attrs.to = "/link"; attrs.title= "Link" }
         )
 
-        switch {
-            route("/", exact = true) { child(IntroductionNameCard) }
-            route("/biography", exact = true) { child(BiographyCard) }
-            route("/skill", exact = true) { child(SkillCard) }
-            route("/works", exact = true) { child(WorksCard) }
-            route("/speaks", exact = true) { child(SpeaksCard) }
-            route("/link", exact = true) { child(LinksCard) }
+        Routes {
+            Route {
+                attrs {
+                    path = "/"
+                    element = createElement(IntroductionNameCard)
+                }
+            }
+
+            Route {
+                attrs {
+                    path = "/biography"
+                    element = createElement(BiographyCard)
+                }
+            }
+
+            Route {
+                attrs {
+                    path = "/skill"
+                    element = createElement(SkillCard)
+                }
+            }
+
+            Route {
+                attrs {
+                    path = "/works"
+                    element = createElement(WorksCard)
+                }
+            }
+
+            Route {
+                attrs {
+                    path = "/speaks"
+                    element = createElement(SpeaksCard)
+                }
+            }
+
+            Route {
+                attrs {
+                    path = "/link"
+                    element = createElement(LinksCard)
+                }
+            }
         }
     }
 }

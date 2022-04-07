@@ -1,11 +1,12 @@
 @file:JsModule("@rmwc/avatar")
+@file:JsNonModule
 
 package materialcomponents
 
-import react.RClass
-import react.dom.WithClassName
+import react.ElementType
+import styled.StyledProps
 
-external interface AvatarProps : WithClassName {
+external interface AvatarProps : StyledProps {
     var src: String?
     var size: String?
     var name: String?
@@ -15,4 +16,4 @@ external interface AvatarProps : WithClassName {
     var ripple: Boolean?
 }
 
-external val Avatar: RClass<AvatarProps>
+external val Avatar: ElementType<AvatarProps>

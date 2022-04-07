@@ -10,15 +10,11 @@ import kotlinx.css.properties.translateX
 import kotlinx.html.DIV
 import materialcomponents.Card as CardComponent
 import materialcomponents.VAR_COLOR_PRIMARY
-import react.Children
-import react.RBuilder
-import react.children
-import react.dom.WithClassName
-import react.functionalComponent
+import react.*
 import styled.*
 
-val Card = functionalComponent<WithClassName> { props ->
-    NameCardWrapper(props.className) {
+val Card = fc<StyledProps> { props ->
+    NameCardWrapper(props.className.unsafeCast<String>()) {
         CardComponent { props.children() }
     }
 }

@@ -10,18 +10,18 @@ import materialcomponents.AvatarProps
 import materialcomponents.AvatarSize
 import materialcomponents.size
 import react.RBuilder
-import react.dom.WithClassName
-import react.functionalComponent
+import react.fc
 import styled.StyledHandler
+import styled.StyledProps
 import styled.css
 import styled.styled
 
-external interface MainAvatarProps : WithClassName {
+external interface MainAvatarProps : StyledProps {
     var src: String?
 }
 
-val MainAvatar = functionalComponent<MainAvatarProps> { props ->
-    StyledAvatar(props.className) {
+val MainAvatar = fc<MainAvatarProps> { props ->
+    StyledAvatar(props.className.unsafeCast<String>()) {
         attrs.ripple = false
         attrs.src = props.src
         attrs.size(AvatarSize.xlarge)

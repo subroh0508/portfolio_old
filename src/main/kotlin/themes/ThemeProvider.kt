@@ -2,10 +2,10 @@
 
 package themes
 
-import kotlinext.js.jsObject
 import kotlinx.css.Color
 import kotlinx.css.height
 import kotlinx.css.pct
+import kotlinx.js.jso
 import materialcomponents.ThemeProvider as Provider
 import materialcomponents.ThemeProviderProps
 import materialcomponents.theme.*
@@ -26,7 +26,7 @@ fun RBuilder.ThemeProvider(handler: RBuilder.() -> Unit) = StyledThemeProvider {
     handler()
 }
 
-fun ThemeProviderProps.options(block: ThemeProviderOption.() -> Unit) { options = jsObject(block) }
+fun ThemeProviderProps.options(block: ThemeProviderOption.() -> Unit) { options = jso(block) }
 
 private fun RBuilder.StyledThemeProvider(handler: StyledHandler<ThemeProviderProps>) = (styled(Provider)) {
     css {

@@ -7,11 +7,10 @@ import components.atoms.Paragraph
 import components.organisms.CardFrame
 import components.organisms.SkillTable
 import react.RBuilder
-import react.child
-import react.dom.WithClassName
-import react.functionalComponent
+import react.fc
+import styled.StyledProps
 
-val SkillCard = functionalComponent<WithClassName> {
+val SkillCard = fc<StyledProps> {
     child(CardFrame) {
         child(LargeTitle) {
             attrs.title = "Skill"

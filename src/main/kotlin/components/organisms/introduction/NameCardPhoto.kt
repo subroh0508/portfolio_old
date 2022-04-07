@@ -6,17 +6,17 @@ import kotlinx.css.*
 import kotlinx.html.DIV
 import materialcomponents.VAR_COLOR_SURFACE
 import react.RBuilder
-import react.dom.WithClassName
-import react.functionalComponent
+import react.fc
 import styled.StyledDOMBuilder
+import styled.StyledProps
 import styled.css
 import styled.styledDiv
 
-external interface NameCardPhotoProps : WithClassName {
+external interface NameCardPhotoProps : StyledProps {
     var photoSrc: String
 }
 
-val NameCardPhoto = functionalComponent<NameCardPhotoProps> { props ->
+val NameCardPhoto = fc<NameCardPhotoProps> { props ->
     StyledPhotoRoot { StyledImg(props.photoSrc) }
 }
 

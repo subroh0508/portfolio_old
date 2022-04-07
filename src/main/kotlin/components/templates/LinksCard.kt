@@ -11,14 +11,14 @@ import kotlinx.css.display
 import kotlinx.css.pct
 import kotlinx.css.width
 import react.RBuilder
-import react.child
 import react.dom.*
-import react.functionalComponent
+import react.fc
+import styled.StyledProps
 import styled.css
 import styled.styledDiv
 import utilities.Links
 
-val LinksCard = functionalComponent<WithClassName> {
+val LinksCard = fc<StyledProps> {
     child(CardFrame) {
         child(LargeTitle) {
             attrs.title = "Link"

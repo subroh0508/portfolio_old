@@ -11,24 +11,18 @@ import kotlinx.css.properties.TextDecoration
 import kotlinx.css.properties.TextDecorationLine
 import kotlinx.html.SPAN
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
-import react.FunctionalComponent
+import react.FC
+import react.fc
 import react.RBuilder
-import react.dom.WithClassName
-import react.dom.span
-import react.functionalComponent
-import styled.StyledDOMBuilder
-import styled.StyledHandler
-import styled.css
-import styled.styledSpan
-import utilities.styled
+import styled.*
 
 external interface LinkWithIconProps : LinkProps {
     var display: String
-    var icon: FunctionalComponent<WithClassName>
+    var icon: FC<StyledProps>
 }
 
-val LinkWithIcon = functionalComponent<LinkWithIconProps> { props ->
-    StyledLink(props.className) {
+val LinkWithIcon = fc<LinkWithIconProps> { props ->
+    StyledLink(props.className.unsafeCast<String>()) {
         attrs.href = props.href
         attrs.target = props.target
 
@@ -57,7 +51,7 @@ private fun RBuilder.StyledLinkSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) 
     handler()
 }
 
-private fun RBuilder.StyledLinkIcon(icon: FunctionalComponent<WithClassName>) = (styled(icon)) {
+private fun RBuilder.StyledLinkIcon(icon: FC<StyledProps>) = (styled(icon)) {
     css {
         marginRight = 8.px
 

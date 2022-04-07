@@ -1,21 +1,22 @@
 @file:JsModule("@rmwc/drawer")
+@file:JsNonModule
 
 package materialcomponents
 
 import org.w3c.dom.events.Event
-import react.RClass
-import react.dom.WithClassName
+import react.ElementType
+import styled.StyledProps
 
-external interface DrawerProps : WithClassName {
+external interface DrawerProps : StyledProps {
     var open: Boolean?
     var onClose: (Event) -> Unit
     var onOpen: (Event) -> Unit
     var dismissable: Boolean?
 }
 
-external val Drawer: RClass<DrawerProps>
-external val DrawerHeader: RClass<WithClassName>
-external val DrawerTitle: RClass<WithClassName>
-external val DrawerSubtitle: RClass<WithClassName>
-external val DrawerContent: RClass<WithClassName>
-external val DrawerAppContent: RClass<WithClassName>
+external val Drawer: ElementType<DrawerProps>
+external val DrawerHeader: ElementType<StyledProps>
+external val DrawerTitle: ElementType<StyledProps>
+external val DrawerSubtitle: ElementType<StyledProps>
+external val DrawerContent: ElementType<StyledProps>
+external val DrawerAppContent: ElementType<StyledProps>

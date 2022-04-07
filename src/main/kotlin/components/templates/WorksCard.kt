@@ -9,15 +9,15 @@ import components.organisms.SwitchableContents
 import components.organisms.titles
 import kotlinx.css.*
 import react.RBuilder
-import react.child
 import react.dom.*
-import react.functionalComponent
+import react.fc
+import styled.StyledProps
 import styled.css
 import styled.styledDiv
 import styled.styledImg
 import utilities.Links
 
-val WorksCard = functionalComponent<WithClassName> {
+val WorksCard = fc<StyledProps> {
     child(CardFrame) {
         child(LargeTitle) {
             attrs.title = "Works"

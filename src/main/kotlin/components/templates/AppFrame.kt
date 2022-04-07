@@ -9,20 +9,19 @@ import kotlinx.css.*
 import kotlinx.html.DIV
 import react.RBuilder
 import react.RHandler
-import react.child
-import react.dom.WithClassName
-import react.functionalComponent
+import react.fc
 import styled.StyledDOMBuilder
+import styled.StyledProps
 import styled.css
 import styled.styledDiv
 
-external interface AppFrameProps : WithClassName {
+external interface AppFrameProps : StyledProps {
     var drawerItems: Array<out RHandler<MainDrawerListItemProps>>
 }
 
 fun AppFrameProps.navItems(vararg navItems: RHandler<MainDrawerListItemProps>) { this.drawerItems = navItems }
 
-val AppFrame = functionalComponent<AppFrameProps> { props ->
+val AppFrame = fc<AppFrameProps> { props ->
     StyledRowDiv {
         child(Navigation) {
             attrs.title("Subroh Nishikori's", "Portfolio")

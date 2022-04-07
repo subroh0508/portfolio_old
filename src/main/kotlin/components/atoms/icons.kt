@@ -10,40 +10,34 @@ import kotlinx.html.TagConsumer
 import materialcomponents.Icon
 import materialcomponents.IconProps
 import react.RBuilder
-import react.ReactElement
 import react.buildElement
 import react.dom.RDOMBuilder
-import react.dom.WithClassName
-import react.dom.svg
 import react.dom.tag
-import react.functionalComponent
-import styled.StyledHandler
-import styled.css
-import styled.styled
-import styled.styledSvg
+import react.fc
+import styled.*
 
-val HomeIcon = functionalComponent<WithClassName> { props ->
-    StyledIcon(props.className) { attrs.icon("home") }
+val HomeIcon = fc<StyledProps> { props ->
+    StyledIcon(props.className.unsafeCast<String>()) { attrs.icon("home") }
 }
 
-val EmailIcon = functionalComponent<WithClassName> { props ->
-    StyledIcon(props.className) { attrs.icon("email") }
+val EmailIcon = fc<StyledProps> { props ->
+    StyledIcon(props.className.unsafeCast<String>()) { attrs.icon("email") }
 }
 
-val ChevronLeft = functionalComponent<WithClassName> { props ->
-    StyledIcon(props.className) { attrs.icon("chevron_left") }
+val ChevronLeft = fc<StyledProps> { props ->
+    StyledIcon(props.className.unsafeCast<String>()) { attrs.icon("chevron_left") }
 }
 
-val ChevronRight = functionalComponent<WithClassName> { props ->
-    StyledIcon(props.className) { attrs.icon("chevron_right") }
+val ChevronRight = fc<StyledProps> { props ->
+    StyledIcon(props.className.unsafeCast<String>()) { attrs.icon("chevron_right") }
 }
 
-val TwitterIcon = functionalComponent<WithClassName> { props ->
-    StyledIcon(props.className) { attrs.icon { svgTwitter() } }
+val TwitterIcon = fc<StyledProps> { props ->
+    StyledIcon(props.className.unsafeCast<String>()) { attrs.icon { svgTwitter() } }
 }
 
-val GitHubIcon = functionalComponent<WithClassName> { props ->
-    StyledIcon(props.className) { attrs.icon { svgGitHub() } }
+val GitHubIcon = fc<StyledProps> { props ->
+    StyledIcon(props.className.unsafeCast<String>()) { attrs.icon { svgGitHub() } }
 }
 
 fun IconProps.icon(name: String) { icon = name }
@@ -72,7 +66,7 @@ private fun RBuilder.svg(d: String) = styledSvg {
     path { attrs.d = d }
 }
 
-private inline fun RBuilder.path(block: RDOMBuilder<PATH>.() -> Unit): ReactElement = tag(block) { PATH(it) }
+private inline fun RBuilder.path(block: RDOMBuilder<PATH>.() -> Unit) = tag(block) { PATH(it) }
 
 private class PATH(override val consumer : TagConsumer<*>): HTMLTag("path", consumer, mapOf(), null, false, false) {
     var d: String by attributes

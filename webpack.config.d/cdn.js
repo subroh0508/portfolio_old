@@ -18,7 +18,6 @@ if (config.mode === 'production') {
     {
       react: 'React',
       'react-dom': 'ReactDOM',
-      'react-router-dom': 'ReactRouterDOM',
     },
   ];
   config.plugins.push(
@@ -31,10 +30,6 @@ if (config.mode === 'production') {
         {
           name: 'react-dom',
           path: 'umd/react-dom.production.min.js',
-        },
-        {
-          name: 'react-router-dom',
-          path: 'umd/react-router-dom.min.js',
         },
       ],
       pathToNodeModules: path.resolve(rootPath, 'build/js'),

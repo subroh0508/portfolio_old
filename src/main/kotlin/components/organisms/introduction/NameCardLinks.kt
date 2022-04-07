@@ -9,19 +9,17 @@ import kotlinx.css.*
 import kotlinx.html.DIV
 import kotlinx.html.SPAN
 import react.RBuilder
-import react.dom.WithClassName
-import react.functionalComponent
+import react.fc
 import styled.*
-import utilities.styled
 
-external interface NameCardLinksProps : WithClassName {
+external interface NameCardLinksProps : StyledProps {
     var homepage: String
     var twitter: String
     var github: String
     var email: String
 }
 
-val NameCardLinks = functionalComponent<NameCardLinksProps> { props ->
+val NameCardLinks = fc<NameCardLinksProps> { props ->
     StyledLinksRoot {
         StyledLinkWithIcon {
             attrs.href = PROTOCOL_HTTPS + props.homepage

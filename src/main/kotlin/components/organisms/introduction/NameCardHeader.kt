@@ -6,16 +6,11 @@ import components.atoms.*
 import kotlinx.css.*
 import kotlinx.html.DIV
 import react.RBuilder
-import react.dom.WithClassName
 import react.dom.div
-import react.functionalComponent
-import styled.StyledDOMBuilder
-import styled.StyledHandler
-import styled.css
-import styled.styledDiv
-import utilities.styled
+import react.fc
+import styled.*
 
-external interface NameCardHeaderProps : WithClassName {
+external interface NameCardHeaderProps : StyledProps {
     var name: String
     var subName: String
     var avatarSrc: String
@@ -24,7 +19,7 @@ external interface NameCardHeaderProps : WithClassName {
 
 fun NameCardHeaderProps.posts(vararg post: String) { posts = post }
 
-val NameCardHeader = functionalComponent<NameCardHeaderProps> { props ->
+val NameCardHeader = fc<NameCardHeaderProps> { props ->
     HeaderRoot {
         StyledMainAvatar { attrs.src = props.avatarSrc }
 

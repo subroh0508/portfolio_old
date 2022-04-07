@@ -5,32 +5,32 @@ package components.atoms
 import kotlinx.css.*
 import materialcomponents.*
 import react.RBuilder
-import react.dom.WithClassName
-import react.functionalComponent
+import react.fc
 import styled.StyledHandler
+import styled.StyledProps
 import styled.css
 import styled.styled
 
-external interface TitleProps : WithClassName {
+external interface TitleProps : StyledProps {
     var title: String
     var tag: String?
 }
 
-external interface SubtitleProps : WithClassName {
+external interface SubtitleProps : StyledProps {
     var subtitle: String
     var tag: String?
 }
 
-val LargeTitle = functionalComponent<TitleProps> { props ->
-    StyledTypographyHeadline4(props.className, props.tag) { +props.title }
+val LargeTitle = fc<TitleProps> { props ->
+    StyledTypographyHeadline4(props.className.unsafeCast<String>(), props.tag) { +props.title }
 }
 
-val LargeSubtitle = functionalComponent<SubtitleProps> { props ->
-    StyledTypographyHeadline5(props.className, props.tag) { +props.subtitle }
+val LargeSubtitle = fc<SubtitleProps> { props ->
+    StyledTypographyHeadline5(props.className.unsafeCast<String>(), props.tag) { +props.subtitle }
 }
 
-val Subtitle = functionalComponent<SubtitleProps> { props ->
-    StyledTypographyHeadline6(props.className, props.tag) { +props.subtitle }
+val Subtitle = fc<SubtitleProps> { props ->
+    StyledTypographyHeadline6(props.className.unsafeCast<String>(), props.tag) { +props.subtitle }
 }
 
 private fun RBuilder.StyledTypographyHeadline4(

@@ -3,14 +3,14 @@
 package components.atoms
 
 import kotlinx.css.*
-import react.dom.WithClassName
 import react.dom.br
-import react.functionalComponent
+import react.fc
+import styled.StyledProps
 import styled.css
 import styled.styledDiv
 import styled.styledSpan
 
-val Footer = functionalComponent<WithClassName> {
+val Footer = fc<StyledProps> {
     styledDiv {
         css {
             display = Display.flex
@@ -27,9 +27,9 @@ val Footer = functionalComponent<WithClassName> {
                 padding(vertical = 40.px)
             }
 
-            +"Last Modified: 2021-04-20T23:16:29+0900"
+            +"Last Modified: 2022-04-07T23:47:06+0900"
             br {}
-            +"Copyright© 2020 subroh_0508 Official Website. All Rights Reserved."
+            +"Copyright© 2022 subroh_0508 Official Website. All Rights Reserved."
         }
     }
 }

@@ -8,20 +8,16 @@ import kotlinx.css.properties.TextDecorationLine
 import kotlinx.html.A
 import kotlinx.html.SPAN
 import react.RBuilder
-import react.dom.WithClassName
-import react.functionalComponent
-import styled.StyledDOMBuilder
-import styled.css
-import styled.styledA
-import styled.styledSpan
+import react.fc
+import styled.*
 
-external interface LinkProps : WithClassName {
+external interface LinkProps : StyledProps {
     var href: String
     var target: String?
 }
 
-val Link = functionalComponent<LinkProps> { props ->
-    StyledLink(props.className) {
+val Link = fc<LinkProps> { props ->
+    StyledLink(props.className.unsafeCast<String>()) {
         attrs.href = props.href
         attrs.target = props.target ?: "_blank"
 
@@ -29,8 +25,8 @@ val Link = functionalComponent<LinkProps> { props ->
     }
 }
 
-val LinkText = functionalComponent<WithClassName> { props ->
-    StyledLinkText(props.className) { props.children() }
+val LinkText = fc<StyledProps> { props ->
+    StyledLinkText(props.className.unsafeCast<String>()) { props.children() }
 }
 
 private fun RBuilder.StyledLink(className: String? = null, handler: StyledDOMBuilder<A>.() -> Unit) = styledA {

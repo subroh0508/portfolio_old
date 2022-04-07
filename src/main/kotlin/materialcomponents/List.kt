@@ -1,13 +1,13 @@
 @file:JsModule("@rmwc/list")
+@file:JsNonModule
 
 package materialcomponents
 
 import org.w3c.dom.events.Event
-import react.RClass
-import react.RProps
-import react.dom.WithClassName
+import react.ElementType
+import styled.StyledProps
 
-external interface ListProps : WithClassName {
+external interface ListProps : StyledProps {
     var avatarList: Boolean?
     var dense: Boolean?
     var nonInteractive: Boolean?
@@ -17,21 +17,21 @@ external interface ListProps : WithClassName {
     var wrapFocus: Boolean?
 }
 
-external val List: RClass<ListProps>
+external val List: ElementType<ListProps>
 
-external interface ListItemProps : WithClassName {
+external interface ListItemProps : StyledProps {
     var activated: Boolean?
     var disable: Boolean?
     var ripple: Boolean?
     var selected: Boolean?
 }
 
-external val ListItem: RClass<ListItemProps>
-external val ListItemText: RClass<WithClassName>
-external val ListItemPrimaryText: RClass<WithClassName>
-external val ListItemSecondaryText: RClass<WithClassName>
-external val ListItemGraphic: RClass<WithClassName>
-external val ListItemMeta: RClass<WithClassName>
-external val ListGroup: RClass<WithClassName>
-external val ListGroupSubheader: RClass<WithClassName>
-external val ListDivider: RClass<WithClassName>
+external val ListItem: ElementType<ListItemProps>
+external val ListItemText: ElementType<StyledProps>
+external val ListItemPrimaryText: ElementType<StyledProps>
+external val ListItemSecondaryText: ElementType<StyledProps>
+external val ListItemGraphic: ElementType<StyledProps>
+external val ListItemMeta: ElementType<StyledProps>
+external val ListGroup: ElementType<StyledProps>
+external val ListGroupSubheader: ElementType<StyledProps>
+external val ListDivider: ElementType<StyledProps>

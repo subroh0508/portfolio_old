@@ -8,12 +8,12 @@ import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import components.organisms.titles
 import react.RBuilder
-import react.child
 import react.dom.*
-import react.functionalComponent
+import react.fc
+import styled.StyledProps
 import utilities.Links
 
-val SpeaksCard = functionalComponent<WithClassName> {
+val SpeaksCard = fc<StyledProps> {
     child(CardFrame) {
         child(LargeTitle) {
             attrs.title = "Speaks"

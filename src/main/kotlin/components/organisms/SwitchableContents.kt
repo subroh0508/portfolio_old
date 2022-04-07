@@ -3,35 +3,39 @@
 package components.organisms
 
 import components.molecules.*
-import kotlinext.js.jsObject
+import history.Location
 import kotlinx.css.*
 import kotlinx.css.properties.*
+import kotlinx.js.jso
 import react.*
-import react.dom.WithClassName
-import react.router.dom.RouteResultLocation
-import react.router.dom.useHistory
-import styled.animation
-import styled.css
-import styled.styledDiv
+import react.router.useLocation
+import react.router.useNavigate
+import styled.*
+import styled.styled
 import utilities.*
 
-external interface SwitchableContentsProps : WithClassName {
+external interface SwitchableContentsProps : StyledProps {
     var titles: Array<out String>
 }
 
 fun SwitchableContentsProps.titles(vararg title: String) { titles = title }
 
-val SwitchableContents = functionalComponent<SwitchableContentsProps> { props ->
-    val history = useHistory()
-    val location = history.location
+val SwitchableContents = fc<SwitchableContentsProps> { props ->
+    val navigate = useNavigate()
+    val location = useLocation()
     val (index, prevIndex) = location.let {
+
         it.getPageQuery() to (it.switcherState?.prev ?: -1)
     }
 
-    // Redirect to first page when access out of range
-    if (index !in 0..props.titles.size) {
-        history.replace(firstLinkTo(location))
-        return@functionalComponent
+    useEffectOnce {
+        // Redirect to first page when access out of range
+        if (index !in 0..props.titles.size) {
+            navigate(
+                location.pathname + FIRST_PAGE_QUERY,
+                jso { replace = true },
+            )
+        }
     }
 
     StyledSwitcher(index, props.titles, location)
@@ -55,12 +59,12 @@ val SwitchableContents = functionalComponent<SwitchableContentsProps> { props ->
 }
 
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-private val RouteResultLocation.switcherState: SwitcherState? get() = state as? SwitcherState
+private val Location.switcherState: SwitcherState? get() = state as? SwitcherState
 
-private fun CSSBuilder.slideInRight() = slideIn(true)
-private fun CSSBuilder.slideInLeft() = slideIn(false)
+private fun CssBuilder.slideInRight() = slideIn(true)
+private fun CssBuilder.slideInLeft() = slideIn(false)
 
-private fun CSSBuilder.slideIn(right: Boolean) = animation(duration = 0.5.s, fillMode = FillMode.forwards) {
+private fun CssBuilder.slideIn(right: Boolean) = animation(duration = 0.5.s, fillMode = FillMode.forwards) {
     from { opacity = 0; transform { translateX((if (right) 24 else -24).px) } }
     to { opacity = 1.0; transform { translateX(0.px) } }
 }
@@ -68,7 +72,7 @@ private fun CSSBuilder.slideIn(right: Boolean) = animation(duration = 0.5.s, fil
 private fun RBuilder.StyledSwitcher(
         index: Int,
         titles: Array<out String>,
-        location: RouteResultLocation
+        location: Location
 ) = (styled(Switcher)) {
     css {
         descendants(".$CHEVRON_LEFT_CLASS_NAME") {
@@ -80,24 +84,11 @@ private fun RBuilder.StyledSwitcher(
     }
 
     attrs.title = titles[index]
-    attrs.prevLinkTo = prevLinkTo(location)
-    attrs.nextLinkTo = nextLinkTo(location, titles.size - 1)
+    attrs.prev = location.prevPageQuery()
+    attrs.next = location.nextPageQuery(titles.size - 1)
+    attrs.state = state(location.getPageQuery())
 }
 
-private fun firstLinkTo(location: RouteResultLocation) = linkTo<SwitcherState>(
-        location.pathname, search = FIRST_PAGE_QUERY
-)
-
-private fun prevLinkTo(location: RouteResultLocation) = linkTo<SwitcherState>(
-        location.pathname,
-        search = location.prevPageQuery()
-).apply { state(location.getPageQuery()) }
-
-private fun nextLinkTo(location: RouteResultLocation, max: Int) = linkTo<SwitcherState>(
-        location.pathname,
-        search = location.nextPageQuery(max)
-).apply { state(location.getPageQuery()) }
-
-private fun LinkTo<SwitcherState>.state(prev: Int) { state = jsObject { this.prev = prev } }
+private fun state(prev: Int): SwitcherState = jso { this.prev = prev }
 
 

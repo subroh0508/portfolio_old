@@ -1,8 +1,6 @@
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-import org.jetbrains.kotlin.gradle.targets.js.npm.NpmDependency
-
 plugins {
-    kotlin("js") version Libraries.Kotlin.version
+    kotlin("js")
+    `node-conventions`
 }
 
 group = Packages.group
@@ -10,66 +8,47 @@ version = Packages.version
 
 repositories {
     mavenCentral()
-    jcenter()
-    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
-    maven(url = "http://dl.bintray.com/kotlinx/kotlinx")
-    maven(url = "http://dl.bintray.com/kotlin/kotlin-js-wrappers")
 }
 
 kotlin {
     js(IR) {
-        useCommonJs()
         binaries.executable()
 
         browser {
-            runTask {
-                val mainSrc = kotlin.sourceSets["main"]
-
-                sourceMaps = true
-                devServer = KotlinWebpackConfig.DevServer(
-                        port = 8088,
-                        contentBase = mainSrc.resources.srcDirs.map { it.absolutePath }
-                )
+            commonWebpackConfig {
                 outputFileName = "main.bundle.js"
+            }
+            runTask {
+                sourceMaps = true
             }
             webpackTask {
                 sourceMaps = false
-                outputFileName = "main.bundle.js"
             }
         }
     }
+}
 
-    sourceSets {
-        val main by getting {
-            dependencies {
-                implementation(Libraries.Kotlin.js)
-                implementation(Libraries.Kotlin.html)
-                implementation(Libraries.Kotlin.react)
-                implementation(Libraries.Kotlin.reactDom)
-                implementation(Libraries.Kotlin.reactRouterDom)
-                implementation(Libraries.Kotlin.extensions)
-                implementation(Libraries.Kotlin.styled)
+dependencies {
+    implementation(Libraries.Kotlin.html)
+    implementation(Libraries.Kotlin.react)
+    implementation(Libraries.Kotlin.reactDom)
+    implementation(Libraries.Kotlin.reactRouterDom)
+    implementation(Libraries.Kotlin.history)
+    implementation(Libraries.Kotlin.extensions)
+    implementation(Libraries.Kotlin.styled)
 
-                implementation(npm("react", Libraries.Npm.react))
-                implementation(npm("react-dom", Libraries.Npm.react))
-                implementation(npm("react-router-dom", "^5.1.2"))
-                implementation(npm("styled-components", Libraries.Npm.styledComponent))
-                implementation(npm("inline-style-prefixer", Libraries.Npm.inlineStyledPrefixer))
-                implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
-                implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))
-                implementation(npm("@rmwc/drawer", Libraries.Npm.materialWebComponents))
-                implementation(npm("@rmwc/icon", Libraries.Npm.materialWebComponents))
-                implementation(npm("@rmwc/list", Libraries.Npm.materialWebComponents))
-                implementation(npm("@rmwc/ripple", Libraries.Npm.materialWebComponents))
-                implementation(npm("@rmwc/typography", Libraries.Npm.materialWebComponents))
-                implementation(npm("@rmwc/theme", Libraries.Npm.materialWebComponents))
+    implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
+    implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))
+    implementation(npm("@rmwc/drawer", Libraries.Npm.materialWebComponents))
+    implementation(npm("@rmwc/icon", Libraries.Npm.materialWebComponents))
+    implementation(npm("@rmwc/list", Libraries.Npm.materialWebComponents))
+    implementation(npm("@rmwc/ripple", Libraries.Npm.materialWebComponents))
+    implementation(npm("@rmwc/typography", Libraries.Npm.materialWebComponents))
+    implementation(npm("@rmwc/theme", Libraries.Npm.materialWebComponents))
 
-                implementation(devNpm("style-loader", "*"))
-                implementation(devNpm("html-webpack-plugin", "^3.2.0"))
-                implementation(devNpm("webpack-cdn-plugin", "^3.2.2"))
-            }
-        }
-    }
+    implementation(devNpm("style-loader", "*"))
+    implementation(devNpm("html-webpack-plugin", "^5.5.0"))
+    implementation(devNpm("webpack-cdn-plugin", "^3.3.1"))
 }
 
 val browserWebpack = tasks.getByName("browserProductionWebpack")

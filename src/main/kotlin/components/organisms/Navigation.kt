@@ -8,11 +8,11 @@ import components.atoms.MainDrawerListProps
 import components.atoms.MainDrawerLists
 import components.atoms.MainDrawer
 import react.child
-import react.functionalComponent
+import react.fc
 
 external interface NavigationProps : MainDrawerHeaderProps, MainDrawerListProps
 
-val Navigation = functionalComponent<NavigationProps> { props ->
+val Navigation = fc<NavigationProps> { props ->
     child(MainDrawer) {
         child(MainDrawerHeader) {
             attrs.title = props.title
