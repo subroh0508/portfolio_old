@@ -27,7 +27,7 @@ val Footer = fc<StyledProps> {
                 padding(vertical = 40.px)
             }
 
-            +"Last Modified: 2021-04-20T23:16:29+0900"
+            +"Last Modified: 2022-04-07T23:47:06+0900"
             br {}
             +"Copyright© 2020 subroh_0508 Official Website. All Rights Reserved."
         }
