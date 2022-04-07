@@ -28,13 +28,14 @@ val SwitchableContents = fc<SwitchableContentsProps> { props ->
         it.getPageQuery() to (it.switcherState?.prev ?: -1)
     }
 
-    // Redirect to first page when access out of range
-    if (index !in 0..props.titles.size) {
-        navigate(
-            location.pathname + FIRST_PAGE_QUERY,
-            jso { replace = true },
-        )
-        return@fc
+    useEffectOnce {
+        // Redirect to first page when access out of range
+        if (index !in 0..props.titles.size) {
+            navigate(
+                location.pathname + FIRST_PAGE_QUERY,
+                jso { replace = true },
+            )
+        }
     }
 
     StyledSwitcher(index, props.titles, location)

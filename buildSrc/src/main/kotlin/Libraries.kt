@@ -38,7 +38,6 @@ object Libraries {
         const val history = "5.3.0"
         const val reactRouterDom = "6.3.0"
         const val styledComponent = "5.3.5"
-        const val inlineStyledPrefixer = "^6.0.1"
         const val materialWebComponents = "^7.0.3"
     }
 }
