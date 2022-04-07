@@ -32,7 +32,8 @@ fun main() {
         }
     }
 
-    render(document.getElementById("root")) {
+    val root = document.getElementById("root") ?: return
+    render(root) {
         ThemeProvider { routing() }
     }
 }

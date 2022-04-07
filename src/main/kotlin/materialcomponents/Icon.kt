@@ -2,11 +2,11 @@
 
 package materialcomponents
 
-import react.RClass
-import react.dom.WithClassName
+import react.ElementType
+import styled.StyledProps
 
-external interface IconProps : WithClassName {
+external interface IconProps : StyledProps {
     var icon: dynamic
 }
 
-external val Icon : RClass<IconProps>
+external val Icon : ElementType<IconProps>

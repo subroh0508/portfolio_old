@@ -2,7 +2,6 @@
 
 package components.templates
 
-import components.atoms.Card
 import components.organisms.CardFrame
 import components.organisms.introduction.NameCardHeader
 import components.organisms.introduction.NameCardLinks
@@ -11,16 +10,10 @@ import components.organisms.introduction.posts
 import kotlinx.css.*
 import kotlinx.html.SPAN
 import react.RBuilder
-import react.child
-import react.dom.WithClassName
-import react.functionalComponent
-import styled.StyledDOMBuilder
-import styled.StyledHandler
-import styled.css
-import styled.styledSpan
-import utilities.styled
+import react.fc
+import styled.*
 
-val IntroductionNameCard = functionalComponent<WithClassName> {
+val IntroductionNameCard = fc<StyledProps> {
     child(CardFrame) {
         child(NameCardHeader) {
             attrs.name = "にしこりさぶろ〜"

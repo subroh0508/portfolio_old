@@ -2,11 +2,11 @@
 
 package materialcomponents
 
-import react.RClass
-import react.dom.WithClassName
+import react.ElementType
+import styled.StyledProps
 
-external interface CardProps : WithClassName {
+external interface CardProps : StyledProps {
     var outlined: Boolean?
 }
 
-external val Card : RClass<CardProps>
+external val Card : ElementType<CardProps>

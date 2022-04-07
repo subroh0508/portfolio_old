@@ -3,12 +3,11 @@
 package materialcomponents
 
 import materialcomponents.theme.ThemeProviderOption
-import react.RClass
-import react.RProps
-import react.dom.WithClassName
+import react.ElementType
+import styled.StyledProps
 
-external interface ThemeProviderProps : WithClassName {
+external interface ThemeProviderProps : StyledProps {
     var options: ThemeProviderOption?
 }
 
-external val ThemeProvider : RClass<ThemeProviderProps>
+external val ThemeProvider : ElementType<ThemeProviderProps>

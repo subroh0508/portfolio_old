@@ -4,19 +4,20 @@ package components.organisms
 
 import components.atoms.Paragraph
 import components.atoms.TableRow
-import kotlinext.js.jsObject
 import kotlinx.css.*
 import kotlinx.css.p as cssP
 import kotlinx.css.td as cssTd
 import kotlinx.html.TABLE
+import kotlinx.js.jso
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import react.*
 import react.dom.*
+import styled.StyledProps
 import styled.css
 import styled.styledTable
 import styled.styledTd
 
-external interface SkillRowProps : WithClassName {
+external interface SkillRowProps : StyledProps {
     var name: String
     var stars: Int
     var since: String
@@ -40,7 +41,7 @@ private fun RBuilder.SkillRow(handler: RHandler<SkillRowProps>) {
     StyledTableRowParagraph { childList.addAll(builder.childList) }
 }
 
-private class SkillTableElementBuilder : RElementBuilder<SkillRowProps>(jsObject { })
+private class SkillTableElementBuilder : RElementBuilderImpl<SkillRowProps>(jso { })
 
 private fun RBuilder.StyledTable(handler: RDOMBuilder<TABLE>.() -> Unit) = styledTable {
     css { borderSpacing = 0.px }

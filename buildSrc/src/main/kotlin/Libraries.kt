@@ -14,6 +14,9 @@ object Libraries {
         const val react = "org.jetbrains.kotlin-wrappers:kotlin-react-legacy:$reactVersion"
         const val reactDom = "org.jetbrains.kotlin-wrappers:kotlin-react-dom-legacy:$reactVersion"
 
+        const val historyVersion = "${Npm.history}-$wrappersBuild"
+        const val history = "org.jetbrains.kotlin-wrappers:kotlin-history:$historyVersion"
+
         const val reactRouterDomVersion = "${Npm.reactRouterDom}-$wrappersBuild"
         const val reactRouterDom = "org.jetbrains.kotlin-wrappers:kotlin-react-router-dom:$reactRouterDomVersion"
 
@@ -32,6 +35,7 @@ object Libraries {
 
     object Npm {
         const val react = "18.0.0"
+        const val history = "5.3.0"
         const val reactRouterDom = "6.2.2"
         const val styledComponent = "5.3.5"
         const val inlineStyledPrefixer = "^6.0.1"

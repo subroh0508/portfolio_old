@@ -6,16 +6,16 @@ import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import materialcomponents.*
 import react.*
-import react.dom.WithClassName
-import react.router.dom.routeLink
+import react.router.dom.Link as RouterLink
 import styled.StyledHandler
+import styled.StyledProps
 import styled.css
 import styled.styled
 
 val MAIN_DRAWER_WIDTH = 224.px
 
-val MainDrawer = functionalComponent<WithClassName> { props ->
-    StyledDrawer(props.className) { props.children() }
+val MainDrawer = fc<StyledProps> { props ->
+    StyledDrawer(props.className.unsafeCast<String>()) { props.children() }
 }
 
 private fun RBuilder.StyledDrawer(className: String? = null, handler: StyledHandler<DrawerProps>) = (styled(Drawer)) {
@@ -34,19 +34,19 @@ private fun RBuilder.StyledDrawer(className: String? = null, handler: StyledHand
     handler()
 }
 
-external interface MainDrawerHeaderProps : WithClassName {
+external interface MainDrawerHeaderProps : StyledProps {
     var title: Array<out String>
 }
 
 fun MainDrawerHeaderProps.title(vararg t: String) { title = t }
 
-val MainDrawerHeader = functionalComponent<MainDrawerHeaderProps> { props ->
-    StyledMainDrawerHeader(props.className) {
+val MainDrawerHeader = fc<MainDrawerHeaderProps> { props ->
+    StyledMainDrawerHeader(props.className.unsafeCast<String>()) {
         props.title.forEach { t -> StyledMainTypography { +t }  }
     }
 }
 
-private fun RBuilder.StyledMainDrawerHeader(className: String?, handler: StyledHandler<WithClassName>) = (styled(DrawerHeader)) {
+private fun RBuilder.StyledMainDrawerHeader(className: String?, handler: StyledHandler<StyledProps>) = (styled(DrawerHeader)) {
     css {
         className?.let(classes::add)
         display = Display.flex
@@ -74,11 +74,11 @@ private fun RBuilder.StyledMainTypography(handler: StyledHandler<TypographyProps
     handler()
 }
 
-external interface MainDrawerListProps : WithClassName {
+external interface MainDrawerListProps : StyledProps {
     var selectedIndex: Int
 }
 
-val MainDrawerLists = functionalComponent<MainDrawerListProps> { props ->
+val MainDrawerLists = fc<MainDrawerListProps> { props ->
     StyledDrawerContent {
         List {
             Children.toArray(props.children).forEachIndexed { i, item ->
@@ -91,16 +91,20 @@ val MainDrawerLists = functionalComponent<MainDrawerListProps> { props ->
     }
 }
 
-external interface MainDrawerListItemProps : WithClassName {
+external interface MainDrawerListItemProps : StyledProps {
     var title: String
     var to: String
 }
 
-val MainDrawerListItem = functionalComponent<MainDrawerListItemProps> { props ->
-    routeLink(props.to) { Ripple { StyledListItemTypography { +props.title } } }
+val MainDrawerListItem = fc<MainDrawerListItemProps> { props ->
+    RouterLink {
+        attrs.to = props.to
+
+        Ripple { StyledListItemTypography { +props.title } }
+    }
 }
 
-private fun RBuilder.StyledDrawerContent(handler: StyledHandler<WithClassName>) = (styled(DrawerContent)) {
+private fun RBuilder.StyledDrawerContent(handler: StyledHandler<StyledProps>) = (styled(DrawerContent)) {
     css {
         descendants(".mdc-list-item") {
             height = 56.px

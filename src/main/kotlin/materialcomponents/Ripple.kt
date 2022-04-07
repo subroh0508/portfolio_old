@@ -2,10 +2,10 @@
 
 package materialcomponents
 
-import react.RClass
-import react.dom.WithClassName
+import react.ElementType
+import styled.StyledProps
 
-external interface RippleProps : WithClassName {
+external interface RippleProps : StyledProps {
     var accent: Boolean?
     var disabled: Boolean?
     var primary: Boolean?
@@ -13,4 +13,4 @@ external interface RippleProps : WithClassName {
     var unbounded: Boolean?
 }
 
-external val Ripple: RClass<RippleProps>
+external val Ripple: ElementType<RippleProps>

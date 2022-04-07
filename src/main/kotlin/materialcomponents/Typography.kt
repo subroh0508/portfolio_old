@@ -2,12 +2,12 @@
 
 package materialcomponents
 
-import react.RClass
-import react.dom.WithClassName
+import react.ElementType
+import styled.StyledProps
 
-external interface TypographyProps : WithClassName {
+external interface TypographyProps : StyledProps {
     var use: String?
     var tag: String?
 }
 
-external val Typography: RClass<TypographyProps>
+external val Typography: ElementType<TypographyProps>

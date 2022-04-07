@@ -5,36 +5,33 @@ package components.molecules
 import components.atoms.ChevronLeft
 import components.atoms.ChevronRight
 import components.atoms.Subtitle
-import kotlinext.js.jsObject
+import csstype.ClassName
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import kotlinx.html.SPAN
 import materialcomponents.Ripple
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import react.*
-import react.dom.WithClassName
-import react.router.dom.RouteResultLocation
-import styled.StyledDOMBuilder
-import styled.css
-import styled.styledSpan
-import utilities.*
+import styled.*
+import react.router.dom.Link as RouterLink
 
 const val CHEVRON_LEFT_CLASS_NAME = "chevron-left"
 const val CHEVRON_RIGHT_CLASS_NAME = "chevron-right"
 
-external interface SwitcherProps : WithClassName {
+external interface SwitcherProps : StyledProps {
     var title: String
-    var prevLinkTo: LinkTo<SwitcherState>
-    var nextLinkTo: LinkTo<SwitcherState>
+    var prev: String
+    var next: String
+    var state: SwitcherState
 }
 
-val Switcher = functionalComponent<SwitcherProps> { props ->
+val Switcher = fc<SwitcherProps> { props ->
     StyledSpan {
-        props.className?.let(css.classes::add)
+        props.className.unsafeCast<String>().let(css.classes::add)
 
-        Rippled(CHEVRON_LEFT_CLASS_NAME, props.prevLinkTo, ChevronLeft)
+        Rippled(CHEVRON_LEFT_CLASS_NAME, props.prev, props.state, ChevronLeft)
         StyledSubtitle(props.title)
-        Rippled(CHEVRON_RIGHT_CLASS_NAME, props.nextLinkTo, ChevronRight)
+        Rippled(CHEVRON_RIGHT_CLASS_NAME, props.next, props.state, ChevronRight)
     }
 }
 
@@ -74,13 +71,17 @@ external interface SwitcherState {
 
 private fun RBuilder.Rippled(
         className: String,
-        linkTo: LinkTo<SwitcherState>,
-        functionalComponent: FunctionalComponent<WithClassName>
-): ReactElement = Ripple {
+        to: String,
+        state: SwitcherState,
+        fc: FC<StyledProps>
+) = Ripple {
     attrs.unbounded = true
 
-    routeLink(to = linkTo, className = className) {
-        child(functionalComponent)
+    RouterLink {
+        attrs.className = ClassName(className)
+        attrs.to = to
+        attrs.state = state
+        child(fc)
     }
 }
 

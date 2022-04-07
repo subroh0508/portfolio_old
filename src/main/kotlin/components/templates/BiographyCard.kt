@@ -9,14 +9,14 @@ import components.organisms.CardFrame
 import kotlinx.css.*
 import kotlinx.css.h4 as cssH4
 import react.RBuilder
-import react.child
 import react.dom.*
-import react.functionalComponent
+import react.fc
+import styled.StyledProps
 import styled.css
 import styled.styledDiv
 import utilities.Links
 
-val BiographyCard = functionalComponent<WithClassName> {
+val BiographyCard = fc<StyledProps> {
     child(CardFrame) {
         child(LargeTitle) {
             attrs.title = "Biography"

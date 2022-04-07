@@ -3,14 +3,14 @@
 package components.atoms
 
 import kotlinx.css.*
-import react.dom.WithClassName
 import react.dom.br
-import react.functionalComponent
+import react.fc
+import styled.StyledProps
 import styled.css
 import styled.styledDiv
 import styled.styledSpan
 
-val Footer = functionalComponent<WithClassName> {
+val Footer = fc<StyledProps> {
     styledDiv {
         css {
             display = Display.flex
