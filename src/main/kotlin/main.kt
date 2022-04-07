@@ -5,6 +5,9 @@ import react.dom.render
 import kotlinx.css.*
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import materialcomponents.VAR_COLOR_TEXT_SECONDARY_ON_DARK
+import react.Props
+import react.createElement
+import react.dom.client.createRoot
 import styled.*
 import themes.ThemeProvider
 
@@ -33,7 +36,5 @@ fun main() {
     }
 
     val root = document.getElementById("root") ?: return
-    render(root) {
-        ThemeProvider { routing() }
-    }
+    createRoot(root).render(createElement<Props> { ThemeProvider { routing() } })
 }
