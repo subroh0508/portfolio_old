@@ -30,12 +30,13 @@ kotlin {
 
 dependencies {
     implementation(Libraries.Kotlin.html)
-    implementation(Libraries.Kotlin.reactLegacy)
-    implementation(Libraries.Kotlin.reactDomLegacy)
+    implementation(Libraries.Kotlin.react)
+    implementation(Libraries.Kotlin.reactDom)
     implementation(Libraries.Kotlin.reactRouterDom)
     implementation(Libraries.Kotlin.history)
     implementation(Libraries.Kotlin.extensions)
     implementation(Libraries.Kotlin.styled)
+    implementation(Libraries.Kotlin.emotion)
 
     implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
     implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))

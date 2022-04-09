@@ -31,6 +31,9 @@ object Libraries {
         const val styledVersion = "${Npm.styledComponent}-$wrappersBuild"
         const val styled = "org.jetbrains.kotlin-wrappers:kotlin-styled:$styledVersion"
 
+        const val emotionVersion = "${Npm.emotion}-$wrappersBuild"
+        const val emotion = "org.jetbrains.kotlin-wrappers:kotlin-emotion:$styledVersion"
+
         const val extensionsVersion = "1.0.1-$wrappersBuild"
         const val extensions = "org.jetbrains.kotlin-wrappers:kotlin-extensions:$extensionsVersion"
     }
@@ -40,6 +43,7 @@ object Libraries {
         const val history = "5.3.0"
         const val reactRouterDom = "6.3.0"
         const val styledComponent = "5.3.5"
+        const val emotion = "11.8.2"
         const val materialWebComponents = "^7.0.3"
     }
 }
