@@ -2,13 +2,15 @@
 
 package utilities
 
-import react.RBuilder
-import react.dom.a
+import react.ChildrenBuilder
+import react.dom.html.AnchorTarget
+import react.dom.html.ReactHTML.a
 
-fun RBuilder.Links(vararg links: Pair<String, String>) = links.forEachIndexed { i, (href, text) ->
+fun ChildrenBuilder.Links(vararg links: Pair<String, String>) = links.forEachIndexed { i, (url, text) ->
     a {
-        attrs.href = href
-        attrs.target = "_blank"
+        href = url
+        target = AnchorTarget._blank
+
         +text
     }
     if (i != links.size - 1) +"/"

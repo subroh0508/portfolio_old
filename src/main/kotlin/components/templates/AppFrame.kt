@@ -5,59 +5,56 @@ package components.templates
 import components.atoms.*
 import components.organisms.CARD_FRAME_CLASS
 import components.organisms.Navigation
-import kotlinx.css.*
-import kotlinx.html.DIV
-import react.RBuilder
-import react.RHandler
-import react.fc
-import styled.StyledDOMBuilder
-import styled.StyledProps
-import styled.css
-import styled.styledDiv
+import csstype.Display
+import csstype.number
+import csstype.pct
+import csstype.px
+import emotion.styled.styled
+import kotlinx.js.jso
+import react.FC
+import react.PropsWithChildren
+import react.PropsWithClassName
+import react.dom.html.ReactHTML.div
 
-external interface AppFrameProps : StyledProps {
-    var drawerItems: Array<out RHandler<MainDrawerListItemProps>>
+external interface AppFrameProps : PropsWithChildren, PropsWithClassName {
+    var drawerProps: Array<out MainDrawerListItemProps>
 }
 
-fun AppFrameProps.navItems(vararg navItems: RHandler<MainDrawerListItemProps>) { this.drawerItems = navItems }
+fun AppFrameProps.navItems(vararg block: MainDrawerListItemProps.() -> Unit) {
+    this.drawerProps = block.map { jso(it) }.toTypedArray()
+}
 
-val AppFrame = fc<AppFrameProps> { props ->
+val AppFrame = FC<AppFrameProps> { props ->
     StyledRowDiv {
-        child(Navigation) {
-            attrs.title("Subroh Nishikori's", "Portfolio")
-            attrs.selectedIndex = 0
+        Navigation {
+            title("Subroh Nishikori's", "Portfolio")
+            selectedIndex = 0
 
-            props.drawerItems.forEach {
-                child(MainDrawerListItem, handler = it)
+            props.drawerProps.forEach { drawerProps ->
+                MainDrawerListItem {
+                    +drawerProps
+                }
             }
         }
 
         StyledContent {
-            props.children()
+            +props.children
 
-            child(Footer)
+            Footer {}
         }
     }
 }
 
-private fun RBuilder.StyledRowDiv(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
-    css {
-        display = Display.flex
-        height = 100.pct
-    }
-
-    handler()
+private val StyledRowDiv = div.styled { _, _ ->
+    display = Display.flex
+    height = 100.pct
 }
 
-private fun RBuilder.StyledContent(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
-    css {
-        flex(1.0)
-        marginLeft = MAIN_DRAWER_WIDTH
+private val StyledContent = div.styled { _, _ ->
+    flexGrow = number(1.0)
+    marginLeft = 224.px // MAIN_DRAWER_WIDTH
 
-        children(".$CARD_FRAME_CLASS") {
-            marginTop = 64.px
-        }
+    CARD_FRAME_CLASS {
+        marginTop = 64.px
     }
-
-    handler()
 }

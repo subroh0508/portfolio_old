@@ -3,7 +3,7 @@
 package themes
 
 import csstype.pct
-import emotion.react.css
+import emotion.styled.styled
 import kotlinx.css.Color
 import kotlinx.js.jso
 import materialcomponents.ThemeProvider as Provider
@@ -11,11 +11,7 @@ import materialcomponents.ThemeProviderProps
 import materialcomponents.theme.*
 import react.ChildrenBuilder
 
-fun ChildrenBuilder.ThemeProvider(block: ChildrenBuilder.() -> Unit) = Provider {
-    css {
-        height = 100.pct
-    }
-
+fun ChildrenBuilder.ThemeProvider(block: ChildrenBuilder.() -> Unit) = StyledProvider {
     options {
         background = Color("#121212")
         surface = Color("#0D386D")
@@ -28,3 +24,7 @@ fun ChildrenBuilder.ThemeProvider(block: ChildrenBuilder.() -> Unit) = Provider 
 }
 
 fun ThemeProviderProps.options(block: ThemeProviderOption.() -> Unit) { options = jso(block) }
+
+private val StyledProvider = Provider.styled { _, _ ->
+    height = 100.pct
+}

@@ -7,42 +7,44 @@ import components.atoms.Paragraph
 import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import components.organisms.titles
-import kotlinx.css.*
-import react.RBuilder
-import react.dom.*
-import react.fc
-import styled.StyledProps
-import styled.css
-import styled.styledDiv
-import styled.styledImg
+import csstype.*
+import emotion.react.css
+import emotion.styled.styled
+import react.VFC
+import react.create
+import react.dom.html.ReactHTML.b
+import react.dom.html.ReactHTML.br
+import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.hr
+import react.dom.html.ReactHTML.img
 import utilities.Links
 
-val WorksCard = fc<StyledProps> {
-    child(CardFrame) {
-        child(LargeTitle) {
-            attrs.title = "Works"
+val WorksCard = VFC {
+    CardFrame {
+        LargeTitle {
+            title = "Works"
         }
 
-        child(SwitchableContents) {
-            attrs.titles("COLOR M@STER", "Kotlin Material-UI", "Otonashi")
+        SwitchableContents {
+            titles("COLOR M@STER", "Kotlin Material-UI", "Otonashi")
 
-            ColorMaster()
-            KotlinMaterialUI()
-            Otonashi()
+            +ColorMaster
+            +KotlinMaterialUI
+            +Otonashi
         }
     }
 }
 
-private fun RBuilder.ColorMaster() = styledDiv {
+private val ColorMaster = div.create {
     css { display = Display.flex }
 
-    ScreenShot("./colormaster_overview.png")
+    +ScreenShot("./colormaster_overview.png")
     Introduction {
-        child(Paragraph) {
+        Paragraph {
             +"アイドルマスターに登場するキャラクターのイメージカラーに対する、様々な機能を提供するアプリケーションです。"
             +"現在、「検索」「ペンライト」の2つの機能が実装されています。"
         }
-        child(Paragraph) {
+        Paragraph {
             +"実装には"
             Links("https://kotlinlang.org/docs/reference/multiplatform.html" to "Kotlin Multiplatform")
             +"を利用しており、"
@@ -52,7 +54,7 @@ private fun RBuilder.ColorMaster() = styledDiv {
 
         hr {}
 
-        child(Paragraph) {
+        Paragraph {
             b { +"使用ライブラリ: " }
             Links(
                     "https://react.i18next.com/" to "react-i18next",
@@ -71,25 +73,25 @@ private fun RBuilder.ColorMaster() = styledDiv {
     }
 }
 
-private fun RBuilder.KotlinMaterialUI() = styledDiv {
+private val KotlinMaterialUI = div.create {
     css { display = Display.flex }
 
-    ScreenShot("./kotlin_material_ui_overview.png")
+    +ScreenShot("./kotlin_material_ui_overview.png")
     Introduction {
-        child(Paragraph) {
+        Paragraph {
             +"React.js向けUIライブラリ「"
             Links("https://material-ui.com/" to "Material-UI")
             +"」のKotlin/JS用ラッパーライブラリです。"
         }
 
-        child(Paragraph) {
+        Paragraph {
             +"Material-UIが提供する100種類以上のUIコンポーネント、およびテーマカスタマイズ用関数を"
             +"Kotlin/JS上で即座に利用することができます。"
         }
 
         hr {}
 
-        child(Paragraph) {
+        Paragraph {
             b { +"使用ライブラリ: " }
             Links(
                     "https://material-ui.com/" to "Material-UI",
@@ -102,22 +104,22 @@ private fun RBuilder.KotlinMaterialUI() = styledDiv {
     }
 }
 
-private fun RBuilder.Otonashi() = styledDiv {
+private val Otonashi = div.create {
     css { display = Display.flex }
 
-    ScreenShot("./otonashi_overview.png")
+    +ScreenShot("./otonashi_overview.png")
     Introduction {
-        child(Paragraph) {
+        Paragraph {
             +"RDF用クエリ言語「"
             Links("https://www.w3.org/TR/rdf-sparql-query/" to "SPARQL")
             +"」のKotlin製クライアントライブラリです。"
         }
 
-        child(Paragraph) {
+        Paragraph {
             +"SPARQLのトリプルパターンを直感的な文法で記述することができます。"
         }
 
-        child(Paragraph) {
+        Paragraph {
             +"また、"
             Links("https://sparql.crssnky.xyz/imas/" to "im@sparql")
             +"等、特定のSPARQLエンドポイントに対する語彙補完機能も試験的に備えています。"
@@ -125,33 +127,31 @@ private fun RBuilder.Otonashi() = styledDiv {
 
         hr {}
 
-        child(Paragraph) {
+        Paragraph {
             b { +"GitHub: " }
             Links("https://github.com/subroh0508/otonashi" to "subroh0508/otonashi")
         }
     }
 }
 
-private fun RBuilder.ScreenShot(src: String) = styledDiv {
+private fun ScreenShot(path: String) = div.create {
     css {
         width = 50.pct
         height = 290.px
-        margin(vertical = 16.px)
+        margin = Margin(vertical = 16.px, horizontal = 0.px)
     }
 
-    styledImg {
+    img {
         css {
             width = 90.pct
             maxHeight = 100.pct
             objectFit = ObjectFit.contain
         }
 
-        attrs.src = src
+        src = path
     }
 }
 
-private fun RBuilder.Introduction(block: RBuilder.() -> Unit) = styledDiv {
-    css { width = 50.pct }
-
-    block()
+private val Introduction get() = div.styled { _, _ ->
+    width = 50.pct
 }

@@ -6,41 +6,39 @@ import components.atoms.LargeTitle
 import components.atoms.Paragraph
 import components.atoms.Subtitle
 import components.organisms.CardFrame
-import kotlinx.css.Display
-import kotlinx.css.display
-import kotlinx.css.pct
-import kotlinx.css.width
-import react.RBuilder
-import react.dom.*
-import react.fc
-import styled.StyledProps
-import styled.css
-import styled.styledDiv
+import csstype.Display
+import csstype.pct
+import emotion.react.css
+import react.VFC
+import react.create
+import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.li
+import react.dom.html.ReactHTML.ul
 import utilities.Links
 
-val LinksCard = fc<StyledProps> {
-    child(CardFrame) {
-        child(LargeTitle) {
-            attrs.title = "Link"
+val LinksCard = VFC {
+    CardFrame {
+        LargeTitle {
+            title = "Link"
         }
 
-        styledDiv {
+        div {
             css {
                 display = Display.flex
             }
 
-            OtherPortfolio()
-            SocialTipping()
+            +OtherPortfolio
+            +SocialTipping
         }
     }
 }
 
-private fun RBuilder.OtherPortfolio() = styledDiv {
+private val OtherPortfolio = div.create {
     css { width = 50.pct }
 
-    child(Subtitle) { attrs.subtitle = "各種ポートフォリオ・SNS" }
+    Subtitle { subtitle = "各種ポートフォリオ・SNS" }
 
-    child(Paragraph) {
+    Paragraph {
         ul {
             li {
                 Links("https://lapras.com/public/6DDUK2W" to "LAPRAS")
@@ -64,13 +62,13 @@ private fun RBuilder.OtherPortfolio() = styledDiv {
     }
 }
 
-private fun RBuilder.SocialTipping() = styledDiv {
+private val SocialTipping = div.create {
     css { width = 50.pct }
 
-    child(Subtitle) { attrs.subtitle = "何かめぐんでください＞＜" }
+    Subtitle { subtitle = "何かめぐんでください＞＜" }
 
 
-    child(Paragraph) {
+    Paragraph {
         ul {
             li {
                 Links("https://www.amazon.jp/hz/wishlist/ls/34TBOXPWOUD8W" to "欲しいものリスト")

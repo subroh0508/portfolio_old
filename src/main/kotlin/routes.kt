@@ -1,5 +1,6 @@
 import components.templates.*
 import react.ChildrenBuilder
+import react.create
 import react.createElement
 import react.router.Route
 import react.router.Routes
@@ -8,43 +9,43 @@ import react.router.dom.BrowserRouter
 fun ChildrenBuilder.routing() = BrowserRouter {
     AppFrame {
         navItems(
-                { attrs.to = "/"; attrs.title = "Home" },
-                { attrs.to = "/biography"; attrs.title= "Biography" },
-                { attrs.to = "/skill"; attrs.title= "Skill" },
-                { attrs.to = "/works?p=0"; attrs.title= "Works" },
-                { attrs.to = "/speaks?p=0"; attrs.title= "Speaks" },
-                { attrs.to = "/link"; attrs.title= "Link" }
+                { to = "/"; title = "Home" },
+                { to = "/biography"; title = "Biography" },
+                { to = "/skill"; title = "Skill" },
+                { to = "/works?p=0"; title = "Works" },
+                { to = "/speaks?p=0"; title = "Speaks" },
+                { to = "/link"; title = "Link" },
         )
 
         Routes {
             Route {
                 path = "/"
-                element = createElement(IntroductionNameCard)
+                element = IntroductionNameCard.create()
             }
 
             Route {
                 path = "/biography"
-                element = createElement(BiographyCard)
+                element = BiographyCard.create()
             }
 
             Route {
                 path = "/skill"
-                element = createElement(SkillCard)
+                element = SkillCard.create()
             }
 
             Route {
                 path = "/works"
-                element = createElement(WorksCard)
+                element = WorksCard.create()
             }
 
             Route {
                 path = "/speaks"
-                element = createElement(SpeaksCard)
+                element = SpeaksCard.create()
             }
 
             Route {
                 path = "/link"
-                element = createElement(LinksCard)
+                element = LinksCard.create()
             }
         }
     }
