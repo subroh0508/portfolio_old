@@ -21,7 +21,7 @@ external interface AppFrameProps : PropsWithChildren, PropsWithClassName {
 }
 
 fun AppFrameProps.navItems(vararg block: MainDrawerListItemProps.() -> Unit) {
-    this.drawerProps = block.map { jso(it) }.toTypedArray()
+    drawerProps = block.map { jso(it) }.toTypedArray()
 }
 
 val AppFrame = FC<AppFrameProps> { props ->
