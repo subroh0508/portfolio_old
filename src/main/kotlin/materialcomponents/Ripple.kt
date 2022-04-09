@@ -4,9 +4,11 @@
 package materialcomponents
 
 import react.ElementType
+import react.PropsWithChildren
+import react.PropsWithClassName
 import styled.StyledProps
 
-external interface RippleProps : StyledProps {
+external interface RippleProps : PropsWithChildren, PropsWithClassName {
     var accent: Boolean?
     var disabled: Boolean?
     var primary: Boolean?

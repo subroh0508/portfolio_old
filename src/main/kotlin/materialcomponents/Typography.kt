@@ -4,9 +4,9 @@
 package materialcomponents
 
 import react.ElementType
-import styled.StyledProps
+import react.PropsWithClassName
 
-external interface TypographyProps : StyledProps {
+external interface TypographyProps : PropsWithClassName {
     var use: String?
     var tag: String?
 }

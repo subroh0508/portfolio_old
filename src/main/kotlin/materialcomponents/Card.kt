@@ -4,9 +4,9 @@
 package materialcomponents
 
 import react.ElementType
-import styled.StyledProps
+import react.PropsWithClassName
 
-external interface CardProps : StyledProps {
+external interface CardProps : PropsWithClassName {
     var outlined: Boolean?
 }
 

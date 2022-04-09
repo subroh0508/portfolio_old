@@ -67,7 +67,6 @@ private val SocialTipping = div.create {
 
     Subtitle { subtitle = "何かめぐんでください＞＜" }
 
-
     Paragraph {
         ul {
             li {

@@ -2,151 +2,136 @@
 
 package components.atoms
 
-import kotlinx.css.*
-import kotlinx.css.properties.TextDecoration
+import csstype.*
+import emotion.styled.styled
 import materialcomponents.*
 import react.*
+import react.dom.html.ReactHTML.a
 import react.router.dom.Link as RouterLink
-import styled.StyledHandler
-import styled.StyledProps
-import styled.css
-import styled.styled
 
 val MAIN_DRAWER_WIDTH = 224.px
 
-val MainDrawer = fc<StyledProps> { props ->
-    StyledDrawer(props.className.unsafeCast<String>()) { props.children() }
-}
+external interface MainDrawerProps : PropsWithChildren, PropsWithClassName
 
-private fun RBuilder.StyledDrawer(className: String? = null, handler: StyledHandler<DrawerProps>) = (styled(Drawer)) {
-    css {
-        className?.let(classes::add)
-        position = Position.fixed
-        top = 0.px
-        left = 0.px
-        height = 100.vh
-        width = MAIN_DRAWER_WIDTH
-        color = Color.white
-        backgroundColor = Color(VAR_COLOR_BACKGROUND.toCustomProperty())
-        borderColor = Color.white.withAlpha(0.12)
+val MainDrawer = FC<MainDrawerProps> { props ->
+    StyledDrawer {
+        +props.children
     }
-
-    handler()
 }
 
-external interface MainDrawerHeaderProps : StyledProps {
+private val StyledDrawer = Drawer.styled { _, _ ->
+    position = Position.fixed
+    top = 0.px
+    left = 0.px
+    height = 100.vh
+    width = MAIN_DRAWER_WIDTH
+    color = NamedColor.white
+    backgroundColor = Color("var(--$VAR_COLOR_BACKGROUND)")
+    borderColor = rgba(255, 255, 255, 0.12)
+}
+
+external interface MainDrawerHeaderProps : PropsWithClassName {
     var title: Array<out String>
 }
 
 fun MainDrawerHeaderProps.title(vararg t: String) { title = t }
 
-val MainDrawerHeader = fc<MainDrawerHeaderProps> { props ->
-    StyledMainDrawerHeader(props.className.unsafeCast<String>()) {
-        props.title.forEach { t -> StyledMainTypography { +t }  }
+val MainDrawerHeader = FC<MainDrawerHeaderProps> { props ->
+    StyledMainDrawerHeader {
+        props.title.forEach { t ->
+            StyledMainTypography {
+                use(TypographyUse.headline5)
+                tag = "span"
+
+                +t
+            }
+        }
     }
 }
 
-private fun RBuilder.StyledMainDrawerHeader(className: String?, handler: StyledHandler<StyledProps>) = (styled(DrawerHeader)) {
-    css {
-        className?.let(classes::add)
-        display = Display.flex
-        height = 200.px
-        marginRight = 8.px
-        flexDirection = FlexDirection.column
-        justifyContent = JustifyContent.center
-        alignItems = Align.flexEnd
-    }
-
-    handler()
+private val StyledMainDrawerHeader = DrawerHeader.styled { _, _ ->
+    display = Display.flex
+    height = 200.px
+    marginRight = 8.px
+    flexDirection = FlexDirection.column
+    justifyContent = JustifyContent.center
+    alignItems = AlignItems.flexEnd
 }
 
-private fun RBuilder.StyledMainTypography(handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
-    css {
-        display = Display.block
-        fontSize = 22.px
-        fontWeight = FontWeight.bold
-        margin(0.px)
-    }
-
-    attrs.use(TypographyUse.headline5)
-    attrs.tag = "span"
-
-    handler()
+private val StyledMainTypography = Typography.styled { _, _ ->
+    display = Display.block
+    fontSize = 22.px
+    fontWeight = FontWeight.bold
+    margin = Margin(0.px, 0.px)
 }
 
-external interface MainDrawerListProps : StyledProps {
+external interface MainDrawerListProps : PropsWithChildren, PropsWithClassName {
     var selectedIndex: Int
 }
 
-val MainDrawerLists = fc<MainDrawerListProps> { props ->
+val MainDrawerLists = FC<MainDrawerListProps> { props ->
     StyledDrawerContent {
         List {
             Children.toArray(props.children).forEachIndexed { i, item ->
                 ListItem {
-                    attrs.key = i.toString()
-                    child(item)
+                    key = i.toString()
+                    +item
                 }
             }
         }
     }
 }
 
-external interface MainDrawerListItemProps : StyledProps {
+external interface MainDrawerListItemProps : PropsWithClassName {
     var title: String
     var to: String
 }
 
-val MainDrawerListItem = fc<MainDrawerListItemProps> { props ->
+val MainDrawerListItem = FC<MainDrawerListItemProps> { props ->
     RouterLink {
-        attrs.to = props.to
+        to = props.to
 
-        Ripple { StyledListItemTypography { +props.title } }
+        Ripple {
+            StyledListItemTypography {
+                use(TypographyUse.headline6)
+                tag = "div"
+
+                +props.title
+            }
+        }
     }
 }
 
-private fun RBuilder.StyledDrawerContent(handler: StyledHandler<StyledProps>) = (styled(DrawerContent)) {
-    css {
-        descendants(".mdc-list-item") {
-            height = 56.px
-            margin(0.px)
-            padding(0.px)
-            textAlign = TextAlign.end
+private val StyledDrawerContent = DrawerContent.styled { _, _ ->
+    ".mdc-list-item" {
+        height = 56.px
+        margin = Margin(0.px, 0.px)
+        padding = Padding(0.px, 0.px)
+        textAlign = TextAlign.end
+    }
+
+    ".mdc-ripple-surface" {
+        before {
+            backgroundColor = NamedColor.white
         }
 
-        descendants(".mdc-ripple-surface") {
-            before {
-                backgroundColor = Color.white
-            }
-
-            after {
-                backgroundColor = Color.white
-            }
-        }
-
-        a {
-            display = Display.flex
-            width = 100.pct
-            color = Color.white
-            textDecoration = TextDecoration.none
+        after {
+            backgroundColor = NamedColor.white
         }
     }
 
-    handler()
-}
-
-private fun RBuilder.StyledListItemTypography(handler: RBuilder.() -> Unit) = (styled(Typography)) {
-    css {
+    a {
+        display = Display.flex
         width = 100.pct
-        padding(12.px, 8.px)
-        paddingRight = 24.px
-        borderRadius = 0.5.rem
-        fontWeight = FontWeight.normal
+        color = NamedColor.white
+        asDynamic()["textDecoration"] = "none"
     }
-
-    attrs.use(TypographyUse.headline6)
-    attrs.tag = "div"
-
-    handler()
 }
 
-
+private val StyledListItemTypography = Typography.styled { _, _ ->
+    width = 100.pct
+    padding = Padding(12.px, 8.px)
+    paddingRight = 24.px
+    borderRadius = 0.5.rem
+    fontWeight = FontWeight.normal
+}
