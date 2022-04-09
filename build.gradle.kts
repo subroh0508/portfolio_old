@@ -30,8 +30,8 @@ kotlin {
 
 dependencies {
     implementation(Libraries.Kotlin.html)
-    implementation(Libraries.Kotlin.react)
-    implementation(Libraries.Kotlin.reactDom)
+    implementation(Libraries.Kotlin.reactLegacy)
+    implementation(Libraries.Kotlin.reactDomLegacy)
     implementation(Libraries.Kotlin.reactRouterDom)
     implementation(Libraries.Kotlin.history)
     implementation(Libraries.Kotlin.extensions)

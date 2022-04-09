@@ -11,8 +11,10 @@ object Libraries {
         const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
 
         const val reactVersion = "${Npm.react}-$wrappersBuild"
-        const val react = "org.jetbrains.kotlin-wrappers:kotlin-react-legacy:$reactVersion"
-        const val reactDom = "org.jetbrains.kotlin-wrappers:kotlin-react-dom-legacy:$reactVersion"
+        const val react = "org.jetbrains.kotlin-wrappers:kotlin-react:$reactVersion"
+        const val reactDom = "org.jetbrains.kotlin-wrappers:kotlin-react-dom:$reactVersion"
+        const val reactLegacy = "org.jetbrains.kotlin-wrappers:kotlin-react-legacy:$reactVersion"
+        const val reactDomLegacy = "org.jetbrains.kotlin-wrappers:kotlin-react-dom-legacy:$reactVersion"
 
         const val historyVersion = "${Npm.history}-$wrappersBuild"
         const val history = "org.jetbrains.kotlin-wrappers:kotlin-history:$historyVersion"
