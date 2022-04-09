@@ -32,7 +32,7 @@ object Libraries {
         const val styled = "org.jetbrains.kotlin-wrappers:kotlin-styled:$styledVersion"
 
         const val emotionVersion = "${Npm.emotion}-$wrappersBuild"
-        const val emotion = "org.jetbrains.kotlin-wrappers:kotlin-emotion:$styledVersion"
+        const val emotion = "org.jetbrains.kotlin-wrappers:kotlin-emotion:$emotionVersion"
 
         const val extensionsVersion = "1.0.1-$wrappersBuild"
         const val extensions = "org.jetbrains.kotlin-wrappers:kotlin-extensions:$extensionsVersion"

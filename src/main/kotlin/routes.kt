@@ -1,13 +1,13 @@
 import components.templates.*
-import react.RBuilder
+import react.ChildrenBuilder
 import react.createElement
 import react.router.Route
 import react.router.Routes
 import react.router.dom.BrowserRouter
 
-fun RBuilder.routing() = BrowserRouter {
-    child(AppFrame) {
-        attrs.navItems(
+fun ChildrenBuilder.routing() = BrowserRouter {
+    AppFrame {
+        navItems(
                 { attrs.to = "/"; attrs.title = "Home" },
                 { attrs.to = "/biography"; attrs.title= "Biography" },
                 { attrs.to = "/skill"; attrs.title= "Skill" },
@@ -18,45 +18,33 @@ fun RBuilder.routing() = BrowserRouter {
 
         Routes {
             Route {
-                attrs {
-                    path = "/"
-                    element = createElement(IntroductionNameCard)
-                }
+                path = "/"
+                element = createElement(IntroductionNameCard)
             }
 
             Route {
-                attrs {
-                    path = "/biography"
-                    element = createElement(BiographyCard)
-                }
+                path = "/biography"
+                element = createElement(BiographyCard)
             }
 
             Route {
-                attrs {
-                    path = "/skill"
-                    element = createElement(SkillCard)
-                }
+                path = "/skill"
+                element = createElement(SkillCard)
             }
 
             Route {
-                attrs {
-                    path = "/works"
-                    element = createElement(WorksCard)
-                }
+                path = "/works"
+                element = createElement(WorksCard)
             }
 
             Route {
-                attrs {
-                    path = "/speaks"
-                    element = createElement(SpeaksCard)
-                }
+                path = "/speaks"
+                element = createElement(SpeaksCard)
             }
 
             Route {
-                attrs {
-                    path = "/link"
-                    element = createElement(LinksCard)
-                }
+                path = "/link"
+                element = createElement(LinksCard)
             }
         }
     }
