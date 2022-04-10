@@ -12,6 +12,8 @@ import materialcomponents.IconProps
 import org.w3c.dom.HTMLElement
 import react.*
 import react.dom.html.HTMLAttributes
+import react.dom.svg.ReactSVG.path
+import react.dom.svg.ReactSVG.svg
 
 val HomeIcon = FC<PropsWithClassName> { props ->
     StyledIcon {
@@ -72,20 +74,6 @@ private const val D_GITHUB = "M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3
 
 private fun svgTwitter() = svg(d = D_TWITTER)
 private fun svgGitHub() = svg(d = D_GITHUB)
-
-private external interface SVGHTMLAttributes<T: HTMLElement> : HTMLAttributes<T> {
-    var viewBox: String
-}
-
-private external interface PathHTMLAttributes<T: HTMLElement> : HTMLAttributes<T> {
-    var d: String
-}
-
-private inline val svg: IntrinsicType<SVGHTMLAttributes<HTMLElement>>
-    get() = "svg".unsafeCast<IntrinsicType<SVGHTMLAttributes<HTMLElement>>>()
-
-private inline val path: IntrinsicType<PathHTMLAttributes<HTMLElement>>
-    get() = "path".unsafeCast<IntrinsicType<PathHTMLAttributes<HTMLElement>>>()
 
 private fun svg(d: String) = VFC {
     svg {
