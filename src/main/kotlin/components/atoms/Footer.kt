@@ -2,29 +2,28 @@
 
 package components.atoms
 
-import kotlinx.css.*
-import react.dom.br
-import react.fc
-import styled.StyledProps
-import styled.css
-import styled.styledDiv
-import styled.styledSpan
+import csstype.*
+import emotion.react.css
+import react.VFC
+import react.dom.html.ReactHTML.br
+import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.span
 
-val Footer = fc<StyledProps> {
-    styledDiv {
+val Footer = VFC {
+    div {
         css {
             display = Display.flex
             height = 100.vh - (800 * 55.0 / 91.0).px - 64.px
             minHeight = 128.px
-            alignItems = Align.flexEnd
-            color = Color.white.withAlpha(0.38)
+            alignItems = AlignItems.flexEnd
+            color = rgba(255, 255, 255, 0.38)
         }
 
-        styledSpan {
+        span {
             css {
                 width = 100.pct
                 textAlign = TextAlign.center
-                padding(vertical = 40.px)
+                padding = Padding(40.px, 0.px)
             }
 
             +"Last Modified: 2022-04-07T23:47:06+0900"
