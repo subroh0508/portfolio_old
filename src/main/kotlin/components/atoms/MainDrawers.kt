@@ -124,7 +124,7 @@ private val StyledDrawerContent = DrawerContent.styled { _, _ ->
         display = Display.flex
         width = 100.pct
         color = NamedColor.white
-        asDynamic()["textDecoration"] = "none"
+        textDecoration = None.none
     }
 }
 

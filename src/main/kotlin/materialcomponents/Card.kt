@@ -4,9 +4,10 @@
 package materialcomponents
 
 import react.ElementType
+import react.PropsWithChildren
 import react.PropsWithClassName
 
-external interface CardProps : PropsWithClassName {
+external interface CardProps : PropsWithChildren, PropsWithClassName {
     var outlined: Boolean?
 }
 
