@@ -5,92 +5,111 @@ package components.molecules
 import components.atoms.ChevronLeft
 import components.atoms.ChevronRight
 import components.atoms.Subtitle
-import csstype.ClassName
-import kotlinx.css.*
-import kotlinx.css.properties.TextDecoration
-import kotlinx.html.SPAN
+import components.atoms.SubtitleProps
+import csstype.*
+import emotion.react.css
+import emotion.styled.styled
 import materialcomponents.Ripple
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
-import react.*
-import styled.*
+import react.FC
+import react.PropsWithChildren
+import react.dom.html.ReactHTML.span
+import react.PropsWithClassName
+import react.create
+import react.dom.html.ReactHTML.a
 import react.router.dom.Link as RouterLink
 
-const val CHEVRON_LEFT_CLASS_NAME = "chevron-left"
-const val CHEVRON_RIGHT_CLASS_NAME = "chevron-right"
+val CHEVRON_LEFT_CLASS_NAME = ClassName("chevron-left")
+val CHEVRON_RIGHT_CLASS_NAME = ClassName("chevron-right")
 
-external interface SwitcherProps : StyledProps {
+external interface SwitcherProps : PropsWithClassName {
     var title: String
     var prev: String
     var next: String
     var state: SwitcherState
 }
 
-val Switcher = fc<SwitcherProps> { props ->
+val Switcher = FC<SwitcherProps> { props ->
     StyledSpan {
-        props.className.unsafeCast<String>().let(css.classes::add)
+        css(props.className) {}
 
-        Rippled(CHEVRON_LEFT_CLASS_NAME, props.prev, props.state, ChevronLeft)
-        StyledSubtitle(props.title)
-        Rippled(CHEVRON_RIGHT_CLASS_NAME, props.next, props.state, ChevronRight)
+        Rippled {
+            className = CHEVRON_LEFT_CLASS_NAME
+            to = props.prev
+            state = props.state
+
+            +ChevronLeft.create()
+        }
+
+        StyledSubtitle { subtitle = props.title }
+
+        Rippled {
+            className = CHEVRON_RIGHT_CLASS_NAME
+            to = props.next
+            state = props.state
+
+            +ChevronRight.create()
+        }
     }
 }
 
-private fun RBuilder.StyledSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) = styledSpan {
-    css {
-        display = Display.flex
-        alignItems = Align.center
-        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
+private val StyledSpan = span.styled { _, _ ->
+    display = Display.flex
+    alignItems = AlignItems.center
+    color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
 
-        descendants(".mdc-ripple-surface") {
-            before {
-                backgroundColor = Color.white
-            }
-
-            after {
-                backgroundColor = Color.white
-            }
+    ".mdc-ripple-surface" {
+        before {
+            backgroundColor = NamedColor.white
         }
 
-        a {
-            display = Display.flex
-            width = 24.px
-            height = 24.px
-            justifyContent = JustifyContent.center
-            cursor = Cursor.pointer
-            color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
-            textDecoration = TextDecoration.none
+        after {
+            backgroundColor = NamedColor.white
         }
     }
 
-    handler()
+    a {
+        display = Display.flex
+        width = 24.px
+        height = 24.px
+        justifyContent = JustifyContent.center
+        cursor = Cursor.pointer
+        color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
+        textDecoration = None.none
+    }
 }
 
 external interface SwitcherState {
     var prev: Int
 }
 
-private fun RBuilder.Rippled(
-        className: String,
-        to: String,
-        state: SwitcherState,
-        fc: FC<StyledProps>
-) = Ripple {
-    attrs.unbounded = true
+private external interface RippledProps : PropsWithChildren, PropsWithClassName {
+    var to: String
+    var state: SwitcherState
+}
 
-    RouterLink {
-        attrs.className = ClassName(className)
-        attrs.to = to
-        attrs.state = state
-        child(fc)
+private val Rippled = FC<RippledProps> { props ->
+    Ripple {
+        unbounded = true
+
+        RouterLink {
+            css(props.className) {}
+            to = props.to
+            state = props.state
+
+            +props.children
+        }
     }
 }
 
-private fun RBuilder.StyledSubtitle(title: String) = (styled(Subtitle)) {
-    attrs.subtitle = title
+private val StyledSubtitle = FC<SubtitleProps> { props ->
+    Subtitle {
+        css {
+            width = 200.px
+            margin = Margin(8.px, 0.px)
+            textAlign = TextAlign.center
+        }
 
-    css {
-        width = 200.px
-        margin(vertical = 8.px)
-        textAlign = TextAlign.center
+        subtitle = props.subtitle
     }
 }
