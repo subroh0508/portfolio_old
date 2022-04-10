@@ -2,28 +2,26 @@
 
 package components.atoms
 
-import kotlinx.css.*
+import csstype.Color
+import csstype.FontWeight
+import emotion.styled.styled
 import materialcomponents.*
-import react.RBuilder
-import react.fc
-import styled.StyledHandler
-import styled.StyledProps
-import styled.css
-import styled.styled
+import react.FC
+import react.PropsWithChildren
+import react.PropsWithClassName
 
-val Paragraph = fc<StyledProps> { props ->
-    StyledBody1(props.className.unsafeCast<String>()) { props.children() }
+external interface ParagraphProps : PropsWithChildren, PropsWithClassName
+
+val Paragraph = FC<ParagraphProps> { props ->
+    StyledBody1 {
+        use(TypographyUse.body1)
+        tag = "p"
+
+        +props.children
+    }
 }
 
-private fun RBuilder.StyledBody1(className: String?, handler: StyledHandler<TypographyProps>) = (styled(Typography)) {
-    css {
-        className?.let(classes::add)
-        fontWeight = FontWeight.normal
-        color = Color(VAR_COLOR_TEXT_SECONDARY_ON_DARK.toCustomProperty())
-    }
-
-    attrs.use(TypographyUse.body1)
-    attrs.tag = "p"
-
-    handler()
+private val StyledBody1 = Typography.styled { _, _ ->
+    fontWeight = FontWeight.normal
+    color = Color("var(--$VAR_COLOR_TEXT_SECONDARY_ON_DARK)")
 }
