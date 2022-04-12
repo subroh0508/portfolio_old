@@ -29,6 +29,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(enforcedPlatform(Libraries.Kotlin.wrappersBom))
     implementation(Libraries.Kotlin.react)
     implementation(Libraries.Kotlin.reactDom)
     implementation(Libraries.Kotlin.reactRouterDom)
