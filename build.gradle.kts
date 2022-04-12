@@ -19,9 +19,11 @@ kotlin {
                 outputFileName = "main.bundle.js"
             }
             runTask {
+                cssSupport.enabled = false
                 sourceMaps = true
             }
             webpackTask {
+                cssSupport.enabled = true
                 sourceMaps = false
             }
         }
