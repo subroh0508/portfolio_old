@@ -26,7 +26,7 @@ val Footer = VFC {
                 padding = Padding(40.px, 0.px)
             }
 
-            +"Last Modified: 2022-04-07T23:47:06+0900"
+            +"Last Modified: 2022-04-13T01:34:09+0900"
             br {}
             +"Copyright© 2022 subroh_0508 Official Website. All Rights Reserved."
         }
