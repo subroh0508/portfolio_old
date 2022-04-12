@@ -1,6 +1,6 @@
 package materialcomponents.theme
 
-import kotlinx.css.Color
+import csstype.Color
 import materialcomponents.delegates.OptionsProperty
 
 external interface ThemeProviderOption

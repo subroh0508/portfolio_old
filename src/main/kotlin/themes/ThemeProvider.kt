@@ -2,25 +2,27 @@
 
 package themes
 
+import csstype.Color
 import csstype.pct
 import emotion.styled.styled
-import kotlinx.css.Color
 import kotlinx.js.jso
 import materialcomponents.ThemeProvider as Provider
 import materialcomponents.ThemeProviderProps
 import materialcomponents.theme.*
-import react.ChildrenBuilder
+import react.FC
 
-fun ChildrenBuilder.ThemeProvider(block: ChildrenBuilder.() -> Unit) = StyledProvider {
-    options {
-        background = Color("#121212")
-        surface = Color("#0D386D")
-        primary = Color("#0D386D")
-        textPrimaryOnDark = Color("#99B7DC")
-        textSecondaryOnDark = Color("#3B91C4")
+val ThemeProvider = FC<ThemeProviderProps> { props ->
+    StyledProvider {
+        options {
+            background = Color("#121212")
+            surface = Color("#0D386D")
+            primary = Color("#0D386D")
+            textPrimaryOnDark = Color("#99B7DC")
+            textSecondaryOnDark = Color("#3B91C4")
+        }
+
+        +props.children
     }
-
-    block()
 }
 
 fun ThemeProviderProps.options(block: ThemeProviderOption.() -> Unit) { options = jso(block) }

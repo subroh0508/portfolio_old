@@ -6,7 +6,6 @@ package materialcomponents
 import react.ElementType
 import react.PropsWithChildren
 import react.PropsWithClassName
-import styled.StyledProps
 
 external interface RippleProps : PropsWithChildren, PropsWithClassName {
     var accent: Boolean?
