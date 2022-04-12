@@ -2,80 +2,64 @@
 
 package components.atoms
 
-import kotlinx.css.*
+import csstype.Color
+import csstype.FontWeight
+import emotion.react.css
+import emotion.styled.styled
 import materialcomponents.*
-import react.RBuilder
-import react.fc
-import styled.StyledHandler
-import styled.StyledProps
-import styled.css
-import styled.styled
+import react.PropsWithClassName
+import react.FC
 
-external interface TitleProps : StyledProps {
+external interface TitleProps : PropsWithClassName {
     var title: String
     var tag: String?
 }
 
-external interface SubtitleProps : StyledProps {
+external interface SubtitleProps : PropsWithClassName {
     var subtitle: String
     var tag: String?
 }
 
-val LargeTitle = fc<TitleProps> { props ->
-    StyledTypographyHeadline4(props.className.unsafeCast<String>(), props.tag) { +props.title }
-}
+val LargeTitle = FC<TitleProps> { props ->
+    StyledTypographyHeadline4 {
+        css(props.className) {}
+        use(TypographyUse.headline4)
+        tag = props.tag ?: "h2"
 
-val LargeSubtitle = fc<SubtitleProps> { props ->
-    StyledTypographyHeadline5(props.className.unsafeCast<String>(), props.tag) { +props.subtitle }
-}
-
-val Subtitle = fc<SubtitleProps> { props ->
-    StyledTypographyHeadline6(props.className.unsafeCast<String>(), props.tag) { +props.subtitle }
-}
-
-private fun RBuilder.StyledTypographyHeadline4(
-    className: String? = null, tag: String? = null,
-    handler: StyledHandler<TypographyProps>
-) = (styled(Typography)) {
-    css {
-        className?.let(classes::add)
-        fontWeight = FontWeight.bold
-        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
+        +props.title
     }
-
-    attrs.use(TypographyUse.headline4)
-    attrs.tag = tag ?: "h2"
-
-    handler()
 }
 
-private fun RBuilder.StyledTypographyHeadline5(
-    className: String? = null, tag: String? = null,
-    handler: StyledHandler<TypographyProps>
-) = (styled(Typography)) {
-    css {
-        className?.let(classes::add)
-        color = Color(VAR_COLOR_TEXT_SECONDARY_ON_DARK.toCustomProperty())
+val LargeSubtitle = FC<SubtitleProps> { props ->
+    StyledTypographyHeadline5 {
+        css(props.className) {}
+        use(TypographyUse.headline5)
+        tag = props.tag ?: "h3"
+
+        +props.subtitle
     }
-
-    attrs.use(TypographyUse.headline5)
-    attrs.tag = tag ?: "h3"
-
-    handler()
 }
 
-private fun RBuilder.StyledTypographyHeadline6(
-    className: String? = null, tag: String? = null,
-    handler: StyledHandler<TypographyProps>
-) = (styled(Typography)) {
-    css {
-        className?.let(classes::add)
-        fontWeight = FontWeight.normal
-        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
+val Subtitle = FC<SubtitleProps> { props ->
+    StyledTypographyHeadline6 {
+        css(props.className) {}
+        use(TypographyUse.headline6)
+        tag = props.tag ?: "h4"
+
+        +props.subtitle
     }
+}
 
-    attrs.use(TypographyUse.headline6)
-    attrs.tag = tag ?: "h4"
+private val StyledTypographyHeadline4 = Typography.styled { _, _ ->
+    fontWeight = FontWeight.bold
+    color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
+}
 
-    handler()
+private val StyledTypographyHeadline5 = Typography.styled { _, _ ->
+    color = Color("var(--$VAR_COLOR_TEXT_SECONDARY_ON_DARK)")
+}
+
+private val StyledTypographyHeadline6 = Typography.styled { _, _ ->
+    fontWeight = FontWeight.normal
+    color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
 }

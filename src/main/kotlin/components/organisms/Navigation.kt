@@ -7,20 +7,20 @@ import components.atoms.MainDrawerHeaderProps
 import components.atoms.MainDrawerListProps
 import components.atoms.MainDrawerLists
 import components.atoms.MainDrawer
-import react.child
-import react.fc
+import react.FC
+import react.PropsWithChildren
 
-external interface NavigationProps : MainDrawerHeaderProps, MainDrawerListProps
+external interface NavigationProps : PropsWithChildren, MainDrawerHeaderProps, MainDrawerListProps
 
-val Navigation = fc<NavigationProps> { props ->
-    child(MainDrawer) {
-        child(MainDrawerHeader) {
-            attrs.title = props.title
+val Navigation = FC<NavigationProps> { props ->
+    MainDrawer {
+        MainDrawerHeader {
+            title = props.title
         }
-        child(MainDrawerLists) {
-            attrs.selectedIndex = props.selectedIndex
+        MainDrawerLists {
+            selectedIndex = props.selectedIndex
 
-            props.children()
+            +props.children
         }
     }
 }

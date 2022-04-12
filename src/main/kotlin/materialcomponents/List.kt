@@ -5,9 +5,9 @@ package materialcomponents
 
 import org.w3c.dom.events.Event
 import react.ElementType
-import styled.StyledProps
+import react.PropsWithClassName
 
-external interface ListProps : StyledProps {
+external interface ListProps : PropsWithClassName {
     var avatarList: Boolean?
     var dense: Boolean?
     var nonInteractive: Boolean?
@@ -19,7 +19,7 @@ external interface ListProps : StyledProps {
 
 external val List: ElementType<ListProps>
 
-external interface ListItemProps : StyledProps {
+external interface ListItemProps : PropsWithClassName {
     var activated: Boolean?
     var disable: Boolean?
     var ripple: Boolean?
@@ -27,11 +27,11 @@ external interface ListItemProps : StyledProps {
 }
 
 external val ListItem: ElementType<ListItemProps>
-external val ListItemText: ElementType<StyledProps>
-external val ListItemPrimaryText: ElementType<StyledProps>
-external val ListItemSecondaryText: ElementType<StyledProps>
-external val ListItemGraphic: ElementType<StyledProps>
-external val ListItemMeta: ElementType<StyledProps>
-external val ListGroup: ElementType<StyledProps>
-external val ListGroupSubheader: ElementType<StyledProps>
-external val ListDivider: ElementType<StyledProps>
+external val ListItemText: ElementType<PropsWithClassName>
+external val ListItemPrimaryText: ElementType<PropsWithClassName>
+external val ListItemSecondaryText: ElementType<PropsWithClassName>
+external val ListItemGraphic: ElementType<PropsWithClassName>
+external val ListItemMeta: ElementType<PropsWithClassName>
+external val ListGroup: ElementType<PropsWithClassName>
+external val ListGroupSubheader: ElementType<PropsWithClassName>
+external val ListDivider: ElementType<PropsWithClassName>

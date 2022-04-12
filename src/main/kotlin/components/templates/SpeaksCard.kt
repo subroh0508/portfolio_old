@@ -7,29 +7,31 @@ import components.atoms.Paragraph
 import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import components.organisms.titles
-import react.RBuilder
-import react.dom.*
-import react.fc
-import styled.StyledProps
+import react.VFC
+import react.create
+import react.dom.html.ReactHTML.b
+import react.dom.html.ReactHTML.br
+import react.dom.html.ReactHTML.li
+import react.dom.html.ReactHTML.ul
 import utilities.Links
 
-val SpeaksCard = fc<StyledProps> {
-    child(CardFrame) {
-        child(LargeTitle) {
-            attrs.title = "Speaks"
+val SpeaksCard = VFC {
+    CardFrame {
+        LargeTitle {
+            title = "Speaks"
         }
 
-        child(SwitchableContents) {
-            attrs.titles("2020", "2019", "2018")
+        SwitchableContents {
+            titles("2020", "2019", "2018")
 
-            Speaks2020()
-            Speaks2019()
-            Speaks2018()
+            +Speaks2020
+            +Speaks2019
+            +Speaks2018
         }
     }
 }
 
-private fun RBuilder.Speaks2020() = child(Paragraph) {
+private val Speaks2020 = Paragraph.create {
     ul {
         li {
             b { +"スタートアップで開発している（したい）エンジニア対談 #3:" }
@@ -73,7 +75,7 @@ private fun RBuilder.Speaks2020() = child(Paragraph) {
     }
 }
 
-private fun RBuilder.Speaks2019() = child(Paragraph) {
+private val Speaks2019 = Paragraph.create {
     ul {
         li {
             b { +"DroidKaigi2019: " }
@@ -117,7 +119,7 @@ private fun RBuilder.Speaks2019() = child(Paragraph) {
     }
 }
 
-private fun RBuilder.Speaks2018() = child(Paragraph) {
+private val Speaks2018 = Paragraph.create {
     ul {
         li {
             b { +"高専カンファレンス in 東京 2018: " }

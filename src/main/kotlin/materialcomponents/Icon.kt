@@ -4,9 +4,9 @@
 package materialcomponents
 
 import react.ElementType
-import styled.StyledProps
+import react.PropsWithClassName
 
-external interface IconProps : StyledProps {
+external interface IconProps : PropsWithClassName {
     var icon: dynamic
 }
 

@@ -1,63 +1,53 @@
 import components.templates.*
-import react.RBuilder
-import react.createElement
+import react.VFC
+import react.create
 import react.router.Route
 import react.router.Routes
 import react.router.dom.BrowserRouter
 
-fun RBuilder.routing() = BrowserRouter {
-    child(AppFrame) {
-        attrs.navItems(
-                { attrs.to = "/"; attrs.title = "Home" },
-                { attrs.to = "/biography"; attrs.title= "Biography" },
-                { attrs.to = "/skill"; attrs.title= "Skill" },
-                { attrs.to = "/works?p=0"; attrs.title= "Works" },
-                { attrs.to = "/speaks?p=0"; attrs.title= "Speaks" },
-                { attrs.to = "/link"; attrs.title= "Link" }
-        )
+val routing = VFC {
+    BrowserRouter {
+        AppFrame {
+            navItems(
+                { to = "/"; title = "Home" },
+                { to = "/biography"; title = "Biography" },
+                { to = "/skill"; title = "Skill" },
+                { to = "/works?p=0"; title = "Works" },
+                { to = "/speaks?p=0"; title = "Speaks" },
+                { to = "/link"; title = "Link" },
+            )
 
-        Routes {
-            Route {
-                attrs {
+            Routes {
+                Route {
                     path = "/"
-                    element = createElement(IntroductionNameCard)
+                    element = IntroductionNameCard.create()
                 }
-            }
 
-            Route {
-                attrs {
+                Route {
                     path = "/biography"
-                    element = createElement(BiographyCard)
+                    element = BiographyCard.create()
                 }
-            }
 
-            Route {
-                attrs {
+                Route {
                     path = "/skill"
-                    element = createElement(SkillCard)
+                    element = SkillCard.create()
                 }
-            }
 
-            Route {
-                attrs {
+                Route {
                     path = "/works"
-                    element = createElement(WorksCard)
+                    element = WorksCard.create()
                 }
-            }
 
-            Route {
-                attrs {
+                Route {
                     path = "/speaks"
-                    element = createElement(SpeaksCard)
+                    element = SpeaksCard.create()
                 }
-            }
 
-            Route {
-                attrs {
+                Route {
                     path = "/link"
-                    element = createElement(LinksCard)
+                    element = LinksCard.create()
                 }
             }
         }
     }
-}
+}.create()

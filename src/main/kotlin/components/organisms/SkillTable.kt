@@ -4,70 +4,70 @@ package components.organisms
 
 import components.atoms.Paragraph
 import components.atoms.TableRow
-import kotlinx.css.*
-import kotlinx.css.p as cssP
-import kotlinx.css.td as cssTd
-import kotlinx.html.TABLE
-import kotlinx.js.jso
+import csstype.Color
+import csstype.Margin
+import csstype.px
+import emotion.react.css
+import emotion.styled.styled
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import react.*
-import react.dom.*
-import styled.StyledProps
-import styled.css
-import styled.styledTable
-import styled.styledTd
+import react.dom.html.ReactHTML.p
+import react.dom.html.ReactHTML.table
+import react.dom.html.ReactHTML.tbody
+import react.dom.html.ReactHTML.td
 
-external interface SkillRowProps : StyledProps {
+external interface SkillRowProps : PropsWithChildren, PropsWithClassName {
     var name: String
     var stars: Int
     var since: String
 }
 
-fun RBuilder.SkillTable(vararg handler: RHandler<SkillRowProps>) = StyledTable {
-    tbody { handler.forEach { h -> SkillRow(h) } }
+val SkillTable = FC<PropsWithChildren> { props ->
+    StyledTable {
+        tbody { +props.children }
+    }
 }
 
-@Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
-private fun RBuilder.SkillRow(handler: RHandler<SkillRowProps>) {
-    val builder = SkillTableElementBuilder().apply(handler)
-    val attrs = builder.attrs
+val SkillRow = FC<SkillRowProps> { props ->
+    val stars = ((0..4).joinToString("") { i -> if (i < props.stars) "★" else "☆" })
 
     StyledTableRow {
-        td { +attrs.name }
-        td { +((0..4).joinToString("") { i -> if (i < attrs.stars) "★" else "☆" }) }
-        td { +"${attrs.since}-" }
+        td { +props.name }
+        td { +stars }
+        td { +"${props.since}-" }
     }
 
-    StyledTableRowParagraph { childList.addAll(builder.childList) }
-}
-
-private class SkillTableElementBuilder : RElementBuilderImpl<SkillRowProps>(jso { })
-
-private fun RBuilder.StyledTable(handler: RDOMBuilder<TABLE>.() -> Unit) = styledTable {
-    css { borderSpacing = 0.px }
-
-    handler()
-}
-
-private fun RBuilder.StyledTableRow(handler: RBuilder.() -> Unit) = TableRow {
-    css {
-        color = Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty())
-
-        cssTd {
-            paddingTop = 8.px
-        }
+    StyledTableRowParagraph {
+        +props.children
     }
-
-    handler()
 }
 
-private fun RBuilder.StyledTableRowParagraph(handler: RBuilder.() -> Unit) = TableRow {
-    styledTd {
+private val StyledTable = table.styled { _, _ ->
+    borderSpacing = 0.px
+}
+
+private val StyledTableRow = TableRow.styled { _, _ ->
+    color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
+
+    td {
+        paddingTop = 8.px
+    }
+}
+
+private val StyledTableRowParagraph = FC<PropsWithChildren> { props ->
+    TableRow {
         css {
-            cssP { margin(8.px, 0.px) }
+            p {
+                margin = Margin(8.px, 0.px)
+            }
         }
-        attrs { colSpan = "3" }
 
-        child(Paragraph) { handler() }
+        td {
+            colSpan = 3
+
+            Paragraph {
+                +props.children
+            }
+        }
     }
 }

@@ -2,30 +2,23 @@
 
 package components.atoms
 
-import kotlinx.css.*
-import kotlinx.css.properties.borderBottom
-import kotlinx.html.TR
+import csstype.*
+import emotion.styled.styled
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
-import react.RBuilder
-import styled.StyledDOMBuilder
-import styled.css
-import styled.styledTr
+import react.dom.html.ReactHTML.td
+import react.dom.html.ReactHTML.tr
 
-fun RBuilder.TableRow(handler: StyledDOMBuilder<TR>.() -> Unit) = styledTr {
-    css {
-        td {
-            position = Position.relative
+val TableRow = tr.styled { _, _ ->
+    td {
+        position = Position.relative
 
-            after {
-                content = "".quoted
-                position = Position.absolute
-                left = 0.px
-                right = 0.px
-                bottom = 0.px
-                borderBottom(1.px, BorderStyle.solid, Color(VAR_COLOR_TEXT_PRIMARY_ON_DARK.toCustomProperty()))
-            }
+        after {
+            asDynamic()["content"] = "''"
+            position = Position.absolute
+            left = 0.px
+            right = 0.px
+            bottom = 0.px
+            borderBottom = Border(1.px, LineStyle.solid, Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
         }
     }
-
-    handler()
 }

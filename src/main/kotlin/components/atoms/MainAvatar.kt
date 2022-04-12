@@ -2,38 +2,30 @@
 
 package components.atoms
 
-import kotlinx.css.height
-import kotlinx.css.px
-import kotlinx.css.width
+import csstype.px
+import emotion.react.css
+import emotion.styled.styled
 import materialcomponents.Avatar
-import materialcomponents.AvatarProps
 import materialcomponents.AvatarSize
 import materialcomponents.size
-import react.RBuilder
-import react.fc
-import styled.StyledHandler
-import styled.StyledProps
-import styled.css
-import styled.styled
+import react.FC
+import react.PropsWithClassName
 
-external interface MainAvatarProps : StyledProps {
+external interface MainAvatarProps : PropsWithClassName {
     var src: String?
 }
 
-val MainAvatar = fc<MainAvatarProps> { props ->
-    StyledAvatar(props.className.unsafeCast<String>()) {
-        attrs.ripple = false
-        attrs.src = props.src
-        attrs.size(AvatarSize.xlarge)
+val MainAvatar = FC<MainAvatarProps> { props ->
+    StyledAvatar {
+        css(props.className) {}
+
+        ripple = false
+        src = props.src
+        size(AvatarSize.xlarge)
     }
 }
 
-private fun RBuilder.StyledAvatar(className: String?, handler: StyledHandler<AvatarProps>) = (styled(Avatar)) {
-    css {
-        className?.let(classes::add)
-        width = 100.px
-        height = 100.px
-    }
-
-    handler()
+private val StyledAvatar = Avatar.styled { _, _ ->
+    width = 100.px
+    height = 100.px
 }

@@ -19,9 +19,11 @@ kotlin {
                 outputFileName = "main.bundle.js"
             }
             runTask {
+                cssSupport.enabled = false
                 sourceMaps = true
             }
             webpackTask {
+                cssSupport.enabled = true
                 sourceMaps = false
             }
         }
@@ -29,13 +31,13 @@ kotlin {
 }
 
 dependencies {
-    implementation(Libraries.Kotlin.html)
+    implementation(enforcedPlatform(Libraries.Kotlin.wrappersBom))
     implementation(Libraries.Kotlin.react)
     implementation(Libraries.Kotlin.reactDom)
     implementation(Libraries.Kotlin.reactRouterDom)
     implementation(Libraries.Kotlin.history)
     implementation(Libraries.Kotlin.extensions)
-    implementation(Libraries.Kotlin.styled)
+    implementation(Libraries.Kotlin.emotion)
 
     implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
     implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))

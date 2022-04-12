@@ -4,9 +4,9 @@
 package materialcomponents
 
 import react.ElementType
-import styled.StyledProps
+import react.PropsWithClassName
 
-external interface AvatarProps : StyledProps {
+external interface AvatarProps : PropsWithClassName {
     var src: String?
     var size: String?
     var name: String?

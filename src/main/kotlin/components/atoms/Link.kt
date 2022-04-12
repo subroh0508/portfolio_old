@@ -2,51 +2,47 @@
 
 package components.atoms
 
-import kotlinx.css.*
-import kotlinx.css.properties.TextDecoration
-import kotlinx.css.properties.TextDecorationLine
-import kotlinx.html.A
-import kotlinx.html.SPAN
-import react.RBuilder
-import react.fc
-import styled.*
+import csstype.Cursor
+import csstype.None
+import csstype.TextDecoration
+import emotion.react.css
+import emotion.styled.styled
+import react.FC
+import react.PropsWithChildren
+import react.PropsWithClassName
+import react.dom.html.AnchorTarget
+import react.dom.html.ReactHTML.a
+import react.dom.html.ReactHTML.span
 
-external interface LinkProps : StyledProps {
+external interface LinkProps : PropsWithChildren, PropsWithClassName {
     var href: String
-    var target: String?
+    var target: AnchorTarget?
 }
 
-val Link = fc<LinkProps> { props ->
-    StyledLink(props.className.unsafeCast<String>()) {
-        attrs.href = props.href
-        attrs.target = props.target ?: "_blank"
+external interface LinkTextProps : PropsWithChildren, PropsWithClassName
 
-        props.children()
+val Link = FC<LinkProps> { props ->
+    StyledLink {
+        css(props.className) {}
+        href = props.href
+        target = props.target ?: AnchorTarget._blank
+
+        +props.children
     }
 }
 
-val LinkText = fc<StyledProps> { props ->
-    StyledLinkText(props.className.unsafeCast<String>()) { props.children() }
+val LinkText = FC<LinkTextProps> { props ->
+    StyledLinkText {
+        css(props.className) {}
+        +props.children
+    }
 }
 
-private fun RBuilder.StyledLink(className: String? = null, handler: StyledDOMBuilder<A>.() -> Unit) = styledA {
-    css {
-        className?.let(classes::add)
-        textDecoration = TextDecoration.none
-        cursor = Cursor.pointer
-    }
-
-    handler()
+private val StyledLink = a.styled { _, _ ->
+    textDecoration = None.none
+    cursor = Cursor.pointer
 }
 
-private fun RBuilder.StyledLinkText(className: String? = null, handler: StyledDOMBuilder<SPAN>.() -> Unit) = styledSpan {
-    css {
-        className?.let(classes::add)
-
-        hover {
-            textDecoration = TextDecoration(setOf(TextDecorationLine.underline))
-        }
-    }
-
-    handler()
+private val StyledLinkText = span.styled { _, _ ->
+    textDecoration = TextDecoration.underline
 }

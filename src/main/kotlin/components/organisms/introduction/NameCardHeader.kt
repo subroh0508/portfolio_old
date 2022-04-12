@@ -2,15 +2,20 @@
 
 package components.organisms.introduction
 
-import components.atoms.*
-import kotlinx.css.*
-import kotlinx.html.DIV
-import react.RBuilder
-import react.dom.div
-import react.fc
-import styled.*
+import components.atoms.LargeSubtitle
+import components.atoms.LargeTitle
+import components.atoms.MainAvatar
+import components.atoms.Subtitle
+import csstype.Auto
+import csstype.Display
+import csstype.Margin
+import csstype.px
+import emotion.styled.styled
+import react.FC
+import react.PropsWithClassName
+import react.dom.html.ReactHTML.div
 
-external interface NameCardHeaderProps : StyledProps {
+external interface NameCardHeaderProps : PropsWithClassName {
     var name: String
     var subName: String
     var avatarSrc: String
@@ -19,57 +24,41 @@ external interface NameCardHeaderProps : StyledProps {
 
 fun NameCardHeaderProps.posts(vararg post: String) { posts = post }
 
-val NameCardHeader = fc<NameCardHeaderProps> { props ->
+val NameCardHeader = FC<NameCardHeaderProps> { props ->
     HeaderRoot {
-        StyledMainAvatar { attrs.src = props.avatarSrc }
+        StyledMainAvatar
+    }
+
+    HeaderRoot {
+        StyledMainAvatar { src = props.avatarSrc }
 
         div {
-            StyledName { attrs.title = props.name }
-            StyledSubName { attrs.subtitle = props.subName }
+            StyledName { title = props.name }
+            StyledSubName { subtitle = props.subName }
 
-            props.posts.forEach { post -> StyledPost { attrs.subtitle = post } }
+            props.posts.forEach { post -> StyledPost { subtitle = post } }
         }
     }
 }
 
-private fun RBuilder.HeaderRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
-    css {
-         display = Display.flex
-    }
-
-    handler()
+private val HeaderRoot = div.styled { _, _ ->
+    display = Display.flex
 }
 
-private fun RBuilder.StyledMainAvatar(handler: StyledHandler<MainAvatarProps>) = (styled(MainAvatar)) {
-    css {
-        margin(LinearDimension.auto, 24.px)
-    }
-
-    handler()
+private val StyledMainAvatar = MainAvatar.styled { _, _ ->
+    margin = Margin(Auto.auto, 24.px)
 }
 
-private fun RBuilder.StyledName(handler: StyledHandler<TitleProps>) = (styled(LargeTitle)) {
-    css {
-        marginBottom = 0.px
-    }
-
-    handler()
+private val StyledName = LargeTitle.styled { _, _ ->
+    marginBottom = 0.px
 }
 
-private fun RBuilder.StyledSubName(handler: StyledHandler<SubtitleProps>) = (styled(Subtitle)) {
-    css {
-        marginTop = 0.px
-        marginBottom = 16.px
-    }
-
-    handler()
+private val StyledSubName = Subtitle.styled { _, _ ->
+    marginTop = 0.px
+    marginBottom = 16.px
 }
 
-private fun RBuilder.StyledPost(handler:  StyledHandler<SubtitleProps>) = (styled(LargeSubtitle)) {
-    css {
-        marginTop = 0.px
-        marginBottom  = 0.px
-    }
-
-    handler()
+private val StyledPost = LargeSubtitle.styled { _, _ ->
+    marginTop = 0.px
+    marginBottom  = 0.px
 }

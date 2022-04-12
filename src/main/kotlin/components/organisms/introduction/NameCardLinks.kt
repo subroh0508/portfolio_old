@@ -2,49 +2,55 @@
 
 package components.organisms.introduction
 
-import components.atoms.*
+import components.atoms.EmailIcon
+import components.atoms.GitHubIcon
+import components.atoms.HomeIcon
+import components.atoms.TwitterIcon
 import components.molecules.LinkWithIcon
-import components.molecules.LinkWithIconProps
-import kotlinx.css.*
-import kotlinx.html.DIV
-import kotlinx.html.SPAN
-import react.RBuilder
-import react.fc
-import styled.*
+import csstype.Auto
+import csstype.Display
+import csstype.Margin
+import csstype.px
+import emotion.styled.styled
+import react.FC
+import react.PropsWithClassName
+import react.dom.html.ReactHTML.a
+import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.span
 
-external interface NameCardLinksProps : StyledProps {
+external interface NameCardLinksProps : PropsWithClassName {
     var homepage: String
     var twitter: String
     var github: String
     var email: String
 }
 
-val NameCardLinks = fc<NameCardLinksProps> { props ->
+val NameCardLinks = FC<NameCardLinksProps> { props ->
     StyledLinksRoot {
         StyledLinkWithIcon {
-            attrs.href = PROTOCOL_HTTPS + props.homepage
-            attrs.display = props.homepage
-            attrs.icon = HomeIcon
+            href = PROTOCOL_HTTPS + props.homepage
+            display = props.homepage
+            icon = HomeIcon
         }
 
         StyledRowSpan {
             StyledLinkWithIcon {
-                attrs.href = "$PROTOCOL_HTTPS$DOMAIN_TWITTER/${props.twitter}"
-                attrs.display = props.twitter
-                attrs.icon = TwitterIcon
+                href = "$PROTOCOL_HTTPS$DOMAIN_TWITTER/${props.twitter}"
+                display = props.twitter
+                icon = TwitterIcon
             }
 
             StyledLinkWithIcon {
-                attrs.href = "$PROTOCOL_HTTPS$DOMAIN_GITHUB/${props.github}"
-                attrs.display = props.github
-                attrs.icon = GitHubIcon
+                href = "$PROTOCOL_HTTPS$DOMAIN_GITHUB/${props.github}"
+                display = props.github
+                icon = GitHubIcon
             }
         }
 
         StyledLinkWithIcon {
-            attrs.href = PROTOCOL_MAIL + props.email
-            attrs.display = props.email
-            attrs.icon = EmailIcon
+            href = PROTOCOL_MAIL + props.email
+            display = props.email
+            icon = EmailIcon
         }
     }
 }
@@ -54,30 +60,18 @@ private const val PROTOCOL_MAIL = "mailto://"
 private const val DOMAIN_TWITTER = "twitter.com"
 private const val DOMAIN_GITHUB = "github.com"
 
-private fun RBuilder.StyledLinksRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
-    css {
-        margin(LinearDimension.auto, 0.px, 24.px, 24.px)
-    }
-
-    handler()
+private val StyledLinksRoot = div.styled { _, _ ->
+    margin = Margin(Auto.auto, 0.px, 24.px, 24.px)
 }
 
-private fun RBuilder.StyledRowSpan(handler: StyledDOMBuilder<SPAN>.() -> Unit) = styledSpan {
-    css {
-        display = Display.flex
+private val StyledRowSpan = span.styled { _, _ ->
+    display = Display.flex
 
-        children(a.tagName) {
-            marginRight = 12.px
-        }
+    a {
+        marginRight = 12.px
     }
-
-    handler()
 }
 
-private fun RBuilder.StyledLinkWithIcon(handler: StyledHandler<LinkWithIconProps>) = (styled(LinkWithIcon)) {
-    css {
-        marginRight = LinearDimension.auto
-    }
-
-    handler()
+private val StyledLinkWithIcon = LinkWithIcon.styled { _, _ ->
+    marginRight = Auto.auto
 }

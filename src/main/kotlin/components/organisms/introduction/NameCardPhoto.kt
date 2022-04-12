@@ -2,47 +2,49 @@
 
 package components.organisms.introduction
 
-import kotlinx.css.*
-import kotlinx.html.DIV
+import csstype.*
+import emotion.react.css
+import emotion.styled.styled
 import materialcomponents.VAR_COLOR_SURFACE
-import react.RBuilder
-import react.fc
-import styled.StyledDOMBuilder
-import styled.StyledProps
-import styled.css
-import styled.styledDiv
+import react.FC
+import react.PropsWithClassName
+import react.dom.html.ReactHTML.div
 
-external interface NameCardPhotoProps : StyledProps {
+external interface NameCardPhotoProps : PropsWithClassName {
     var photoSrc: String
 }
 
-val NameCardPhoto = fc<NameCardPhotoProps> { props ->
-    StyledPhotoRoot { StyledImg(props.photoSrc) }
-}
-
-private fun RBuilder.StyledPhotoRoot(handler: StyledDOMBuilder<DIV>.() -> Unit) = styledDiv {
-    css {
-        margin((-24).px, 24.px, 0.px, LinearDimension.auto)
-    }
-
-    handler()
-}
-
-private fun RBuilder.StyledImg(src: String) = styledDiv {
-    css {
-        height = 280.px
-        width = 210.px
-        backgroundImage = Image("url('$src')")
-        backgroundSize = "cover"
-    }
-
-    styledDiv {
-        css {
-            backgroundImage = Image("radial-gradient(ellipse, transparent 50%, ${VAR_COLOR_SURFACE.toCustomProperty()} 72%)")
-            height = 280.px
-            width = 210.px
+val NameCardPhoto = FC<NameCardPhotoProps> { props ->
+    StyledPhotoRoot {
+        Photo {
+            src = props.photoSrc
         }
     }
 }
 
+private val StyledPhotoRoot = div.styled { _, _ ->
+    margin = Margin((-24).px, 24.px, 0.px, Auto.auto)
+}
 
+private external interface PhotoProps : PropsWithClassName {
+    var src: String
+}
+
+private val Photo = FC<PhotoProps> { props ->
+    div {
+        css {
+            height = 280.px
+            width = 210.px
+            backgroundImage = url(props.src)
+            backgroundSize = BackgroundSize.cover
+        }
+
+        div {
+            css {
+                backgroundImage = "radial-gradient(ellipse, transparent 50%, var(--$VAR_COLOR_SURFACE) 72%)".unsafeCast<Gradient>()
+                height = 280.px
+                width = 210.px
+            }
+        }
+    }
+}

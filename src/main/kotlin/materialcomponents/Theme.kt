@@ -5,9 +5,10 @@ package materialcomponents
 
 import materialcomponents.theme.ThemeProviderOption
 import react.ElementType
-import styled.StyledProps
+import react.PropsWithChildren
+import react.PropsWithClassName
 
-external interface ThemeProviderProps : StyledProps {
+external interface ThemeProviderProps : PropsWithChildren, PropsWithClassName {
     var options: ThemeProviderOption?
 }
 

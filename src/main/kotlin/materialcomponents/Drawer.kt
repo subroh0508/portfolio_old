@@ -5,9 +5,9 @@ package materialcomponents
 
 import org.w3c.dom.events.Event
 import react.ElementType
-import styled.StyledProps
+import react.PropsWithClassName
 
-external interface DrawerProps : StyledProps {
+external interface DrawerProps : PropsWithClassName {
     var open: Boolean?
     var onClose: (Event) -> Unit
     var onOpen: (Event) -> Unit
@@ -15,8 +15,8 @@ external interface DrawerProps : StyledProps {
 }
 
 external val Drawer: ElementType<DrawerProps>
-external val DrawerHeader: ElementType<StyledProps>
-external val DrawerTitle: ElementType<StyledProps>
-external val DrawerSubtitle: ElementType<StyledProps>
-external val DrawerContent: ElementType<StyledProps>
-external val DrawerAppContent: ElementType<StyledProps>
+external val DrawerHeader: ElementType<PropsWithClassName>
+external val DrawerTitle: ElementType<PropsWithClassName>
+external val DrawerSubtitle: ElementType<PropsWithClassName>
+external val DrawerContent: ElementType<PropsWithClassName>
+external val DrawerAppContent: ElementType<PropsWithClassName>

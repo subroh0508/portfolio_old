@@ -6,58 +6,64 @@ import components.atoms.LargeTitle
 import components.atoms.Paragraph
 import components.atoms.Subtitle
 import components.organisms.CardFrame
-import kotlinx.css.*
-import kotlinx.css.h4 as cssH4
-import react.RBuilder
-import react.dom.*
-import react.fc
-import styled.StyledProps
-import styled.css
-import styled.styledDiv
+import csstype.Display
+import csstype.Margin
+import csstype.pct
+import csstype.px
+import emotion.react.css
+import react.VFC
+import react.create
+import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.h4
+import react.dom.html.ReactHTML.li
+import react.dom.html.ReactHTML.ul
 import utilities.Links
 
-val BiographyCard = fc<StyledProps> {
-    child(CardFrame) {
-        child(LargeTitle) {
-            attrs.title = "Biography"
+val BiographyCard = VFC {
+    CardFrame {
+        LargeTitle {
+            title = "Biography"
         }
 
-        AboutMeContent()
-        styledDiv {
+        +AboutMeContent
+        div {
             css {
                 display = Display.flex
-
-                cssH4 { margin(vertical = 8.px) }
+                h4 {
+                    margin = Margin(vertical = 8.px, horizontal = 0.px)
+                }
             }
 
-            CareerContent()
-            EducationContent()
+            +CareerContent
+            +EducationContent
         }
     }
 }
 
-private fun RBuilder.AboutMeContent() = div {
-    child(Paragraph) {
+private val AboutMeContent = div.create {
+    Paragraph {
         +"1995年生まれ。東京の離島・伊豆大島出身のAndroidエンジニア。"
     }
 
-    child(Paragraph) {
+    Paragraph {
         +"東京高専情報工学科を卒業後、2016年4月に株式会社TOKIUMに新卒入社。"
         +"複数のAndroidアプリの新機能開発・保守運用をメインとしつつ、Rails/React ReduxによるWebアプリ開発、およびエンジニア採用の業務にも携わる。"
     }
 
-    child(Paragraph) {
+    Paragraph {
         +"Kotlinとアイドルマスターをこよなく愛する。"
         +"また、アプリケーションの設計にも興味を抱いており、DDDやClean Architectureの思想を効果的に実装へと落とし込むにはどうすべきか、日々試行錯誤を繰り返している。"
     }
 }
 
-private fun RBuilder.CareerContent() = styledDiv {
-    css { width = 50.pct }
+private val CareerContent = div.create {
+    css {
+        width = 50.pct
+    }
 
-    child(Subtitle) { attrs.subtitle = "Career" }
+    Subtitle { subtitle = "Career" }
 
-    child(Paragraph) {
+    Paragraph {
         ul {
             li {
                 +"2016.04 "
@@ -68,15 +74,16 @@ private fun RBuilder.CareerContent() = styledDiv {
     }
 }
 
-private fun RBuilder.EducationContent() = styledDiv {
-    css { width = 50.pct }
+private val EducationContent = div.create {
+    css {
+        width = 50.pct
+    }
 
-    child(Subtitle) { attrs.subtitle = "Education" }
+    Subtitle { subtitle = "Education" }
 
-    child(Paragraph) {
+    Paragraph {
         ul {
             li { +"2016.03 東京高専情報工学科卒" }
         }
     }
 }
-
