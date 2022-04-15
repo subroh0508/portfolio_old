@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 plugins {
     kotlin("multiplatform")
+    id("org.jetbrains.compose")
     `node-conventions`
 }
 
@@ -10,6 +11,7 @@ version = Packages.version
 
 repositories {
     mavenCentral()
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
 kotlin {
@@ -41,6 +43,9 @@ kotlin {
                 implementation(Libraries.Kotlin.history)
                 implementation(Libraries.Kotlin.extensions)
                 implementation(Libraries.Kotlin.emotion)
+                implementation(compose.web.core)
+                implementation(compose.runtime)
+                implementation(Libraries.decompose)
 
                 implementation(npm("@rmwc/avatar", Libraries.Npm.materialWebComponents))
                 implementation(npm("@rmwc/card", Libraries.Npm.materialWebComponents))
