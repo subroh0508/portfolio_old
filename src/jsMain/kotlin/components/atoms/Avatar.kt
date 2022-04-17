@@ -8,10 +8,18 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Span
 
 @Composable
-fun Avatar(src: String) {
+fun Avatar(
+    className: String? = null,
+    src: String,
+) {
     Style(AvatarStyle)
 
-    Span({ classes(AvatarStyle.container) }) {
+    val styles = listOfNotNull(
+        className,
+        AvatarStyle.container,
+    )
+
+    Span({ classes(*styles.toTypedArray()) }) {
         Div({
             classes(AvatarStyle.icon)
             style {
@@ -26,7 +34,6 @@ private object AvatarStyle : StyleSheet() {
     val container by style {
         width(100.px)
         height(100.px)
-        property("margin", "auto 24px")
     }
 
     val icon by style {

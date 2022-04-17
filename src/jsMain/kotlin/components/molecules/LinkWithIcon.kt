@@ -2,63 +2,48 @@
 
 package components.molecules
 
+import androidx.compose.runtime.Composable
 import components.atoms.Link
-import components.atoms.LinkProps
-import csstype.*
-import emotion.css.cx
-import emotion.styled.styled
-import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
-import react.*
-import react.dom.html.ReactHTML.span
+import components.atoms.Subtitle
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.Span
 
-external interface LinkWithIconProps : LinkProps {
-    var display: String
-    var icon: FC<PropsWithClassName>
-}
+@Composable
+fun LinkWithIcon(
+    href: String,
+    label: String,
+    content: @Composable (String) -> Unit,
+) {
+    Style(LinkWithIconSheet)
 
-val LinkWithIcon = FC<LinkWithIconProps> { props ->
-    StyledLink {
-        href = props.href
-        target = props.target
+    Link(href) {
+        Span({ classes(LinkWithIconSheet.span) }) {
+            content(LinkWithIconSheet.icon)
 
-        StyledLinkSpan {
-            +StyledLinkIcon(props.icon)
-            // TODO Replace Subtitle
-            // StyledLinkTypography { subtitle = props.display }
+            Subtitle(LinkWithIconSheet.caption, "span", label)
         }
     }
 }
 
-private val StyledLink = Link.styled { props, _ ->
-    cx(props.className)
-    color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
-}
+private object LinkWithIconSheet : StyleSheet() {
+    val span by style {
+        display(DisplayStyle.Flex)
+        alignItems("center")
+    }
 
-private val StyledLinkSpan = span.styled { _, _ ->
-    display = Display.flex
-    alignItems = AlignItems.center
-}
-
-private fun StyledLinkIcon(icon: FC<PropsWithClassName>) = icon.styled { _, _ ->
-    marginRight = 8.px
-
-    hover { textDecoration = None.none }
-}.create()
-
-/*
-private val StyledLinkTypography = FC<SubtitleProps> { props ->
-    Subtitle {
-        css {
-            marginTop = 0.px
-            marginBottom = 0.px
-
-            hover {
-                textDecoration = TextDecoration.underline
-            }
+    val icon by style {
+        marginRight(CSSUnitValueTyped(8.toFloat(), CSSUnit.px))
+        hover {
+            textDecoration("none")
         }
+    }
 
-        subtitle = props.subtitle
-        tag = "span"
+    val caption by style {
+        marginTop(CSSUnitValueTyped(0.toFloat(), CSSUnit.px))
+        marginBottom(CSSUnitValueTyped(0.toFloat(), CSSUnit.px))
+
+        hover {
+            textDecoration("underline")
+        }
     }
 }
-*/

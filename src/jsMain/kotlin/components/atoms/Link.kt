@@ -2,11 +2,17 @@
 
 package components.atoms
 
+import androidx.compose.runtime.Composable
 import csstype.Cursor
 import csstype.None
 import csstype.TextDecoration
 import emotion.react.css
 import emotion.styled.styled
+import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
+import org.jetbrains.compose.web.attributes.ATarget
+import org.jetbrains.compose.web.attributes.target
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.A
 import react.FC
 import react.PropsWithChildren
 import react.PropsWithClassName
@@ -20,6 +26,29 @@ external interface LinkProps : PropsWithChildren, PropsWithClassName {
 }
 
 external interface LinkTextProps : PropsWithChildren, PropsWithClassName
+
+@Composable
+fun Link(
+    href: String,
+    target: ATarget = ATarget.Blank,
+    content: @Composable () -> Unit,
+) {
+    Style(LinkStyle)
+
+    A(href, { target(target) }) {
+        content()
+    }
+}
+
+private object LinkStyle : StyleSheet() {
+    init {
+        "a" style {
+            textDecoration("none")
+            cursor("pointer")
+            color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
+        }
+    }
+}
 
 val Link = FC<LinkProps> { props ->
     StyledLink {

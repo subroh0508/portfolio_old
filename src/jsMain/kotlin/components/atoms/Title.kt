@@ -3,82 +3,108 @@
 package components.atoms
 
 import androidx.compose.runtime.Composable
+import kotlinx.browser.document
 import materialcomponents.*
 import org.jetbrains.compose.web.css.*
-import org.jetbrains.compose.web.dom.H2
-import org.jetbrains.compose.web.dom.H3
-import org.jetbrains.compose.web.dom.H4
-import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.dom.*
+import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
 
 @Composable
-fun LargeTitle(text: String) {
-    Style(LargeTitleSheet)
+fun LargeTitle(
+    className: String? = null,
+    tag: String = "h2",
+    text: String,
+) {
+    Style(TypographySheet)
 
-    H2 { Text(text) }
-}
+    val styles = listOfNotNull(
+        className,
+        TypographySheet.font,
+        TypographySheet.largeTitle,
+    )
 
-private object LargeTitleSheet : TypographySheet() {
-    init {
-        "h2" style {
-            fontWeight("bold")
-            fontSize(2.125.cssRem)
-            lineHeight(2.5.cssRem)
-            letterSpacing(getLetterSpacing(0.25, 2.125))
-            color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
-            marginBottom(0.px)
-        }
-    }
-}
-
-@Composable
-fun LargeSubtitle(text: String) {
-    Style(LargeSubtitleSheet)
-
-    H3 { Text(text) }
-}
-
-private object LargeSubtitleSheet : TypographySheet() {
-    init {
-        "h3" style {
-            fontWeight("normal")
-            fontSize(1.5.cssRem)
-            lineHeight(2.cssRem)
-            letterSpacing("normal")
-            color(Color("var(--$VAR_COLOR_TEXT_SECONDARY_ON_DARK)"))
-            marginTop(0.px)
-            marginBottom(0.px)
-        }
-    }
+    TagElement(
+        TypographyElementBuilder(tag),
+        { classes(*styles.toTypedArray()) },
+    ) { Text(text) }
 }
 
 @Composable
-fun Subtitle(text: String) {
-    Style(SubtitleSheet)
+fun LargeSubtitle(
+    className: String? = null,
+    tag: String = "h3",
+    text: String,
+) {
+    Style(TypographySheet)
 
-    H4 { Text(text) }
+    val styles = listOfNotNull(
+        className,
+        TypographySheet.font,
+        TypographySheet.largeSubtitle,
+    )
+
+    TagElement(
+        TypographyElementBuilder(tag),
+        { classes(*styles.toTypedArray()) },
+    ) { Text(text) }
 }
 
-private object SubtitleSheet : TypographySheet() {
-    init {
-        "h4" style {
-            fontWeight("normal")
-            fontSize(1.25.cssRem)
-            lineHeight(2.cssRem)
-            letterSpacing(getLetterSpacing(0.25, 1.25))
-            color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
-            marginTop(0.px)
-            marginBottom(16.px)
-        }
+@Composable
+fun Subtitle(
+    className: String? = null,
+    tag: String = "h4",
+    text: String,
+) {
+    Style(TypographySheet)
+
+    val styles = listOfNotNull(
+        className,
+        TypographySheet.font,
+        TypographySheet.subtitle,
+    )
+
+    TagElement(
+        TypographyElementBuilder(tag),
+        { classes(*styles.toTypedArray()) },
+    ) { Text(text) }
+}
+
+private object TypographySheet : StyleSheet() {
+    val font by style {
+        fontFamily("Roboto", "sans-serif")
+        property("-webkit-font-smoothing", "antialiased")
+    }
+
+    val largeTitle by style {
+        fontWeight("bold")
+        fontSize(2.125.cssRem)
+        lineHeight(2.5.cssRem)
+        letterSpacing(getLetterSpacing(0.25, 2.125))
+        color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
+    }
+
+    val largeSubtitle by style {
+        fontWeight("normal")
+        fontSize(1.5.cssRem)
+        lineHeight(2.cssRem)
+        letterSpacing("normal")
+        color(Color("var(--$VAR_COLOR_TEXT_SECONDARY_ON_DARK)"))
+    }
+
+    val subtitle by style {
+        fontWeight("normal")
+        fontSize(1.25.cssRem)
+        lineHeight(2.cssRem)
+        letterSpacing(getLetterSpacing(0.25, 1.25))
+        color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
     }
 }
 
-open class TypographySheet : StyleSheet() {
-    init {
-        "h2, h3, h4" style {
-            fontFamily("Roboto", "sans-serif")
-            property("-webkit-font-smoothing", "antialiased")
-        }
-    }
+private class TypographyElementBuilder(private val tagName: String) : ElementBuilder<HTMLElement> {
+    private val el: Element by lazy { document.createElement(tagName) }
+    @Suppress("UNCHECKED_CAST")
+    override fun create(): HTMLElement = el.cloneNode() as HTMLElement
 }
 
 private fun getLetterSpacing(

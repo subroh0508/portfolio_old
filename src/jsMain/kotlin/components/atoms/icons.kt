@@ -2,6 +2,7 @@
 
 package components.atoms
 
+import androidx.compose.runtime.Composable
 import csstype.Color
 import csstype.px
 import emotion.css.cx
@@ -9,9 +10,13 @@ import emotion.react.css
 import emotion.styled.styled
 import materialcomponents.Icon
 import materialcomponents.IconProps
-import org.w3c.dom.HTMLElement
+import org.jetbrains.compose.web.ExperimentalComposeWebSvgApi
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.I
+import org.jetbrains.compose.web.dom.Text
+import org.jetbrains.compose.web.svg.Path
+import org.jetbrains.compose.web.svg.Svg
 import react.*
-import react.dom.html.HTMLAttributes
 import react.dom.svg.ReactSVG.path
 import react.dom.svg.ReactSVG.svg
 
@@ -88,3 +93,46 @@ private fun svg(d: String) = VFC {
         path { this.d = d }
     }
 }.create()
+
+@Composable
+fun ComposableHomeIcon(className: String? = null) { ComposableMaterialIcon(className, "home") }
+
+@Composable
+fun ComposableEMailIcon(className: String? = null) { ComposableMaterialIcon(className, "email") }
+
+@Composable
+fun ComposableTwitterIcon(className: String? = null) { ComposableSvgIcon(className, D_TWITTER) }
+
+@Composable
+fun ComposableGitHubIcon(className: String? = null) { ComposableSvgIcon(className, D_GITHUB) }
+
+@Composable
+private fun ComposableMaterialIcon(className: String? = null, icon: String) {
+    I({
+        className?.let { classes(it) }
+        style {
+            fontFamily("Material Icons")
+            fontWeight("normal")
+            fontStyle("normal")
+            fontSize(CSSUnitValueTyped(24.toFloat(), CSSUnit.px))
+            lineHeight("1")
+            property("-webkit-font-feature-settings", "liga")
+            property("-webkit-font-smoothing", "antialiased")
+        }
+    }) { Text(icon) }
+}
+
+@OptIn(ExperimentalComposeWebSvgApi::class)
+@Composable
+private fun ComposableSvgIcon(className: String? = null, d: String) {
+    Svg("0 0 24 24", {
+        className?.let { classes(it) }
+        style {
+            width(CSSUnitValueTyped(24.toFloat(), CSSUnit.px))
+            height(CSSUnitValueTyped(24.toFloat(), CSSUnit.px))
+            property("fill", "currentcolor")
+        }
+    }) {
+        Path(d)
+    }
+}

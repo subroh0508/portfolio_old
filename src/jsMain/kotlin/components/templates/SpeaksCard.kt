@@ -23,7 +23,7 @@ val SpeaksCard = VFC {
     val containerRef = useRef<HTMLElement>(null)
 
     useCompose(containerRef) {
-        LargeTitle("Speaks")
+        LargeTitle(text = "Speaks")
     }
 
     CardFrame {

@@ -24,7 +24,7 @@ val LinksCard = VFC {
     val containerRef = useRef<HTMLElement>(null)
 
     useCompose(containerRef) {
-        LargeTitle("Link")
+        LargeTitle(text = "Link")
     }
 
     CardFrame {
