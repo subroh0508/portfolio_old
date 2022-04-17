@@ -12,6 +12,7 @@ import react.VFC
 import react.create
 import react.dom.html.ReactHTML.b
 import react.dom.html.ReactHTML.br
+import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.li
 import react.dom.html.ReactHTML.ul
 import react.useRef
@@ -27,14 +28,16 @@ val SpeaksCard = VFC {
     }
 
     CardFrame {
-        ref { containerRef.current = it }
+        div {
+            ref { containerRef.current = it }
 
-        SwitchableContents {
-            titles("2020", "2019", "2018")
+            SwitchableContents {
+                titles("2020", "2019", "2018")
 
-            +Speaks2020
-            +Speaks2019
-            +Speaks2018
+                +Speaks2020
+                +Speaks2019
+                +Speaks2018
+            }
         }
     }
 }

@@ -28,15 +28,17 @@ val LinksCard = VFC {
     }
 
     CardFrame {
-        ref { containerRef.current = it }
-
         div {
-            css {
-                display = Display.flex
-            }
+            ref { containerRef.current = it }
 
-            +OtherPortfolio
-            +SocialTipping
+            div {
+                css {
+                    display = Display.flex
+                }
+
+                +OtherPortfolio
+                +SocialTipping
+            }
         }
     }
 }

@@ -31,14 +31,16 @@ val WorksCard = VFC {
     }
 
     CardFrame {
-        ref { containerRef.current = it }
+        div {
+            ref { containerRef.current = it }
 
-        SwitchableContents {
-            titles("COLOR M@STER", "Kotlin Material-UI", "Otonashi")
+            SwitchableContents {
+                titles("COLOR M@STER", "Kotlin Material-UI", "Otonashi")
 
-            +ColorMaster
-            +KotlinMaterialUI
-            +Otonashi
+                +ColorMaster
+                +KotlinMaterialUI
+                +Otonashi
+            }
         }
     }
 }

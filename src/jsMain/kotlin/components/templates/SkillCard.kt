@@ -11,6 +11,7 @@ import org.w3c.dom.HTMLElement
 import react.VFC
 import react.create
 import react.createElement
+import react.dom.html.ReactHTML.div
 import react.useRef
 import utilities.ref
 import utilities.useCompose
@@ -23,10 +24,12 @@ val SkillCard = VFC {
     }
 
     CardFrame {
-        ref { containerRef.current = it }
+        div {
+            ref { containerRef.current = it }
 
-        +MainSkills
-        +OtherSkills
+            +MainSkills
+            +OtherSkills
+        }
     }
 }
 

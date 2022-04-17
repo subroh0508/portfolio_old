@@ -31,19 +31,21 @@ val BiographyCard = VFC {
     }
 
     CardFrame {
-        ref { containerRef.current = it }
-
-        +AboutMeContent
         div {
-            css {
-                display = Display.flex
-                h4 {
-                    margin = Margin(vertical = 8.px, horizontal = 0.px)
-                }
-            }
+            ref { containerRef.current = it }
 
-            +CareerContent
-            +EducationContent
+            +AboutMeContent
+            div {
+                css {
+                    display = Display.flex
+                    h4 {
+                        margin = Margin(vertical = 8.px, horizontal = 0.px)
+                    }
+                }
+
+                +CareerContent
+                +EducationContent
+            }
         }
     }
 }
