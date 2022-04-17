@@ -5,8 +5,8 @@ object Libraries {
     }
 
     object Kotlin {
-        internal const val version = "1.6.20"
-        private const val wrappersVersion = "pre.328-kotlin-$version"
+        internal const val version = "1.6.10"
+        private const val wrappersVersion = "pre.325-kotlin-$version"
         private const val wrappersBomVersion = "0.0.1-$wrappersVersion"
         const val wrappersBom = "org.jetbrains.kotlin-wrappers:kotlin-wrappers-bom:$wrappersBomVersion"
 
