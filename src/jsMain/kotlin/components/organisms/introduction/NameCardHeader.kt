@@ -2,18 +2,17 @@
 
 package components.organisms.introduction
 
-import components.atoms.LargeSubtitle
-import components.atoms.LargeTitle
-import components.atoms.MainAvatar
-import components.atoms.Subtitle
-import csstype.Auto
+import components.atoms.*
 import csstype.Display
-import csstype.Margin
-import csstype.px
 import emotion.styled.styled
+import org.jetbrains.compose.web.dom.Div
+import org.w3c.dom.HTMLElement
 import react.FC
 import react.PropsWithClassName
 import react.dom.html.ReactHTML.div
+import react.useRef
+import utilities.ref
+import utilities.useCompose
 
 external interface NameCardHeaderProps : PropsWithClassName {
     var name: String
@@ -25,40 +24,26 @@ external interface NameCardHeaderProps : PropsWithClassName {
 fun NameCardHeaderProps.posts(vararg post: String) { posts = post }
 
 val NameCardHeader = FC<NameCardHeaderProps> { props ->
-    HeaderRoot {
-        StyledMainAvatar
+    val containerRef = useRef<HTMLElement>(null)
+
+    useCompose(containerRef) {
+        Avatar(props.avatarSrc)
+
+        Div {
+            LargeTitle(props.name)
+            Subtitle(props.subName)
+
+            props.posts.forEach { post ->
+                LargeSubtitle(post)
+            }
+        }
     }
 
     HeaderRoot {
-        StyledMainAvatar { src = props.avatarSrc }
-
-        div {
-            StyledName { title = props.name }
-            StyledSubName { subtitle = props.subName }
-
-            props.posts.forEach { post -> StyledPost { subtitle = post } }
-        }
+        ref { containerRef.current = it }
     }
 }
 
 private val HeaderRoot = div.styled { _, _ ->
     display = Display.flex
-}
-
-private val StyledMainAvatar = MainAvatar.styled { _, _ ->
-    margin = Margin(Auto.auto, 24.px)
-}
-
-private val StyledName = LargeTitle.styled { _, _ ->
-    marginBottom = 0.px
-}
-
-private val StyledSubName = Subtitle.styled { _, _ ->
-    marginTop = 0.px
-    marginBottom = 16.px
-}
-
-private val StyledPost = LargeSubtitle.styled { _, _ ->
-    marginTop = 0.px
-    marginBottom  = 0.px
 }

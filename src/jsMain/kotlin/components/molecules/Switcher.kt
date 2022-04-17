@@ -4,8 +4,6 @@ package components.molecules
 
 import components.atoms.ChevronLeft
 import components.atoms.ChevronRight
-import components.atoms.Subtitle
-import components.atoms.SubtitleProps
 import csstype.*
 import emotion.react.css
 import emotion.styled.styled
@@ -41,7 +39,8 @@ val Switcher = FC<SwitcherProps> { props ->
             +ChevronLeft.create()
         }
 
-        StyledSubtitle { subtitle = props.title }
+        // TODO Replace Subtitle
+        // StyledSubtitle { subtitle = props.title }
 
         Rippled {
             className = CHEVRON_RIGHT_CLASS_NAME
@@ -102,6 +101,7 @@ private val Rippled = FC<RippledProps> { props ->
     }
 }
 
+/*
 private val StyledSubtitle = FC<SubtitleProps> { props ->
     Subtitle {
         css {
@@ -113,3 +113,4 @@ private val StyledSubtitle = FC<SubtitleProps> { props ->
         subtitle = props.subtitle
     }
 }
+*/

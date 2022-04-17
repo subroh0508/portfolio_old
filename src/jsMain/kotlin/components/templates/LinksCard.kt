@@ -9,18 +9,26 @@ import components.organisms.CardFrame
 import csstype.Display
 import csstype.pct
 import emotion.react.css
+import org.w3c.dom.HTMLElement
 import react.VFC
 import react.create
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.li
 import react.dom.html.ReactHTML.ul
+import react.useRef
 import utilities.Links
+import utilities.ref
+import utilities.useCompose
 
 val LinksCard = VFC {
+    val containerRef = useRef<HTMLElement>(null)
+
+    useCompose(containerRef) {
+        LargeTitle("Link")
+    }
+
     CardFrame {
-        LargeTitle {
-            title = "Link"
-        }
+        ref { containerRef.current = it }
 
         div {
             css {
@@ -36,7 +44,9 @@ val LinksCard = VFC {
 private val OtherPortfolio = div.create {
     css { width = 50.pct }
 
-    Subtitle { subtitle = "各種ポートフォリオ・SNS" }
+    div { +"各種ポートフォリオ・SNS" }
+    // TODO Replace Subtitle
+    // Subtitle { subtitle = "各種ポートフォリオ・SNS" }
 
     Paragraph {
         ul {
@@ -65,7 +75,9 @@ private val OtherPortfolio = div.create {
 private val SocialTipping = div.create {
     css { width = 50.pct }
 
-    Subtitle { subtitle = "何かめぐんでください＞＜" }
+    div { +"何かめぐんでください＞＜" }
+    // TODO Replace Subtitle
+    // Subtitle { subtitle = "何かめぐんでください＞＜" }
 
     Paragraph {
         ul {

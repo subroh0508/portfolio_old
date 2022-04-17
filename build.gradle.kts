@@ -44,6 +44,7 @@ kotlin {
                 implementation(Libraries.Kotlin.extensions)
                 implementation(Libraries.Kotlin.emotion)
                 implementation(compose.web.core)
+                implementation(compose.web.svg)
                 implementation(compose.runtime)
                 implementation(Libraries.decompose)
 

@@ -7,19 +7,27 @@ import components.atoms.Paragraph
 import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import components.organisms.titles
+import org.w3c.dom.HTMLElement
 import react.VFC
 import react.create
 import react.dom.html.ReactHTML.b
 import react.dom.html.ReactHTML.br
 import react.dom.html.ReactHTML.li
 import react.dom.html.ReactHTML.ul
+import react.useRef
 import utilities.Links
+import utilities.ref
+import utilities.useCompose
 
 val SpeaksCard = VFC {
+    val containerRef = useRef<HTMLElement>(null)
+
+    useCompose(containerRef) {
+        LargeTitle("Speaks")
+    }
+
     CardFrame {
-        LargeTitle {
-            title = "Speaks"
-        }
+        ref { containerRef.current = it }
 
         SwitchableContents {
             titles("2020", "2019", "2018")

@@ -11,19 +11,27 @@ import csstype.Margin
 import csstype.pct
 import csstype.px
 import emotion.react.css
+import org.w3c.dom.HTMLElement
 import react.VFC
 import react.create
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h4
 import react.dom.html.ReactHTML.li
 import react.dom.html.ReactHTML.ul
+import react.useRef
 import utilities.Links
+import utilities.ref
+import utilities.useCompose
 
 val BiographyCard = VFC {
+    val containerRef = useRef<HTMLElement>(null)
+
+    useCompose(containerRef) {
+        LargeTitle("Biography")
+    }
+
     CardFrame {
-        LargeTitle {
-            title = "Biography"
-        }
+        ref { containerRef.current = it }
 
         +AboutMeContent
         div {
@@ -61,7 +69,9 @@ private val CareerContent = div.create {
         width = 50.pct
     }
 
-    Subtitle { subtitle = "Career" }
+    div { +"Career" }
+    // TODO Replace Subtitle
+    // Subtitle { subtitle = "Career" }
 
     Paragraph {
         ul {
@@ -79,7 +89,9 @@ private val EducationContent = div.create {
         width = 50.pct
     }
 
-    Subtitle { subtitle = "Education" }
+    div { +"Education" }
+    // TODO Replace Subtitle
+    // Subtitle { subtitle = "Education" }
 
     Paragraph {
         ul {

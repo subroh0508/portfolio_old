@@ -10,6 +10,7 @@ import components.organisms.titles
 import csstype.*
 import emotion.react.css
 import emotion.styled.styled
+import org.w3c.dom.HTMLElement
 import react.VFC
 import react.create
 import react.dom.html.ReactHTML.b
@@ -17,13 +18,20 @@ import react.dom.html.ReactHTML.br
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.hr
 import react.dom.html.ReactHTML.img
+import react.useRef
 import utilities.Links
+import utilities.ref
+import utilities.useCompose
 
 val WorksCard = VFC {
+    val containerRef = useRef<HTMLElement>(null)
+
+    useCompose(containerRef) {
+        LargeTitle("Works")
+    }
+
     CardFrame {
-        LargeTitle {
-            title = "Works"
-        }
+        ref { containerRef.current = it }
 
         SwitchableContents {
             titles("COLOR M@STER", "Kotlin Material-UI", "Otonashi")

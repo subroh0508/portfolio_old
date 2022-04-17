@@ -7,15 +7,23 @@ import components.atoms.Paragraph
 import components.organisms.CardFrame
 import components.organisms.SkillRow
 import components.organisms.SkillTable
+import org.w3c.dom.HTMLElement
 import react.VFC
 import react.create
 import react.createElement
+import react.useRef
+import utilities.ref
+import utilities.useCompose
 
 val SkillCard = VFC {
+    val containerRef = useRef<HTMLElement>(null)
+
+    useCompose(containerRef) {
+        LargeTitle("Skill")
+    }
+
     CardFrame {
-        LargeTitle {
-            title = "Skill"
-        }
+        ref { containerRef.current = it }
 
         +MainSkills
         +OtherSkills

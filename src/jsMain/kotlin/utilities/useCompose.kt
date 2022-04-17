@@ -7,7 +7,7 @@ import org.jetbrains.compose.web.renderComposable
 import org.w3c.dom.HTMLElement
 import react.*
 
-inline fun <T : Any> PropsWithRef<T>.ref(noinline block: (HTMLElement?) -> Unit) {
+inline fun Props.ref(noinline block: (HTMLElement?) -> Unit) {
     asDynamic()["ref"] = block
 }
 

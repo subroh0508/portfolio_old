@@ -2,64 +2,86 @@
 
 package components.atoms
 
-import csstype.Color
-import csstype.FontWeight
-import emotion.react.css
-import emotion.styled.styled
+import androidx.compose.runtime.Composable
 import materialcomponents.*
-import react.PropsWithClassName
-import react.FC
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.H2
+import org.jetbrains.compose.web.dom.H3
+import org.jetbrains.compose.web.dom.H4
+import org.jetbrains.compose.web.dom.Text
 
-external interface TitleProps : PropsWithClassName {
-    var title: String
-    var tag: String?
+@Composable
+fun LargeTitle(text: String) {
+    Style(LargeTitleSheet)
+
+    H2 { Text(text) }
 }
 
-external interface SubtitleProps : PropsWithClassName {
-    var subtitle: String
-    var tag: String?
-}
-
-val LargeTitle = FC<TitleProps> { props ->
-    StyledTypographyHeadline4 {
-        css(props.className) {}
-        use(TypographyUse.headline4)
-        tag = props.tag ?: "h2"
-
-        +props.title
+private object LargeTitleSheet : TypographySheet() {
+    init {
+        "h2" style {
+            fontWeight("bold")
+            fontSize(2.125.cssRem)
+            lineHeight(2.5.cssRem)
+            letterSpacing(getLetterSpacing(0.25, 2.125))
+            color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
+            marginBottom(0.px)
+        }
     }
 }
 
-val LargeSubtitle = FC<SubtitleProps> { props ->
-    StyledTypographyHeadline5 {
-        css(props.className) {}
-        use(TypographyUse.headline5)
-        tag = props.tag ?: "h3"
+@Composable
+fun LargeSubtitle(text: String) {
+    Style(LargeSubtitleSheet)
 
-        +props.subtitle
+    H3 { Text(text) }
+}
+
+private object LargeSubtitleSheet : TypographySheet() {
+    init {
+        "h3" style {
+            fontWeight("normal")
+            fontSize(1.5.cssRem)
+            lineHeight(2.cssRem)
+            letterSpacing("normal")
+            color(Color("var(--$VAR_COLOR_TEXT_SECONDARY_ON_DARK)"))
+            marginTop(0.px)
+            marginBottom(0.px)
+        }
     }
 }
 
-val Subtitle = FC<SubtitleProps> { props ->
-    StyledTypographyHeadline6 {
-        css(props.className) {}
-        use(TypographyUse.headline6)
-        tag = props.tag ?: "h4"
+@Composable
+fun Subtitle(text: String) {
+    Style(SubtitleSheet)
 
-        +props.subtitle
+    H4 { Text(text) }
+}
+
+private object SubtitleSheet : TypographySheet() {
+    init {
+        "h4" style {
+            fontWeight("normal")
+            fontSize(1.25.cssRem)
+            lineHeight(2.cssRem)
+            letterSpacing(getLetterSpacing(0.25, 1.25))
+            color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
+            marginTop(0.px)
+            marginBottom(16.px)
+        }
     }
 }
 
-private val StyledTypographyHeadline4 = Typography.styled { _, _ ->
-    fontWeight = FontWeight.bold
-    color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
+open class TypographySheet : StyleSheet() {
+    init {
+        "h2, h3, h4" style {
+            fontFamily("Roboto", "sans-serif")
+            property("-webkit-font-smoothing", "antialiased")
+        }
+    }
 }
 
-private val StyledTypographyHeadline5 = Typography.styled { _, _ ->
-    color = Color("var(--$VAR_COLOR_TEXT_SECONDARY_ON_DARK)")
-}
-
-private val StyledTypographyHeadline6 = Typography.styled { _, _ ->
-    fontWeight = FontWeight.normal
-    color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
-}
+private fun getLetterSpacing(
+    tracking: Double,
+    fontSize: Double,
+) = (tracking / (fontSize * 16.0)) * 1.em

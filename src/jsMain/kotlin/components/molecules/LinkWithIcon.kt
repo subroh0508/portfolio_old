@@ -4,11 +4,8 @@ package components.molecules
 
 import components.atoms.Link
 import components.atoms.LinkProps
-import components.atoms.Subtitle
-import components.atoms.SubtitleProps
 import csstype.*
 import emotion.css.cx
-import emotion.react.css
 import emotion.styled.styled
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import react.*
@@ -26,7 +23,8 @@ val LinkWithIcon = FC<LinkWithIconProps> { props ->
 
         StyledLinkSpan {
             +StyledLinkIcon(props.icon)
-            StyledLinkTypography { subtitle = props.display }
+            // TODO Replace Subtitle
+            // StyledLinkTypography { subtitle = props.display }
         }
     }
 }
@@ -47,6 +45,7 @@ private fun StyledLinkIcon(icon: FC<PropsWithClassName>) = icon.styled { _, _ ->
     hover { textDecoration = None.none }
 }.create()
 
+/*
 private val StyledLinkTypography = FC<SubtitleProps> { props ->
     Subtitle {
         css {
@@ -62,3 +61,4 @@ private val StyledLinkTypography = FC<SubtitleProps> { props ->
         tag = "span"
     }
 }
+*/
