@@ -2,49 +2,38 @@
 
 package components.organisms.introduction
 
-import csstype.*
-import emotion.react.css
-import emotion.styled.styled
+import androidx.compose.runtime.Composable
 import materialcomponents.VAR_COLOR_SURFACE
-import react.FC
-import react.PropsWithClassName
-import react.dom.html.ReactHTML.div
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.Div
 
-external interface NameCardPhotoProps : PropsWithClassName {
-    var photoSrc: String
-}
-
-val NameCardPhoto = FC<NameCardPhotoProps> { props ->
-    StyledPhotoRoot {
-        Photo {
-            src = props.photoSrc
+@Composable
+fun NameCardPhoto(
+    photoSrc: String,
+) {
+    Div({
+        style {
+            property("margin", "-24px 24px 0 auto")
         }
-    }
+    }) { Photo(photoSrc) }
 }
 
-private val StyledPhotoRoot = div.styled { _, _ ->
-    margin = Margin((-24).px, 24.px, 0.px, Auto.auto)
-}
-
-private external interface PhotoProps : PropsWithClassName {
-    var src: String
-}
-
-private val Photo = FC<PhotoProps> { props ->
-    div {
-        css {
-            height = 280.px
-            width = 210.px
-            backgroundImage = url(props.src)
-            backgroundSize = BackgroundSize.cover
+@Composable
+private fun Photo(src: String) {
+    Div({
+        style {
+            height(280.px)
+            width(210.px)
+            backgroundImage("url($src)")
+            backgroundSize("cover")
         }
-
-        div {
-            css {
-                backgroundImage = "radial-gradient(ellipse, transparent 50%, var(--$VAR_COLOR_SURFACE) 72%)".unsafeCast<Gradient>()
-                height = 280.px
-                width = 210.px
+    }) {
+        Div({
+            style {
+                backgroundImage("radial-gradient(ellipse, transparent 50%, var(--$VAR_COLOR_SURFACE) 72%)")
+                height(280.px)
+                width(210.px)
             }
-        }
+        })
     }
 }

@@ -2,52 +2,39 @@
 
 package components.organisms.introduction
 
+import androidx.compose.runtime.Composable
 import components.atoms.*
-import csstype.Display
-import emotion.styled.styled
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
-import org.w3c.dom.HTMLElement
-import react.FC
-import react.PropsWithClassName
-import react.dom.html.ReactHTML.div
-import react.useRef
-import utilities.ref
-import utilities.useCompose
 
-external interface NameCardHeaderProps : PropsWithClassName {
-    var name: String
-    var subName: String
-    var avatarSrc: String
-    var posts: Array<out String>
-}
+@Composable
+fun NameCardHeader(
+    name: String,
+    subName: String,
+    avatarSrc: String,
+    posts: List<String>,
+) {
+    Style(NameCardHeaderStyle)
 
-fun NameCardHeaderProps.posts(vararg post: String) { posts = post }
-
-val NameCardHeader = FC<NameCardHeaderProps> { props ->
-    val containerRef = useRef<HTMLElement>(null)
-
-    useCompose(containerRef) {
-        Style(NameCardHeaderStyle)
-
-        Avatar(NameCardHeaderStyle.avatar, props.avatarSrc)
+    Div({ classes(NameCardHeaderStyle.header) }) {
+        Avatar(NameCardHeaderStyle.avatar, avatarSrc)
 
         Div {
-            LargeTitle(NameCardHeaderStyle.name, text = props.name)
-            Subtitle(NameCardHeaderStyle.subName, text = props.subName)
+            LargeTitle(NameCardHeaderStyle.name, text = name)
+            Subtitle(NameCardHeaderStyle.subName, text = subName)
 
-            props.posts.forEach { post ->
+            posts.forEach { post ->
                 LargeSubtitle(NameCardHeaderStyle.post, text = post)
             }
         }
     }
-
-    HeaderRoot {
-        ref { containerRef.current = it }
-    }
 }
 
 private object NameCardHeaderStyle : StyleSheet() {
+    val header by style {
+        display(DisplayStyle.Flex)
+    }
+
     val avatar by style {
         property("margin", "auto 24px")
     }
@@ -65,8 +52,4 @@ private object NameCardHeaderStyle : StyleSheet() {
         marginTop(0.px)
         marginBottom(0.px)
     }
-}
-
-private val HeaderRoot = div.styled { _, _ ->
-    display = Display.flex
 }
