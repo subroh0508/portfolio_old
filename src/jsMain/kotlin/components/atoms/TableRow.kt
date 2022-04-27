@@ -2,23 +2,33 @@
 
 package components.atoms
 
-import csstype.*
-import emotion.styled.styled
+import androidx.compose.runtime.Composable
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
-import react.dom.html.ReactHTML.td
-import react.dom.html.ReactHTML.tr
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.Tr
 
-val TableRow = tr.styled { _, _ ->
-    td {
-        position = Position.relative
+@Composable
+fun TableRow(content: @Composable () -> Unit) {
+    Style(TableRowStyle)
 
-        after {
-            asDynamic()["content"] = "''"
-            position = Position.absolute
-            left = 0.px
-            right = 0.px
-            bottom = 0.px
-            borderBottom = Border(1.px, LineStyle.solid, Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
+    Tr({ classes(TableRowStyle.row) }) {
+        content()
+    }
+}
+
+private object TableRowStyle : StyleSheet() {
+    val row by style {
+        type("td") style {
+            position(Position.Relative)
+        }
+
+        type("td::after") style {
+            property("content", "''")
+            position(Position.Absolute)
+            left(0.px)
+            right(0.px)
+            bottom(0.px)
+            property("border-bottom", "1px solid var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
         }
     }
 }

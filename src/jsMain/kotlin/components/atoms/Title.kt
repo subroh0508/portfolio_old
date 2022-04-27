@@ -9,6 +9,7 @@ import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
+import utilities.getLetterSpacing
 
 @Composable
 fun LargeTitle(
@@ -106,8 +107,3 @@ private class TypographyElementBuilder(private val tagName: String) : ElementBui
     @Suppress("UNCHECKED_CAST")
     override fun create(): HTMLElement = el.cloneNode() as HTMLElement
 }
-
-private fun getLetterSpacing(
-    tracking: Double,
-    fontSize: Double,
-) = (tracking / (fontSize * 16.0)) * 1.em

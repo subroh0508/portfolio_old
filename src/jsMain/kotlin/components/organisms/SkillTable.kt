@@ -2,72 +2,84 @@
 
 package components.organisms
 
-import components.atoms.Paragraph
+import androidx.compose.runtime.Composable
+import components.atoms.ComposableParagraph
 import components.atoms.TableRow
-import csstype.Color
-import csstype.Margin
-import csstype.px
-import emotion.react.css
-import emotion.styled.styled
+import components.organisms.ParagraphTableRowStyle.style
+import emotion.css.css
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
-import react.*
-import react.dom.html.ReactHTML.p
-import react.dom.html.ReactHTML.table
-import react.dom.html.ReactHTML.tbody
-import react.dom.html.ReactHTML.td
+import org.jetbrains.compose.web.attributes.colspan
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
 
-external interface SkillRowProps : PropsWithChildren, PropsWithClassName {
-    var name: String
-    var stars: Int
-    var since: String
-}
+@Composable
+fun SkillTable(content: @Composable () -> Unit) {
+    Style(SkillTableStyle)
 
-val SkillTable = FC<PropsWithChildren> { props ->
-    StyledTable {
-        tbody { +props.children }
-    }
-}
-
-val SkillRow = FC<SkillRowProps> { props ->
-    val stars = ((0..4).joinToString("") { i -> if (i < props.stars) "★" else "☆" })
-
-    StyledTableRow {
-        td { +props.name }
-        td { +stars }
-        td { +"${props.since}-" }
-    }
-
-    StyledTableRowParagraph {
-        +props.children
-    }
-}
-
-private val StyledTable = table.styled { _, _ ->
-    borderSpacing = 0.px
-}
-
-private val StyledTableRow = TableRow.styled { _, _ ->
-    color = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
-
-    td {
-        paddingTop = 8.px
-    }
-}
-
-private val StyledTableRowParagraph = FC<PropsWithChildren> { props ->
-    TableRow {
-        css {
-            p {
-                margin = Margin(8.px, 0.px)
-            }
+    Table({
+        classes(SkillTableStyle.table)
+    }) {
+        Tbody {
+            content()
         }
+    }
+}
 
-        td {
-            colSpan = 3
+@Composable
+fun SkillRow(
+    name: String,
+    starCount: Int,
+    since: String,
+    content: @Composable () -> Unit,
+) {
+    val stars = ((0..4).joinToString("") { i -> if (i < starCount) "★" else "☆" })
 
-            Paragraph {
-                +props.children
-            }
+    HeaderTableRow(name, stars, since)
+    ParagraphTableRow(content)
+}
+
+@Composable
+private fun HeaderTableRow(name: String, stars: String, since: String) {
+    Style(HeaderTableRowStyle)
+
+    TableRow {
+        Td({ classes(HeaderTableRowStyle.data) }) { Text(name) }
+        Td({ classes(HeaderTableRowStyle.data) }) { Text(stars) }
+        Td({ classes(HeaderTableRowStyle.data) }) { Text("$since-") }
+    }
+}
+
+@Composable
+private fun ParagraphTableRow(content: @Composable () -> Unit) {
+    Style(ParagraphTableRowStyle)
+
+    TableRow {
+        Td({
+            classes(ParagraphTableRowStyle.data)
+            colspan(3)
+        }) {
+            ComposableParagraph(content)
+        }
+    }
+}
+
+private object SkillTableStyle : StyleSheet() {
+    val table by style {
+        property("border-spacing", "0")
+    }
+}
+
+private object HeaderTableRowStyle : StyleSheet() {
+    val data by style {
+        color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
+        paddingTop(8.px)
+    }
+}
+
+private object ParagraphTableRowStyle : StyleSheet() {
+    val data by style {
+        type("p") style {
+            margin(8.px, 0.px)
         }
     }
 }
