@@ -13,6 +13,7 @@ import org.jetbrains.compose.web.attributes.ATarget
 import org.jetbrains.compose.web.attributes.target
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.A
+import org.jetbrains.compose.web.dom.Text
 import react.FC
 import react.PropsWithChildren
 import react.PropsWithClassName
@@ -29,15 +30,27 @@ external interface LinkTextProps : PropsWithChildren, PropsWithClassName
 
 @Composable
 fun Link(
+    content: Pair<String, String>,
+    target: ATarget = ATarget.Blank,
+) {
+    Style(LinkTextStyle)
+
+    val (href, label) = content
+    A(href, {
+        classes(LinkTextStyle.text)
+        target(target)
+    }) { Text(label) }
+}
+
+@Composable
+fun Link(
     href: String,
     target: ATarget = ATarget.Blank,
     content: @Composable () -> Unit,
 ) {
     Style(LinkStyle)
 
-    A(href, { target(target) }) {
-        content()
-    }
+    A(href, { target(target) }) { content() }
 }
 
 private object LinkStyle : StyleSheet() {
@@ -47,6 +60,12 @@ private object LinkStyle : StyleSheet() {
             cursor("pointer")
             color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
         }
+    }
+}
+
+private object LinkTextStyle : StyleSheet() {
+    val text by style {
+        textDecoration("underline")
     }
 }
 
