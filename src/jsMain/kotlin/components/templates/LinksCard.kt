@@ -2,21 +2,17 @@
 
 package components.templates
 
-import components.atoms.LargeTitle
-import components.atoms.Paragraph
-import components.atoms.Subtitle
+import androidx.compose.runtime.Composable
+import components.atoms.*
 import components.organisms.CardFrame
-import csstype.Display
-import csstype.pct
-import emotion.react.css
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.Li
+import org.jetbrains.compose.web.dom.Ul
 import org.w3c.dom.HTMLElement
 import react.VFC
-import react.create
 import react.dom.html.ReactHTML.div
-import react.dom.html.ReactHTML.li
-import react.dom.html.ReactHTML.ul
 import react.useRef
-import utilities.Links
 import utilities.ref
 import utilities.useCompose
 
@@ -24,68 +20,77 @@ val LinksCard = VFC {
     val containerRef = useRef<HTMLElement>(null)
 
     useCompose(containerRef) {
+        Style(LinksCardStyle)
+
         LargeTitle(text = "Link")
+
+        Div({ classes(LinksCardStyle.content) }) {
+            OtherPortfolio()
+            SocialTippling()
+        }
     }
 
     CardFrame {
         div {
             ref { containerRef.current = it }
+        }
+    }
+}
 
-            div {
-                css {
-                    display = Display.flex
+@Composable
+private fun OtherPortfolio() {
+    Div({
+        style {
+            width(50.percent)
+        }
+    }) {
+        Subtitle(text = "各種ポートフォリオ・SNS")
+
+        ComposableParagraph {
+            Ul {
+                Li {
+                    Link("https://lapras.com/public/6DDUK2W" to "LAPRAS")
                 }
-
-                +OtherPortfolio
-                +SocialTipping
+                Li {
+                    Link("https://connpass.com/user/subroh_0508/" to "connpass")
+                }
+                Li {
+                    Link("https://www.wantedly.com/users/18284613" to "Wantedly")
+                }
+                Li {
+                    Link("https://www.linkedin.com/in/subroh0508/" to "LinkedIn")
+                }
+                Li {
+                    Link("https://portfolio.forkwell.com/@subroh_0508" to "forkwell")
+                }
+                Li {
+                    Link("https://youtrust.jp/users/bf4d03404421536118399a440444aa93" to "YOUTRUST")
+                }
             }
         }
     }
 }
 
-private val OtherPortfolio = div.create {
-    css { width = 50.pct }
+@Composable
+private fun SocialTippling() {
+    Div({
+        style {
+            width(50.percent)
+        }
+    }) {
+        Subtitle(text = "何かめぐんでください＞＜")
 
-    div { +"各種ポートフォリオ・SNS" }
-    // TODO Replace Subtitle
-    // Subtitle { subtitle = "各種ポートフォリオ・SNS" }
-
-    Paragraph {
-        ul {
-            li {
-                Links("https://lapras.com/public/6DDUK2W" to "LAPRAS")
-            }
-            li {
-                Links("https://connpass.com/user/subroh_0508/" to "connpass")
-            }
-            li {
-                Links("https://www.wantedly.com/users/18284613" to "Wantedly")
-            }
-            li {
-                Links("https://www.linkedin.com/in/subroh0508/" to "LinkedIn")
-            }
-            li {
-                Links("https://portfolio.forkwell.com/@subroh_0508" to "forkwell")
-            }
-            li {
-                Links("https://youtrust.jp/users/bf4d03404421536118399a440444aa93" to "YOUTRUST")
+        ComposableParagraph {
+            Ul {
+                Li {
+                    Link("https://www.amazon.jp/hz/wishlist/ls/34TBOXPWOUD8W" to "欲しいものリスト")
+                }
             }
         }
     }
 }
-
-private val SocialTipping = div.create {
-    css { width = 50.pct }
-
-    div { +"何かめぐんでください＞＜" }
-    // TODO Replace Subtitle
-    // Subtitle { subtitle = "何かめぐんでください＞＜" }
-
-    Paragraph {
-        ul {
-            li {
-                Links("https://www.amazon.jp/hz/wishlist/ls/34TBOXPWOUD8W" to "欲しいものリスト")
-            }
-        }
+private object LinksCardStyle : StyleSheet() {
+    val content by style {
+        display(DisplayStyle.Flex)
     }
 }
