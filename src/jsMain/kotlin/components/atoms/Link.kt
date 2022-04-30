@@ -29,6 +29,14 @@ external interface LinkProps : PropsWithChildren, PropsWithClassName {
 external interface LinkTextProps : PropsWithChildren, PropsWithClassName
 
 @Composable
+fun Links(vararg links: Pair<String, String>) = links.forEachIndexed { i, link ->
+    Link(link)
+    if (i != links.size - 1) {
+        Text("/")
+    }
+}
+
+@Composable
 fun Link(
     content: Pair<String, String>,
     target: ATarget = ATarget.Blank,

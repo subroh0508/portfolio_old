@@ -2,24 +2,16 @@
 
 package components.templates
 
-import components.atoms.LargeTitle
-import components.atoms.Paragraph
+import androidx.compose.runtime.Composable
+import components.atoms.*
 import components.organisms.CardFrame
 import components.organisms.SwitchableContents
-import components.organisms.titles
-import csstype.*
-import emotion.react.css
-import emotion.styled.styled
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.HTMLElement
 import react.VFC
-import react.create
-import react.dom.html.ReactHTML.b
-import react.dom.html.ReactHTML.br
 import react.dom.html.ReactHTML.div
-import react.dom.html.ReactHTML.hr
-import react.dom.html.ReactHTML.img
 import react.useRef
-import utilities.Links
 import utilities.ref
 import utilities.useCompose
 
@@ -28,140 +20,145 @@ val WorksCard = VFC {
 
     useCompose(containerRef) {
         LargeTitle(text = "Works")
+
+        SwitchableContents(
+            listOf("COLOR M@STER", "Kotlin Material-UI", "Otonashi"),
+            { ColorMaster() },
+            { KotlinMaterialUI() },
+            { Otonashi() },
+        )
     }
 
     CardFrame {
         div {
             ref { containerRef.current = it }
-
-            SwitchableContents {
-                titles("COLOR M@STER", "Kotlin Material-UI", "Otonashi")
-
-                +ColorMaster
-                +KotlinMaterialUI
-                +Otonashi
-            }
         }
     }
 }
 
-private val ColorMaster = div.create {
-    css { display = Display.flex }
-
-    +ScreenShot("./colormaster_overview.png")
+@Composable
+private fun ColorMaster() = Div({
+    style {
+        display(DisplayStyle.Flex)
+    }
+}) {
+    ScreenShot("./colormaster_overview.png")
     Introduction {
-        Paragraph {
-            +"アイドルマスターに登場するキャラクターのイメージカラーに対する、様々な機能を提供するアプリケーションです。"
-            +"現在、「検索」「ペンライト」の2つの機能が実装されています。"
+        ComposableParagraph {
+            Text("アイドルマスターに登場するキャラクターのイメージカラーに対する、様々な機能を提供するアプリケーションです。")
+            Text("現在、「検索」「ペンライト」の2つの機能が実装されています。")
         }
-        Paragraph {
-            +"実装には"
-            Links("https://kotlinlang.org/docs/reference/multiplatform.html" to "Kotlin Multiplatform")
-            +"を利用しており、"
-            Links("https://imas-colormaster.web.app/" to "Webアプリ版")
-            +"が既に公開済です。"
+        ComposableParagraph {
+            Text("実装には")
+            Link("https://kotlinlang.org/docs/reference/multiplatform.html" to "Kotlin Multiplatform")
+            Text("を利用しており、")
+            Link("https://imas-colormaster.web.app/" to "Webアプリ版")
+            Text("が既に公開済です。")
         }
-
-        hr {}
-
-        Paragraph {
-            b { +"使用ライブラリ: " }
+        Hr {}
+        ComposableParagraph {
+            B { Text("使用ライブラリ: ") }
             Links(
-                    "https://react.i18next.com/" to "react-i18next",
-                    "https://github.com/subroh0508/kotlin-material-ui" to "kotlin-material-ui"
+                "https://react.i18next.com/" to "react-i18next",
+                "https://github.com/subroh0508/kotlin-material-ui" to "kotlin-material-ui",
             )
-            br {}
+            Br {}
             Links(
-                    "https://ktor.io/" to "Ktor",
-                    "https://github.com/Kotlin/kotlinx.serialization" to "kotlinx.serialization",
-                    "https://kodein.org/Kodein-DI/" to "Kodein-DI"
+                "https://ktor.io/" to "Ktor",
+                "https://github.com/Kotlin/kotlinx.serialization" to "kotlinx.serialization",
+                "https://kodein.org/Kodein-DI/" to "Kodein-DI"
             )
-            br {}
-            b { +"GitHub: " }
+            Br {}
+            B { Text("GitHub: ") }
             Links("https://github.com/subroh0508/colormaster" to "subroh0508/colormaster")
         }
     }
 }
 
-private val KotlinMaterialUI = div.create {
-    css { display = Display.flex }
-
-    +ScreenShot("./kotlin_material_ui_overview.png")
+@Composable
+private fun KotlinMaterialUI() = Div({
+    style {
+        display(DisplayStyle.Flex)
+    }
+}) {
+    ScreenShot("./kotlin_material_ui_overview.png")
     Introduction {
-        Paragraph {
-            +"React.js向けUIライブラリ「"
+        ComposableParagraph {
+            Text("React.js向けUIライブラリ「")
             Links("https://material-ui.com/" to "Material-UI")
-            +"」のKotlin/JS用ラッパーライブラリです。"
+            Text("」のKotlin/JS用ラッパーライブラリです。")
         }
 
-        Paragraph {
-            +"Material-UIが提供する100種類以上のUIコンポーネント、およびテーマカスタマイズ用関数を"
-            +"Kotlin/JS上で即座に利用することができます。"
+        ComposableParagraph {
+            Text("Material-UIが提供する100種類以上のUIコンポーネント、およびテーマカスタマイズ用関数を")
+            Text("Kotlin/JS上で即座に利用することができます。")
         }
 
-        hr {}
+        Hr {}
 
-        Paragraph {
-            b { +"使用ライブラリ: " }
+        ComposableParagraph {
+            B { Text("使用ライブラリ: ") }
             Links(
-                    "https://material-ui.com/" to "Material-UI",
-                    "https://github.com/JetBrains/kotlin-wrappers" to "kotlin-wrappers"
+                "https://material-ui.com/" to "Material-UI",
+                "https://github.com/JetBrains/kotlin-wrappers" to "kotlin-wrappers"
             )
-            br {}
-            b { +"GitHub: " }
+            Br {}
+            B { Text("GitHub: ") }
             Links("https://github.com/subroh0508/kotlin-material-ui" to "subroh0508/kotlin-material-ui")
         }
     }
 }
 
-private val Otonashi = div.create {
-    css { display = Display.flex }
-
-    +ScreenShot("./otonashi_overview.png")
+@Composable
+private fun Otonashi() = Div({
+    style {
+        display(DisplayStyle.Flex)
+    }
+}) {
+    ScreenShot("./otonashi_overview.png")
     Introduction {
-        Paragraph {
-            +"RDF用クエリ言語「"
+        ComposableParagraph {
+            Text("RDF用クエリ言語「")
             Links("https://www.w3.org/TR/rdf-sparql-query/" to "SPARQL")
-            +"」のKotlin製クライアントライブラリです。"
+            Text("」のKotlin製クライアントライブラリです。")
         }
 
-        Paragraph {
-            +"SPARQLのトリプルパターンを直感的な文法で記述することができます。"
+        ComposableParagraph {
+            Text("SPARQLのトリプルパターンを直感的な文法で記述することができます。")
         }
 
-        Paragraph {
-            +"また、"
+        ComposableParagraph {
+            Text("また、")
             Links("https://sparql.crssnky.xyz/imas/" to "im@sparql")
-            +"等、特定のSPARQLエンドポイントに対する語彙補完機能も試験的に備えています。"
+            Text("等、特定のSPARQLエンドポイントに対する語彙補完機能も試験的に備えています。")
         }
 
-        hr {}
+        Hr {}
 
-        Paragraph {
-            b { +"GitHub: " }
+        ComposableParagraph {
+            B { Text("GitHub: ") }
             Links("https://github.com/subroh0508/otonashi" to "subroh0508/otonashi")
         }
     }
 }
-
-private fun ScreenShot(path: String) = div.create {
-    css {
-        width = 50.pct
-        height = 290.px
-        margin = Margin(vertical = 16.px, horizontal = 0.px)
+@Composable
+private fun ScreenShot(path: String) = Div({
+    style {
+        width(50.percent)
+        height(290.px)
+        margin(16.px, 0.px)
     }
-
-    img {
-        css {
-            width = 90.pct
-            maxHeight = 100.pct
-            objectFit = ObjectFit.contain
+}) {
+    Img(path, attrs = {
+        style {
+            width(90.percent)
+            maxHeight(100.percent)
+            property("object-fit", "contain")
         }
-
-        src = path
-    }
+    })
 }
 
-private val Introduction get() = div.styled { _, _ ->
-    width = 50.pct
-}
+@Composable
+private fun Introduction(content: @Composable () -> Unit) = Div({
+    style { width(50.percent) }
+}) { content() }

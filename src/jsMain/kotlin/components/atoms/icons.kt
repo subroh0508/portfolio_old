@@ -101,6 +101,12 @@ fun ComposableHomeIcon(className: String? = null) { ComposableMaterialIcon(class
 fun ComposableEMailIcon(className: String? = null) { ComposableMaterialIcon(className, "email") }
 
 @Composable
+fun ComposableChevronLeft(className: String? = null) { ComposableMaterialIcon(className, "chevron_left") }
+
+@Composable
+fun ComposableChevronRight(className: String? = null) { ComposableMaterialIcon(className, "chevron_right") }
+
+@Composable
 fun ComposableTwitterIcon(className: String? = null) { ComposableSvgIcon(className, D_TWITTER) }
 
 @Composable
