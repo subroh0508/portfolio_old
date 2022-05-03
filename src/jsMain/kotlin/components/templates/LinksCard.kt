@@ -9,31 +9,16 @@ import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Li
 import org.jetbrains.compose.web.dom.Ul
-import org.w3c.dom.HTMLElement
-import react.VFC
-import react.dom.html.ReactHTML.div
-import react.useRef
-import utilities.ref
-import utilities.useCompose
 
-val LinksCard = VFC {
-    val containerRef = useRef<HTMLElement>(null)
+@Composable
+fun LinksCard() = CardFrame {
+    Style(LinksCardStyle)
 
-    useCompose(containerRef) {
-        Style(LinksCardStyle)
+    LargeTitle(text = "Link")
 
-        LargeTitle(text = "Link")
-
-        Div({ classes(LinksCardStyle.content) }) {
-            OtherPortfolio()
-            SocialTippling()
-        }
-    }
-
-    CardFrame {
-        div {
-            ref { containerRef.current = it }
-        }
+    Div({ classes(LinksCardStyle.content) }) {
+        OtherPortfolio()
+        SocialTippling()
     }
 }
 

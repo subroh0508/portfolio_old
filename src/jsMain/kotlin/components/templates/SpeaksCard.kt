@@ -9,32 +9,17 @@ import components.atoms.Link
 import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.HTMLElement
-import react.VFC
-import react.dom.html.ReactHTML.div
-import react.useRef
-import utilities.ref
-import utilities.useCompose
 
-val SpeaksCard = VFC {
-    val containerRef = useRef<HTMLElement>(null)
+@Composable
+fun SpeaksCard() = CardFrame {
+    LargeTitle(text = "Speaks")
 
-    useCompose(containerRef) {
-        LargeTitle(text = "Speaks")
-
-        SwitchableContents(
-            listOf("2020", "2019", "2018"),
-            { Speaks2020() },
-            { Speaks2019() },
-            { Speaks2018() },
-        )
-    }
-
-    CardFrame {
-        div {
-            ref { containerRef.current = it }
-        }
-    }
+    SwitchableContents(
+        listOf("2020", "2019", "2018"),
+        { Speaks2020() },
+        { Speaks2019() },
+        { Speaks2018() },
+    )
 }
 
 @Composable

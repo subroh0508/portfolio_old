@@ -8,32 +8,17 @@ import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.HTMLElement
-import react.VFC
-import react.dom.html.ReactHTML.div
-import react.useRef
-import utilities.ref
-import utilities.useCompose
 
-val WorksCard = VFC {
-    val containerRef = useRef<HTMLElement>(null)
+@Composable
+fun WorksCard() = CardFrame {
+    LargeTitle(text = "Works")
 
-    useCompose(containerRef) {
-        LargeTitle(text = "Works")
-
-        SwitchableContents(
-            listOf("COLOR M@STER", "Kotlin Material-UI", "Otonashi"),
-            { ColorMaster() },
-            { KotlinMaterialUI() },
-            { Otonashi() },
-        )
-    }
-
-    CardFrame {
-        div {
-            ref { containerRef.current = it }
-        }
-    }
+    SwitchableContents(
+        listOf("COLOR M@STER", "Kotlin Material-UI", "Otonashi"),
+        { ColorMaster() },
+        { KotlinMaterialUI() },
+        { Otonashi() },
+    )
 }
 
 @Composable

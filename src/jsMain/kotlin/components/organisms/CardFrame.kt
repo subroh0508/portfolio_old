@@ -2,26 +2,25 @@
 
 package components.organisms
 
+import androidx.compose.runtime.Composable
 import components.atoms.Card
-import csstype.Auto
 import csstype.ClassName
-import csstype.Margin
-import csstype.px
-import emotion.react.css
-import emotion.styled.styled
-import react.FC
-import react.PropsWithChildren
+import org.jetbrains.compose.web.css.Style
+import org.jetbrains.compose.web.css.StyleSheet
 
 val CARD_FRAME_CLASS = ClassName("card-frame")
 
-val CardFrame = FC<PropsWithChildren> { props ->
-    StyledCard {
-        css(CARD_FRAME_CLASS) {}
+@Composable
+fun CardFrame(content: @Composable () -> Unit) {
+    Style(CardFrameStyle)
 
-        +props.children
+    Card("card-frame", CardFrameStyle.card) {
+        content()
     }
 }
 
-private val StyledCard = Card.styled { _, _ ->
-    margin = Margin(0.px, Auto.auto)
+private object CardFrameStyle : StyleSheet() {
+    val card by style {
+        property("margin", "0 auto")
+    }
 }

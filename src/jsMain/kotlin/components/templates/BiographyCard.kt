@@ -10,35 +10,21 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Li
 import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.Ul
-import org.w3c.dom.HTMLElement
-import react.VFC
-import react.dom.html.ReactHTML.div
-import react.useRef
-import utilities.ref
-import utilities.useCompose
 
-val BiographyCard = VFC {
-    val containerRef = useRef<HTMLElement>(null)
+@Composable
+fun BiographyCard() = CardFrame {
+    Style(BiographyCardStyle)
 
-    useCompose(containerRef) {
-        Style(BiographyCardStyle)
+    LargeTitle(text = "Biography")
 
-        LargeTitle(text = "Biography")
+    AboutMeContent()
 
-        AboutMeContent()
-
-        Div({ classes(BiographyCardStyle.content) }) {
-            CareerContent()
-            EducationContent()
-        }
-    }
-
-    CardFrame {
-        div {
-            ref { containerRef.current = it }
-        }
+    Div({ classes(BiographyCardStyle.content) }) {
+        CareerContent()
+        EducationContent()
     }
 }
+
 
 @Composable
 private fun AboutMeContent() {

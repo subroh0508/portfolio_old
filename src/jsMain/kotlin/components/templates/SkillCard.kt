@@ -9,28 +9,13 @@ import components.organisms.CardFrame
 import components.organisms.SkillRow
 import components.organisms.SkillTable
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLElement
-import react.VFC
-import react.dom.html.ReactHTML.div
-import react.useRef
-import utilities.ref
-import utilities.useCompose
 
-val SkillCard = VFC {
-    val containerRef = useRef<HTMLElement>(null)
+@Composable
+fun SkillCard() = CardFrame {
+    LargeTitle(text = "Skill")
 
-    useCompose(containerRef) {
-        LargeTitle(text = "Skill")
-
-        MainSkills()
-        OtherSkills()
-    }
-
-    CardFrame {
-        div {
-            ref { containerRef.current = it }
-        }
-    }
+    MainSkills()
+    OtherSkills()
 }
 
 @Composable
