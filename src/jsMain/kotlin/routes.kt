@@ -1,3 +1,6 @@
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import components.atoms.MainDrawerListItems
 import components.templates.*
 import csstype.pct
 import emotion.react.css
@@ -10,103 +13,41 @@ import react.router.Route
 import react.router.Routes
 import react.router.dom.BrowserRouter
 import react.useRef
+import routes.Page
+import routes.Router
 import utilities.ref
+import utilities.subscribeAsState
 import utilities.useCompose
 
-val routing = VFC {
-    BrowserRouter {
-        AppFrame {
-            navItems(
-                { to = "/"; title = "Home" },
-                { to = "/biography"; title = "Biography" },
-                { to = "/skill"; title = "Skill" },
-                { to = "/works?p=0"; title = "Works" },
-                { to = "/speaks?p=0"; title = "Speaks" },
-                { to = "/link"; title = "Link" },
-            )
+@Composable
+fun Routing(
+    router: Router,
+) {
+    val routerState by router.routerState.subscribeAsState()
 
-            Routes {
-                Route {
-                    path = "/"
-                    element = VFC {
-                        val containerRef = useRef<HTMLElement>(null)
-
-                        useCompose(containerRef) {
-                            IntroductionNameCard()
-                        }
-
-                        div {
-                            css { height = 100.pct }
-                            ref { containerRef.current = it }
-                        }
-                    }.create()
-                }
-
-                Route {
-                    path = "/biography"
-                    element = VFC {
-                        val containerRef = useRef<HTMLElement>(null)
-
-                        useCompose(containerRef) {
-                            BiographyCard()
-                        }
-
-                        span { ref { containerRef.current = it } }
-                    }.create()
-                }
-
-                Route {
-                    path = "/skill"
-                    element = VFC {
-                        val containerRef = useRef<HTMLElement>(null)
-
-                        useCompose(containerRef) {
-                            SkillCard()
-                        }
-
-                        span { ref { containerRef.current = it } }
-                    }.create()
-                }
-
-                Route {
-                    path = "/works"
-                    element = VFC {
-                        val containerRef = useRef<HTMLElement>(null)
-
-                        useCompose(containerRef) {
-                            WorksCard()
-                        }
-
-                        span { ref { containerRef.current = it } }
-                    }.create()
-                }
-
-                Route {
-                    path = "/speaks"
-                    element = VFC {
-                        val containerRef = useRef<HTMLElement>(null)
-
-                        useCompose(containerRef) {
-                            SpeaksCard()
-                        }
-
-                        span { ref { containerRef.current = it } }
-                    }.create()
-                }
-
-                Route {
-                    path = "/link"
-                    element = VFC {
-                        val containerRef = useRef<HTMLElement>(null)
-
-                        useCompose(containerRef) {
-                            LinksCard()
-                        }
-
-                        span { ref { containerRef.current = it } }
-                    }.create()
+    AppFrame(
+        menu = {
+            MainDrawerListItems(
+                Page.forMenu(),
+            ) {
+                when (it) {
+                    is Page.Introduction -> "/" to "Home"
+                    is Page.Biography -> "/biography" to "Biography"
+                    is Page.Skill -> "/skill" to "Skill"
+                    is Page.Works -> "/works?p=0" to "Works"
+                    is Page.Speaks -> "/speaks?p=0" to "Speaks"
+                    is Page.Link -> "/link" to "Link"
                 }
             }
         }
+    ) {
+        when (routerState.activeChild.instance) {
+            is Page.Introduction -> IntroductionNameCard()
+            is Page.Biography -> BiographyCard()
+            is Page.Skill -> SkillCard()
+            is Page.Works -> WorksCard()
+            is Page.Speaks -> SpeaksCard()
+            is Page.Link -> LinksCard()
+        }
     }
-}.create()
+}

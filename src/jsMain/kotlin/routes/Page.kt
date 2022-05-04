@@ -11,11 +11,7 @@ sealed class Page private constructor(val path: String) : Parcelable {
     object Link : Page(BasePath.LINK.toString())
 
     companion object {
-        operator fun invoke(path: String): Page {
-            val (base, query) = path.split("?").let {
-                it.first() to it.lastOrNull()
-            }
-
+        operator fun invoke(base: String, query: String?): Page {
             val index = """p=(\d)""".toRegex().find(query ?: "")?.value?.toIntOrNull()
             val basePath = BasePath.values().find {
                 base == "/${it.toString().split("?").first()}"
@@ -30,6 +26,22 @@ sealed class Page private constructor(val path: String) : Parcelable {
                 else -> Introduction
             }
         }
+        operator fun invoke(path: String): Page {
+            val (base, query) = path.split("?").let {
+                it.first() to it.lastOrNull()
+            }
+
+            return invoke(base, query)
+        }
+
+        fun forMenu() = listOf(
+            Introduction,
+            Biography,
+            Skill,
+            Works(),
+            Speaks(),
+            Link,
+        )
     }
 }
 

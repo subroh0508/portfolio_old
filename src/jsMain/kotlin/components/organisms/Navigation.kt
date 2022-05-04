@@ -2,25 +2,14 @@
 
 package components.organisms
 
-import components.atoms.MainDrawerHeader
-import components.atoms.MainDrawerHeaderProps
-import components.atoms.MainDrawerListProps
-import components.atoms.MainDrawerLists
-import components.atoms.MainDrawer
-import react.FC
-import react.PropsWithChildren
+import androidx.compose.runtime.Composable
+import components.atoms.*
 
-external interface NavigationProps : PropsWithChildren, MainDrawerHeaderProps, MainDrawerListProps
-
-val Navigation = FC<NavigationProps> { props ->
-    MainDrawer {
-        MainDrawerHeader {
-            title = props.title
-        }
-        MainDrawerLists {
-            selectedIndex = props.selectedIndex
-
-            +props.children
-        }
-    }
+@Composable
+fun Navigation(
+    title: @Composable () -> Unit,
+    menu: @Composable () -> Unit,
+) = MainDrawer {
+    MainDrawerHeader(title)
+    MainDrawerContent(menu)
 }

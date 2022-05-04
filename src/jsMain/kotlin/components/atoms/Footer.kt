@@ -8,24 +8,6 @@ import org.jetbrains.compose.web.dom.Br
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
-import org.w3c.dom.HTMLElement
-import react.VFC
-import react.dom.html.ReactHTML.div
-import react.useRef
-import utilities.ref
-import utilities.useCompose
-
-val Footer = VFC {
-    val containerRef = useRef<HTMLElement>(null)
-
-    useCompose(containerRef) {
-        ComposableFooter()
-    }
-
-    div {
-        ref { containerRef.current = it }
-    }
-}
 
 @Composable
 fun ComposableFooter() {

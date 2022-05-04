@@ -2,59 +2,57 @@
 
 package components.templates
 
+import androidx.compose.runtime.Composable
 import components.atoms.*
-import components.organisms.CARD_FRAME_CLASS
 import components.organisms.Navigation
-import csstype.Display
-import csstype.number
-import csstype.pct
-import csstype.px
-import emotion.styled.styled
-import kotlinx.js.jso
-import react.FC
-import react.PropsWithChildren
-import react.PropsWithClassName
-import react.dom.html.ReactHTML.div
+import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.Span
+import org.jetbrains.compose.web.dom.Text
 
-external interface AppFrameProps : PropsWithChildren, PropsWithClassName {
-    var drawerProps: Array<out MainDrawerListItemProps>
-}
+@Composable
+fun AppFrame(
+    menu: @Composable () -> Unit,
+    content: @Composable () -> Unit,
+) {
+    Style(AppFrameStyle)
 
-fun AppFrameProps.navItems(vararg block: MainDrawerListItemProps.() -> Unit) {
-    drawerProps = block.map { jso(it) }.toTypedArray()
-}
+    Div({ classes(AppFrameStyle.container) }) {
+        Navigation(
+            title = { AppFrameTitle() },
+            menu = { menu() },
+        )
 
-val AppFrame = FC<AppFrameProps> { props ->
-    StyledRowDiv {
-        Navigation {
-            title("Subroh Nishikori's", "Portfolio")
-            selectedIndex = 0
-
-            props.drawerProps.forEach { drawerProps ->
-                MainDrawerListItem {
-                    +drawerProps
-                }
-            }
-        }
-
-        StyledContent {
-            +props.children
-
-            Footer {}
-        }
+        AppFrameContent(content)
     }
 }
 
-private val StyledRowDiv = div.styled { _, _ ->
-    display = Display.flex
-    height = 100.pct
+@Composable
+private fun AppFrameTitle() {
+    Span { Text("Subroh Nishikori's") }
+    Span { Text("Portfolio") }
 }
 
-private val StyledContent = div.styled { _, _ ->
-    flexGrow = number(1.0)
-    marginLeft = 224.px // MAIN_DRAWER_WIDTH
+@Composable
+private fun AppFrameContent(content: @Composable () -> Unit) = Div({
+    classes(AppFrameStyle.content)
+}) {
+    content()
+    ComposableFooter()
+}
 
-    CARD_FRAME_CLASS {
-        marginTop = 64.px
+private object AppFrameStyle : StyleSheet() {
+    val container by style {
+        display(DisplayStyle.Flex)
+        height(100.percent)
+    }
+
+    val content by style {
+        flexGrow(1.0)
+        marginLeft(224.px)
+
+        className("card-frame") style {
+            marginTop(64.px)
+        }
     }
 }

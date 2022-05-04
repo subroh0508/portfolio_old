@@ -15,7 +15,7 @@ class Router(
     webHistoryController: WebHistoryController = DefaultWebHistoryController(),
 ) : ComponentContext by context {
     private val router = context.router(
-        initialStack = { listOf<Page>() },
+        initialStack = { listOf(pathname?.let { Page(it, query) } ?: Page.Introduction) },
         handleBackButton = true,
         key = "router",
     ) { page, _ -> page }
@@ -30,12 +30,8 @@ class Router(
 
     val routerState = router.state
 
-    fun toIntroduction() { push(Page.Introduction) }
-    fun toBiography() { push(Page.Biography) }
-    fun toSkill() { push(Page.Skill) }
     fun toWorks(index: Int) { push(Page.Works(index)) }
     fun toSpeaks(index: Int) { push(Page.Speaks(index)) }
-    fun toLink() { push(Page.Link) }
 
     private fun push(page: Page) {
         if (routerState.value.activeChild.configuration == page) {

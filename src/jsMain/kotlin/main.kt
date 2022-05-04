@@ -1,32 +1,45 @@
 @file:Suppress("FunctionName")
 
-import emotion.react.Global
-import emotion.react.styles
-import kotlinx.browser.document
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
+import com.arkivanov.decompose.DefaultComponentContext
+import com.arkivanov.essenty.lifecycle.LifecycleRegistry
+import com.arkivanov.essenty.lifecycle.destroy
+import com.arkivanov.essenty.lifecycle.resume
+import kotlinx.browser.window
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import materialcomponents.VAR_COLOR_TEXT_SECONDARY_ON_DARK
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.renderComposable
-import react.*
-import react.dom.client.createRoot
-import react.dom.html.ReactHTML
-import react.dom.html.ReactHTML.a
-import react.dom.html.ReactHTML.body
-import react.dom.html.ReactHTML.hr
-import react.dom.html.ReactHTML.html
-import react.dom.html.ReactHTML.p
-import themes.ThemeProvider
+import routes.Router
 
 fun main() {
-    renderComposable(rootElementId = GlobalStyleSheet.ELEMENT_ID) {
-        Style(GlobalStyleSheet)
+    renderComposable(
+        rootElementId = GlobalStyleSheet.ELEMENT_ID,
+    ) { App() }
+}
+
+@Composable
+private fun App() {
+    val lifecycle = remember { LifecycleRegistry() }
+    val router = remember {
+        Router(
+            DefaultComponentContext(lifecycle = lifecycle),
+            window.location.pathname,
+            window.location.search,
+        )
     }
-    val root = document.getElementById("root") ?: return
-    createRoot(root).render(
-        GlobalStyled {
-            ThemeProvider { +routing }
-        },
-    )
+
+    DisposableEffect(true) {
+        lifecycle.resume()
+
+        onDispose { lifecycle.destroy() }
+    }
+
+    Style(GlobalStyleSheet)
+
+    Routing(router)
 }
 
 object GlobalStyleSheet : StyleSheet() {
@@ -62,33 +75,3 @@ object GlobalStyleSheet : StyleSheet() {
         }
     }
 }
-
-private fun GlobalStyled(block: ChildrenBuilder.() -> Unit) = VFC {
-    Global {
-        styles {
-            html {
-                height = 100.pct
-                margin = Margin(0.px, 0.px)
-            }
-
-            body {
-                height = 100.pct
-                margin = Margin(0.px, 0.px)
-                backgroundColor = Color("#121212")
-            }
-            "div#root" {
-                height = 100.pct
-            }
-            p {
-                a { color = Color("var(--$VAR_COLOR_TEXT_SECONDARY_ON_DARK)") }
-            }
-            hr {
-                height = 1.px
-                backgroundColor = Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)")
-                border = 0.px
-            }
-        }
-    }
-
-    block()
-}.create()
