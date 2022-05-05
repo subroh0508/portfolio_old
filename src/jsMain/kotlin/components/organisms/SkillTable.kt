@@ -5,8 +5,6 @@ package components.organisms
 import androidx.compose.runtime.Composable
 import components.atoms.ComposableParagraph
 import components.atoms.TableRow
-import components.organisms.ParagraphTableRowStyle.style
-import emotion.css.css
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import org.jetbrains.compose.web.attributes.colspan
 import org.jetbrains.compose.web.css.*

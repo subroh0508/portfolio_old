@@ -4,13 +4,9 @@ package components.molecules
 
 import androidx.compose.runtime.Composable
 import components.atoms.*
-import csstype.ClassName
 import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Span
-
-val CHEVRON_LEFT_CLASS_NAME = ClassName("chevron-left")
-val CHEVRON_RIGHT_CLASS_NAME = ClassName("chevron-right")
 
 @Composable
 fun Switcher(

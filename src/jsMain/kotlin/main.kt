@@ -13,6 +13,7 @@ import materialcomponents.VAR_COLOR_TEXT_SECONDARY_ON_DARK
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.renderComposable
 import routes.Router
+import themes.MaterialTheme
 
 fun main() {
     renderComposable(
@@ -42,7 +43,7 @@ private fun App() {
     Routing(router)
 }
 
-object GlobalStyleSheet : StyleSheet() {
+object GlobalStyleSheet : StyleSheet(MaterialTheme) {
     const val ELEMENT_ID = "root"
 
     init {
