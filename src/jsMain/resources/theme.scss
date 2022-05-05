@@ -1,0 +1,10 @@
+@use '@material/theme' with(
+  $primary: #0D386D,
+  $surface: #0D386D,
+  $background: #121212,
+);
+
+:root {
+  --mdc-theme-text-primary-on-dark: #99B7DC;
+  --mdc-theme-text-secondary-on-dark: #3B91C4;
+}
