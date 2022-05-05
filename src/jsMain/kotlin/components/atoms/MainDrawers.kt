@@ -12,13 +12,17 @@ import org.jetbrains.compose.web.dom.*
 fun MainDrawer(content: @Composable () -> Unit) {
     Style(MainDrawerStyle)
 
-    Aside({ classes(MainDrawerStyle.container) }) { content() }
+    Aside({ classes(MainDrawerStyle.container, "mdc-drawer") }) { content() }
 }
 
 @Composable
-fun MainDrawerHeader(content: @Composable () -> Unit) = Div({
-    classes(MainDrawerStyle.header)
-}) { content() }
+fun MainDrawerHeader(vararg title: String) = Div({
+    classes(MainDrawerStyle.header, "mdc-drawer__header")
+}) {
+    title.forEach {
+        Span({ classes("mdc-typography--headline5") }) { Text(it) }
+    }
+}
 
 @Composable
 fun MainDrawerContent(content: @Composable () -> Unit) = Div({
@@ -37,11 +41,6 @@ fun <T: Parcelable> MainDrawerListItems(
 
 private object MainDrawerStyle : StyleSheet() {
     val container by style {
-        property("z-index", "6")
-        display(DisplayStyle.Flex)
-        flexDirection(FlexDirection.Column)
-        flexShrink(0)
-
         position(Position.Fixed)
         top(0.px)
         left(0.px)
@@ -57,15 +56,19 @@ private object MainDrawerStyle : StyleSheet() {
     }
 
     val header by style {
-        minHeight(64.px)
-        padding(0.px, 16.px, 4.px)
-
         display(DisplayStyle.Flex)
         height(200.px)
         marginRight(8.px)
         flexDirection(FlexDirection.Column)
         justifyContent(JustifyContent.Center)
         alignItems(AlignItems.FlexEnd)
+
+        className("mdc-typography--headline5") style {
+            display(DisplayStyle.Block)
+            fontSize(22.px)
+            fontWeight("bold")
+            margin(0.px)
+        }
     }
 
     val content by style {

@@ -19,18 +19,12 @@ fun AppFrame(
 
     Div({ classes(AppFrameStyle.container) }) {
         Navigation(
-            title = { AppFrameTitle() },
-            menu = { menu() },
-        )
+            "Subroh Nishikori's",
+            "Portfolio",
+        ) { menu() }
 
         AppFrameContent(content)
     }
-}
-
-@Composable
-private fun AppFrameTitle() {
-    Span { Text("Subroh Nishikori's") }
-    Span { Text("Portfolio") }
 }
 
 @Composable

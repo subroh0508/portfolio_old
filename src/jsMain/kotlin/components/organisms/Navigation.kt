@@ -7,9 +7,9 @@ import components.atoms.*
 
 @Composable
 fun Navigation(
-    title: @Composable () -> Unit,
+    vararg title: String,
     menu: @Composable () -> Unit,
 ) = MainDrawer {
-    MainDrawerHeader(title)
+    MainDrawerHeader(*title)
     MainDrawerContent(menu)
 }
