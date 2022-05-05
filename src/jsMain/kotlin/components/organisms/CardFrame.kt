@@ -4,7 +4,6 @@ package components.organisms
 
 import androidx.compose.runtime.Composable
 import components.atoms.Card
-import externals.VAR_COLOR_PRIMARY
 import org.jetbrains.compose.web.ExperimentalComposeWebApi
 import org.jetbrains.compose.web.css.*
 
@@ -52,7 +51,6 @@ private object CardFrameStyle : StyleSheet() {
 
             borderRadius(0.px)
             padding(16.px, 16.px)
-            backgroundColor(Color("var(--$VAR_COLOR_PRIMARY)"))
 
             animation(slideIn) {
                 duration(0.75.s)
