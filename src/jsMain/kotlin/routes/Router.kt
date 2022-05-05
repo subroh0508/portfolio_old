@@ -33,7 +33,7 @@ class Router(
     fun toWorks(index: Int) { push(Page.Works(index)) }
     fun toSpeaks(index: Int) { push(Page.Speaks(index)) }
 
-    private fun push(page: Page) {
+    fun push(page: Page) {
         if (routerState.value.activeChild.configuration == page) {
             return
         }

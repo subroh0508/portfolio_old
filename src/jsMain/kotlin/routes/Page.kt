@@ -10,6 +10,8 @@ sealed class Page private constructor(val path: String) : Parcelable {
     data class Speaks(val index: Int = 0) : Page("${BasePath.SPEAKS}?p=$index")
     object Link : Page(BasePath.LINK.toString())
 
+    fun label() = this::class.simpleName ?: ""
+
     companion object {
         operator fun invoke(base: String, query: String?): Page {
             val index = """p=(\d)""".toRegex().find(query ?: "")?.value?.toIntOrNull()

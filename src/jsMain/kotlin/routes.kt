@@ -16,16 +16,9 @@ fun Routing(
         menu = {
             MainDrawerListItems(
                 Page.forMenu(),
-            ) {
-                when (it) {
-                    is Page.Introduction -> "/" to "Home"
-                    is Page.Biography -> "/biography" to "Biography"
-                    is Page.Skill -> "/skill" to "Skill"
-                    is Page.Works -> "/works?p=0" to "Works"
-                    is Page.Speaks -> "/speaks?p=0" to "Speaks"
-                    is Page.Link -> "/link" to "Link"
-                }
-            }
+                router::push,
+                Page::label,
+            )
         }
     ) {
         when (routerState.activeChild.instance) {

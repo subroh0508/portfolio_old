@@ -34,14 +34,13 @@ fun MainDrawerContent(content: @Composable () -> Unit) = Div({
 @Composable
 fun <T: Parcelable> MainDrawerListItems(
     items: List<T>,
-    content: (T) -> Pair<String, String>,
+    click: (T) -> Unit,
+    label: (T) -> String,
 ) = items.forEach { item ->
-    val (href, label) = content(item)
-
     Li({ classes("mdc-list-item") }) {
-        A(href) {
+        A(attrs = { onClick { click(item) } }) {
             Ripple({ classes("mdc-typography--headline6") }) {
-                Text(label)
+                Text(label(item))
             }
         }
     }
