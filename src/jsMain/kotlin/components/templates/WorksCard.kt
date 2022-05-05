@@ -29,11 +29,11 @@ private fun ColorMaster() = Div({
 }) {
     ScreenShot("./colormaster_overview.png")
     Introduction {
-        ComposableParagraph {
+        Paragraph {
             Text("アイドルマスターに登場するキャラクターのイメージカラーに対する、様々な機能を提供するアプリケーションです。")
             Text("現在、「検索」「ペンライト」の2つの機能が実装されています。")
         }
-        ComposableParagraph {
+        Paragraph {
             Text("実装には")
             Link("https://kotlinlang.org/docs/reference/multiplatform.html" to "Kotlin Multiplatform")
             Text("を利用しており、")
@@ -41,7 +41,7 @@ private fun ColorMaster() = Div({
             Text("が既に公開済です。")
         }
         Hr {}
-        ComposableParagraph {
+        Paragraph {
             B { Text("使用ライブラリ: ") }
             Links(
                 "https://react.i18next.com/" to "react-i18next",
@@ -68,20 +68,20 @@ private fun KotlinMaterialUI() = Div({
 }) {
     ScreenShot("./kotlin_material_ui_overview.png")
     Introduction {
-        ComposableParagraph {
+        Paragraph {
             Text("React.js向けUIライブラリ「")
             Links("https://material-ui.com/" to "Material-UI")
             Text("」のKotlin/JS用ラッパーライブラリです。")
         }
 
-        ComposableParagraph {
+        Paragraph {
             Text("Material-UIが提供する100種類以上のUIコンポーネント、およびテーマカスタマイズ用関数を")
             Text("Kotlin/JS上で即座に利用することができます。")
         }
 
         Hr {}
 
-        ComposableParagraph {
+        Paragraph {
             B { Text("使用ライブラリ: ") }
             Links(
                 "https://material-ui.com/" to "Material-UI",
@@ -102,17 +102,17 @@ private fun Otonashi() = Div({
 }) {
     ScreenShot("./otonashi_overview.png")
     Introduction {
-        ComposableParagraph {
+        Paragraph {
             Text("RDF用クエリ言語「")
             Links("https://www.w3.org/TR/rdf-sparql-query/" to "SPARQL")
             Text("」のKotlin製クライアントライブラリです。")
         }
 
-        ComposableParagraph {
+        Paragraph {
             Text("SPARQLのトリプルパターンを直感的な文法で記述することができます。")
         }
 
-        ComposableParagraph {
+        Paragraph {
             Text("また、")
             Links("https://sparql.crssnky.xyz/imas/" to "im@sparql")
             Text("等、特定のSPARQLエンドポイントに対する語彙補完機能も試験的に備えています。")
@@ -120,7 +120,7 @@ private fun Otonashi() = Div({
 
         Hr {}
 
-        ComposableParagraph {
+        Paragraph {
             B { Text("GitHub: ") }
             Links("https://github.com/subroh0508/otonashi" to "subroh0508/otonashi")
         }

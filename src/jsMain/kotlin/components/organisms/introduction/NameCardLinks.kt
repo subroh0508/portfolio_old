@@ -22,24 +22,24 @@ fun NameCardLinks(
         LinkWithIcon(
             PROTOCOL_HTTPS + homepage,
             homepage,
-        ) { className -> ComposableHomeIcon(className) }
+        ) { className -> HomeIcon(className) }
 
         Span({ classes(NameCardLinksStyle.row) }) {
             LinkWithIcon(
                 "$PROTOCOL_HTTPS$DOMAIN_TWITTER/$twitter",
                 twitter,
-            ) { className -> ComposableTwitterIcon(className) }
+            ) { className -> TwitterIcon(className) }
 
             LinkWithIcon(
                 "$PROTOCOL_HTTPS$DOMAIN_GITHUB/$github",
                 github,
-            ) { className -> ComposableGitHubIcon(className) }
+            ) { className -> GitHubIcon(className) }
         }
 
         LinkWithIcon(
             PROTOCOL_MAIL + email,
             email,
-        ) { className -> ComposableEMailIcon(className) }
+        ) { className -> EMailIcon(className) }
     }
 }
 

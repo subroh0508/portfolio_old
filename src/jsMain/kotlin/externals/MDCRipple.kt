@@ -13,6 +13,8 @@ private external object MDCRippleModule {
 external interface MDCRipple {
     fun activate()
     fun deactivate()
+
+    var unbounded: Boolean
 }
 
 external interface RippleOption {

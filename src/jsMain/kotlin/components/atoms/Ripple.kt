@@ -15,6 +15,7 @@ import utilities.TagElementBuilder
 fun Ripple(
     applyAttrs: (AttrsScope<HTMLElement>.() -> Unit)? = null,
     tag: String = "div",
+    unbounded: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     Style(RippleStyle)
@@ -26,7 +27,10 @@ fun Ripple(
 
             classes(RippleStyle.surface, "mdc-ripple-surface")
             ref {
-                val ripple = attachRippleTo(it)
+                val ripple = attachRippleTo(it).also { r ->
+                    r.unbounded = unbounded
+                }
+
                 onDispose {
                     ripple.deactivate()
                 }

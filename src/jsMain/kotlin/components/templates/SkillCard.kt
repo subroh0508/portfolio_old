@@ -3,7 +3,7 @@
 package components.templates
 
 import androidx.compose.runtime.Composable
-import components.atoms.ComposableParagraph
+import components.atoms.Paragraph
 import components.atoms.LargeTitle
 import components.organisms.CardFrame
 import components.organisms.SkillRow
@@ -53,7 +53,7 @@ private fun MainSkills() {
 
 @Composable
 private fun OtherSkills() {
-    ComposableParagraph {
+    Paragraph {
         Text("その他: Java/C/TypeScript/PostgreSQL/Dart(Flutter)")
     }
 }

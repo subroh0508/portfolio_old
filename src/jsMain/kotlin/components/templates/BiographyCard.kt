@@ -29,14 +29,14 @@ fun BiographyCard() = CardFrame {
 @Composable
 private fun AboutMeContent() {
     Div {
-        ComposableParagraph {
+        Paragraph {
             Text("1995年生まれ。東京の離島・伊豆大島出身のAndroidエンジニア。")
         }
-        ComposableParagraph {
+        Paragraph {
             Text("東京高専情報工学科を卒業後、2016年4月に株式会社TOKIUMに新卒入社。")
             Text("複数のAndroidアプリの新機能開発・保守運用をメインとしつつ、Rails/React ReduxによるWebアプリ開発、およびエンジニア採用の業務にも携わる。")
         }
-        ComposableParagraph {
+        Paragraph {
             Text("Kotlinとアイドルマスターをこよなく愛する。")
             Text("また、アプリケーションの設計にも興味を抱いており、DDDやClean Architectureの思想を効果的に実装へと落とし込むにはどうすべきか、日々試行錯誤を繰り返している。")
         }
@@ -52,7 +52,7 @@ private fun CareerContent() {
     }) {
         Subtitle(text = "Career")
 
-        ComposableParagraph {
+        Paragraph {
             Ul {
                 Li {
                     Text("2016.04 ")
@@ -73,7 +73,7 @@ private fun EducationContent() {
     }) {
         Subtitle(text = "Education")
 
-        ComposableParagraph {
+        Paragraph {
             Ul {
                 Li {
                     Text("2016.03 東京高専情報工学科卒")

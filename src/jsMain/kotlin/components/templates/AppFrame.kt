@@ -8,8 +8,6 @@ import components.organisms.CARD_FRAME_CLASS
 import components.organisms.Navigation
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
 
 @Composable
 fun AppFrame(
@@ -33,7 +31,7 @@ private fun AppFrameContent(content: @Composable () -> Unit) = Div({
     classes(AppFrameStyle.content)
 }) {
     content()
-    ComposableFooter()
+    Footer()
 }
 
 private object AppFrameStyle : StyleSheet() {

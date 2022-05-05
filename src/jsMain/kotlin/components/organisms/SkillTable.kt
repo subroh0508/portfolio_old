@@ -3,7 +3,7 @@
 package components.organisms
 
 import androidx.compose.runtime.Composable
-import components.atoms.ComposableParagraph
+import components.atoms.Paragraph
 import components.atoms.TableRow
 import externals.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import org.jetbrains.compose.web.attributes.colspan
@@ -56,7 +56,7 @@ private fun ParagraphTableRow(content: @Composable () -> Unit) {
             classes(ParagraphTableRowStyle.data)
             colspan(3)
         }) {
-            ComposableParagraph(content)
+            Paragraph(content)
         }
     }
 }

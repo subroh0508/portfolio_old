@@ -32,17 +32,18 @@ private object LinkWithIconSheet : StyleSheet() {
     }
 
     val icon by style {
-        marginRight(CSSUnitValueTyped(8.toFloat(), CSSUnit.px))
-        hover {
+        marginRight(8.px)
+
+        hover(self) style {
             textDecoration("none")
         }
     }
 
     val caption by style {
-        marginTop(CSSUnitValueTyped(0.toFloat(), CSSUnit.px))
-        marginBottom(CSSUnitValueTyped(0.toFloat(), CSSUnit.px))
+        marginTop(0.px)
+        marginBottom(0.px)
 
-        hover {
+        hover(self) style {
             textDecoration("underline")
         }
     }

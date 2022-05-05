@@ -45,7 +45,7 @@ fun Link(
 
 private object LinkStyle : StyleSheet() {
     init {
-        "a" style {
+        type("a") style {
             textDecoration("none")
             cursor("pointer")
             color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))

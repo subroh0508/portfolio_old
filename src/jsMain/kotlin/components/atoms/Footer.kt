@@ -10,7 +10,7 @@ import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun ComposableFooter() {
+fun Footer() {
     Style(FooterStyle)
 
     Div({ classes(FooterStyle.container) }) {

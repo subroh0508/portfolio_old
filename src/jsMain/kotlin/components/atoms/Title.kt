@@ -22,8 +22,8 @@ fun LargeTitle(
 
     val styles = listOfNotNull(
         className,
-        TypographySheet.font,
-        TypographySheet.largeTitle,
+        TypographySheet.h4,
+        "mdc-typography--headline4",
     )
 
     TagElement(
@@ -42,8 +42,8 @@ fun LargeSubtitle(
 
     val styles = listOfNotNull(
         className,
-        TypographySheet.font,
-        TypographySheet.largeSubtitle,
+        TypographySheet.h5,
+        "mdc-typography--headline5",
     )
 
     TagElement(
@@ -62,8 +62,8 @@ fun Subtitle(
 
     val styles = listOfNotNull(
         className,
-        TypographySheet.font,
-        TypographySheet.subtitle,
+        TypographySheet.h6,
+        "mdc-typography--headline6",
     )
 
     TagElement(
@@ -73,32 +73,17 @@ fun Subtitle(
 }
 
 private object TypographySheet : StyleSheet() {
-    val font by style {
-        fontFamily("Roboto", "sans-serif")
-        property("-webkit-font-smoothing", "antialiased")
-    }
-
-    val largeTitle by style {
+    val h4 by style {
         fontWeight("bold")
-        fontSize(2.125.cssRem)
-        lineHeight(2.5.cssRem)
-        letterSpacing(getLetterSpacing(0.25, 2.125))
         color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
     }
 
-    val largeSubtitle by style {
-        fontWeight("normal")
-        fontSize(1.5.cssRem)
-        lineHeight(2.cssRem)
-        letterSpacing("normal")
+    val h5 by style {
         color(Color("var(--$VAR_COLOR_TEXT_SECONDARY_ON_DARK)"))
     }
 
-    val subtitle by style {
+    val h6 by style {
         fontWeight("normal")
-        fontSize(1.25.cssRem)
-        lineHeight(2.cssRem)
-        letterSpacing(getLetterSpacing(0.25, 1.25))
         color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
     }
 }

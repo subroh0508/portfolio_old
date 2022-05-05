@@ -22,30 +22,17 @@ fun Switcher(
     Span({
         classes(SwitcherStyle.span)
     }) {
-        Ripple { ComposableChevronLeft(chevronLeftClassName) }
+        Ripple(tag = "a", unbounded = true) { ChevronLeft(chevronLeftClassName) }
         Subtitle(SwitcherStyle.subtitle, text = label)
-        Ripple { ComposableChevronRight(chevronRightClassName) }
+        Ripple(tag = "a", unbounded = true) { ChevronRight(chevronRightClassName) }
     }
 }
-
-@Composable
-private fun Ripple(content: @Composable () -> Unit) { content() }
 
 private object SwitcherStyle : StyleSheet() {
     val span by style {
         display(DisplayStyle.Flex)
         alignItems(AlignItems.Center)
         color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
-
-        ".mdc-ripple-surface" {
-            before {
-                backgroundColor(Color.white)
-            }
-
-            after {
-                backgroundColor(Color.white)
-            }
-        }
 
         type("a") style {
             display(DisplayStyle.Flex)

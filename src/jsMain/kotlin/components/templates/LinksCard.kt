@@ -31,7 +31,7 @@ private fun OtherPortfolio() {
     }) {
         Subtitle(text = "各種ポートフォリオ・SNS")
 
-        ComposableParagraph {
+        Paragraph {
             Ul {
                 Li {
                     Link("https://lapras.com/public/6DDUK2W" to "LAPRAS")
@@ -65,7 +65,7 @@ private fun SocialTippling() {
     }) {
         Subtitle(text = "何かめぐんでください＞＜")
 
-        ComposableParagraph {
+        Paragraph {
             Ul {
                 Li {
                     Link("https://www.amazon.jp/hz/wishlist/ls/34TBOXPWOUD8W" to "欲しいものリスト")

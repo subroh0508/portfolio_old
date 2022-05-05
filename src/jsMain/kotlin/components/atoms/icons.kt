@@ -14,47 +14,38 @@ private const val D_TWITTER = "M7.6 21.63c8.95 0 13.84-7.4 13.84-13.84v-.63c.94-
 private const val D_GITHUB = "M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"
 
 @Composable
-fun ComposableHomeIcon(className: String? = null) { ComposableMaterialIcon(className, "home") }
+fun HomeIcon(className: String? = null) { MaterialIcon(className, "home") }
 
 @Composable
-fun ComposableEMailIcon(className: String? = null) { ComposableMaterialIcon(className, "email") }
+fun EMailIcon(className: String? = null) { MaterialIcon(className, "email") }
 
 @Composable
-fun ComposableChevronLeft(className: String? = null) { ComposableMaterialIcon(className, "chevron_left") }
+fun ChevronLeft(className: String? = null) { MaterialIcon(className, "chevron_left") }
 
 @Composable
-fun ComposableChevronRight(className: String? = null) { ComposableMaterialIcon(className, "chevron_right") }
+fun ChevronRight(className: String? = null) { MaterialIcon(className, "chevron_right") }
 
 @Composable
-fun ComposableTwitterIcon(className: String? = null) { ComposableSvgIcon(className, D_TWITTER) }
+fun TwitterIcon(className: String? = null) { SvgIcon(className, D_TWITTER) }
 
 @Composable
-fun ComposableGitHubIcon(className: String? = null) { ComposableSvgIcon(className, D_GITHUB) }
+fun GitHubIcon(className: String? = null) { SvgIcon(className, D_GITHUB) }
 
 @Composable
-private fun ComposableMaterialIcon(className: String? = null, icon: String) {
+private fun MaterialIcon(className: String? = null, icon: String) {
     I({
-        className?.let { classes(it) }
-        style {
-            fontFamily("Material Icons")
-            fontWeight("normal")
-            fontStyle("normal")
-            fontSize(CSSUnitValueTyped(24.toFloat(), CSSUnit.px))
-            lineHeight("1")
-            property("-webkit-font-feature-settings", "liga")
-            property("-webkit-font-smoothing", "antialiased")
-        }
+        classes(*listOfNotNull(className, "material-icons").toTypedArray())
     }) { Text(icon) }
 }
 
 @OptIn(ExperimentalComposeWebSvgApi::class)
 @Composable
-private fun ComposableSvgIcon(className: String? = null, d: String) {
+private fun SvgIcon(className: String? = null, d: String) {
     Svg("0 0 24 24", {
         className?.let { classes(it) }
         style {
-            width(CSSUnitValueTyped(24.toFloat(), CSSUnit.px))
-            height(CSSUnitValueTyped(24.toFloat(), CSSUnit.px))
+            width(24.px)
+            height(24.px)
             property("fill", "currentcolor")
         }
     }) {

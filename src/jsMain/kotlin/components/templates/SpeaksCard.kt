@@ -3,7 +3,7 @@
 package components.templates
 
 import androidx.compose.runtime.Composable
-import components.atoms.ComposableParagraph
+import components.atoms.Paragraph
 import components.atoms.LargeTitle
 import components.atoms.Link
 import components.organisms.CardFrame
@@ -23,7 +23,7 @@ fun SpeaksCard() = CardFrame {
 }
 
 @Composable
-private fun Speaks2020() = ComposableParagraph {
+private fun Speaks2020() = Paragraph {
     Ul {
         Li {
             B { Text("スタートアップで開発している（したい）エンジニア対談 #3:" ) }
@@ -84,7 +84,7 @@ private fun Speaks2020() = ComposableParagraph {
 }
 
 @Composable
-private fun Speaks2019() = ComposableParagraph {
+private fun Speaks2019() = Paragraph {
     Ul {
         Li {
             B { Text("DroidKaigi2019: ") }
@@ -145,7 +145,7 @@ private fun Speaks2019() = ComposableParagraph {
 }
 
 @Composable
-private fun Speaks2018() = ComposableParagraph {
+private fun Speaks2018() = Paragraph {
     Ul {
         Li {
             B { Text("高専カンファレンス in 東京 2018: ") }
