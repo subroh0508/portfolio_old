@@ -26,8 +26,10 @@ fun MainDrawerHeader(vararg title: String) = Div({
 
 @Composable
 fun MainDrawerContent(content: @Composable () -> Unit) = Div({
-    classes(MainDrawerStyle.content)
-}) { Ul { content() } }
+    classes(MainDrawerStyle.content, "mdc-drawer__content")
+}) {
+    Ul({ classes("mdc-list") }) { content() }
+}
 
 @Composable
 fun <T: Parcelable> MainDrawerListItems(
@@ -36,7 +38,11 @@ fun <T: Parcelable> MainDrawerListItems(
 ) = items.forEach { item ->
     val (href, label) = content(item)
 
-    Li { A(href) { Text(label) } }
+    Li({ classes("mdc-list-item") }) {
+        A(href) {
+            Div({ classes("mdc-typography--headline6") }) { Text(label) }
+        }
+    }
 }
 
 private object MainDrawerStyle : StyleSheet() {
@@ -72,42 +78,35 @@ private object MainDrawerStyle : StyleSheet() {
     }
 
     val content by style {
-
-    }
-}
-
-/*
-private val StyledDrawerContent = DrawerContent.styled { _, _ ->
-    ".mdc-list-item" {
-        height = 56.px
-        margin = Margin(0.px, 0.px)
-        padding = Padding(0.px, 0.px)
-        textAlign = TextAlign.end
-    }
-
-    ".mdc-ripple-surface" {
-        before {
-            backgroundColor = NamedColor.white
+        className("mdc-list-item") style {
+            height(56.px)
+            margin(0.px)
+            padding(0.px)
+            textAlign("end")
         }
 
-        after {
-            backgroundColor = NamedColor.white
+        className("mdc-ripple-surface") style {
+            before {
+                backgroundColor(Color.white)
+            }
+            after {
+                backgroundColor(Color.white)
+            }
+        }
+
+        type("a") style {
+            display(DisplayStyle.Flex)
+            width(100.percent)
+            color(Color.white)
+            textDecoration("none")
+        }
+
+        className("mdc-typography--headline6") style {
+            width(100.percent)
+            padding(12.px, 8.px)
+            paddingRight(24.px)
+            borderRadius(0.5.cssRem)
+            fontWeight("normal")
         }
     }
-
-    a {
-        display = Display.flex
-        width = 100.pct
-        color = NamedColor.white
-        textDecoration = None.none
-    }
 }
-
-private val StyledListItemTypography = Typography.styled { _, _ ->
-    width = 100.pct
-    padding = Padding(12.px, 8.px)
-    paddingRight = 24.px
-    borderRadius = 0.5.rem
-    fontWeight = FontWeight.normal
-}
-*/
