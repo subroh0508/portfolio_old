@@ -3,7 +3,7 @@
 package components.atoms
 
 import androidx.compose.runtime.Composable
-import materialcomponents.VAR_COLOR_PRIMARY
+import externals.VAR_COLOR_PRIMARY
 import org.jetbrains.compose.web.ExperimentalComposeWebApi
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div

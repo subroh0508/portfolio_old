@@ -4,11 +4,12 @@ package components.atoms
 
 import androidx.compose.runtime.Composable
 import kotlinx.browser.document
-import materialcomponents.*
+import externals.*
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
 import org.w3c.dom.Element
 import org.w3c.dom.HTMLElement
+import utilities.TagElementBuilder
 import utilities.getLetterSpacing
 
 @Composable
@@ -26,7 +27,7 @@ fun LargeTitle(
     )
 
     TagElement(
-        TypographyElementBuilder(tag),
+        TagElementBuilder(tag),
         { classes(*styles.toTypedArray()) },
     ) { Text(text) }
 }
@@ -46,7 +47,7 @@ fun LargeSubtitle(
     )
 
     TagElement(
-        TypographyElementBuilder(tag),
+        TagElementBuilder(tag),
         { classes(*styles.toTypedArray()) },
     ) { Text(text) }
 }
@@ -66,7 +67,7 @@ fun Subtitle(
     )
 
     TagElement(
-        TypographyElementBuilder(tag),
+        TagElementBuilder(tag),
         { classes(*styles.toTypedArray()) },
     ) { Text(text) }
 }
@@ -100,10 +101,4 @@ private object TypographySheet : StyleSheet() {
         letterSpacing(getLetterSpacing(0.25, 1.25))
         color(Color("var(--$VAR_COLOR_TEXT_PRIMARY_ON_DARK)"))
     }
-}
-
-private class TypographyElementBuilder(private val tagName: String) : ElementBuilder<HTMLElement> {
-    private val el: Element by lazy { document.createElement(tagName) }
-    @Suppress("UNCHECKED_CAST")
-    override fun create(): HTMLElement = el.cloneNode() as HTMLElement
 }

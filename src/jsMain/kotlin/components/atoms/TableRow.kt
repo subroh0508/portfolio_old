@@ -3,7 +3,7 @@
 package components.atoms
 
 import androidx.compose.runtime.Composable
-import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
+import externals.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Tr
 

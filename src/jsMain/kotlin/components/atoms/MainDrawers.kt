@@ -4,7 +4,7 @@ package components.atoms
 
 import androidx.compose.runtime.Composable
 import com.arkivanov.essenty.parcelable.Parcelable
-import materialcomponents.*
+import externals.*
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
 
@@ -40,7 +40,9 @@ fun <T: Parcelable> MainDrawerListItems(
 
     Li({ classes("mdc-list-item") }) {
         A(href) {
-            Div({ classes("mdc-typography--headline6") }) { Text(label) }
+            Ripple(className = arrayOf("mdc-typography--headline6")) {
+                Text(label)
+            }
         }
     }
 }
@@ -86,10 +88,10 @@ private object MainDrawerStyle : StyleSheet() {
         }
 
         className("mdc-ripple-surface") style {
-            before {
+            type("::before") style  {
                 backgroundColor(Color.white)
             }
-            after {
+            type("::after") style  {
                 backgroundColor(Color.white)
             }
         }

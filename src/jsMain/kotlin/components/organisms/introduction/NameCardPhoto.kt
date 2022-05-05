@@ -3,7 +3,7 @@
 package components.organisms.introduction
 
 import androidx.compose.runtime.Composable
-import materialcomponents.VAR_COLOR_SURFACE
+import externals.VAR_COLOR_SURFACE
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
 

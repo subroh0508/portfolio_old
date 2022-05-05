@@ -1,4 +1,4 @@
-package materialcomponents
+package externals
 
 const val VAR_COLOR_PRIMARY = "mdc-theme-primary"
 const val VAR_COLOR_SECONDARY = "mdc-theme-secondary"

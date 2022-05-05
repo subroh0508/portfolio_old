@@ -8,8 +8,8 @@ import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.lifecycle.destroy
 import com.arkivanov.essenty.lifecycle.resume
 import kotlinx.browser.window
-import materialcomponents.VAR_COLOR_TEXT_PRIMARY_ON_DARK
-import materialcomponents.VAR_COLOR_TEXT_SECONDARY_ON_DARK
+import externals.VAR_COLOR_TEXT_PRIMARY_ON_DARK
+import externals.VAR_COLOR_TEXT_SECONDARY_ON_DARK
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.renderComposable
 import routes.Router

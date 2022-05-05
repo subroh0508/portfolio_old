@@ -3,7 +3,7 @@
 package components.atoms
 
 import androidx.compose.runtime.Composable
-import materialcomponents.*
+import externals.*
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.P
 import utilities.getLetterSpacing
