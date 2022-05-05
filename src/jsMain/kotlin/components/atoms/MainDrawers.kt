@@ -40,7 +40,7 @@ fun <T: Parcelable> MainDrawerListItems(
 
     Li({ classes("mdc-list-item") }) {
         A(href) {
-            Ripple(className = arrayOf("mdc-typography--headline6")) {
+            Ripple({ classes("mdc-typography--headline6") }) {
                 Text(label)
             }
         }
@@ -85,15 +85,6 @@ private object MainDrawerStyle : StyleSheet() {
             margin(0.px)
             padding(0.px)
             textAlign("end")
-        }
-
-        className("mdc-ripple-surface") style {
-            type("::before") style  {
-                backgroundColor(Color.white)
-            }
-            type("::after") style  {
-                backgroundColor(Color.white)
-            }
         }
 
         type("a") style {
