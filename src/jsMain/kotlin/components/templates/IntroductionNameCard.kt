@@ -25,7 +25,7 @@ fun IntroductionNameCard() = CardFrame {
     Span({
         style {
             display(DisplayStyle.Flex)
-            // height(100.percent)
+            height(100.percent)
         }
     }) {
         NameCardLinks(

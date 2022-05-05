@@ -55,8 +55,8 @@ private object NameCardLinksStyle : StyleSheet() {
 
     val row by style {
         display(DisplayStyle.Flex)
-        "a" {
-            marginRight(CSSUnitValueTyped(12.toFloat(), CSSUnit.px))
+        type("a") style {
+            marginRight(12.px)
         }
     }
 

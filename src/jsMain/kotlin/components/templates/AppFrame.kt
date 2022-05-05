@@ -4,6 +4,7 @@ package components.templates
 
 import androidx.compose.runtime.Composable
 import components.atoms.*
+import components.organisms.CARD_FRAME_CLASS
 import components.organisms.Navigation
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
@@ -45,7 +46,7 @@ private object AppFrameStyle : StyleSheet() {
         flexGrow(1.0)
         marginLeft(224.px)
 
-        className("card-frame") style {
+        className(CARD_FRAME_CLASS) style {
             marginTop(64.px)
         }
     }
