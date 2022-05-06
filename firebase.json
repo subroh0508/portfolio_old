@@ -8,7 +8,7 @@
       "buildSrc/**",
       "gradle/**",
       "src/**",
-      "**/*.@(kt|kts|properties|bat)",
+      "**/*.@(kt|kts|properties|bat|scss)",
       "gradlew"
     ],
     "rewrites": [

@@ -63,8 +63,6 @@ kotlin {
     }
 }
 
-fun KotlinDependencyHandler.enforcedPlatform(dependencyNotation: Any) = project.dependencies.enforcedPlatform(dependencyNotation)
-
 val jsBrowserWebpack = tasks.getByName("jsBrowserProductionWebpack")
 
 val copyDistributions by tasks.registering {
