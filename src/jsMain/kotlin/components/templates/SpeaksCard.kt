@@ -11,6 +11,7 @@ import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import kotlinx.browser.window
 import org.jetbrains.compose.web.dom.*
+import routes.Page
 import routes.Router
 import utilities.getIndex
 
@@ -26,7 +27,7 @@ fun SpeaksCard(router: Router, index: Int) = CardFrame {
 
     SwitchableContents(
         SPEAKS_TITLES,
-        currentIndex,
+        router.getLastIndex() to currentIndex,
         click = router::toSpeaks,
         { Speaks2020() },
         { Speaks2019() },
@@ -169,4 +170,6 @@ private fun Speaks2018() = Paragraph {
     }
 }
 
-
+private fun Router.getLastIndex() = routerState.value.backStack.lastOrNull()?.configuration?.let {
+    if (it is Page.Speaks) it.index else null
+} ?: -1

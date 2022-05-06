@@ -11,10 +11,11 @@ import org.jetbrains.compose.web.dom.Div
 @Composable
 fun SwitchableContents(
     titles: List<String>,
-    current: Int,
+    index: Pair<Int, Int>,
     click: (Int) -> Unit,
     vararg content: @Composable () -> Unit,
 ) {
+    val (last, current) = index
     if (current !in titles.indices) {
         return
     }
@@ -22,32 +23,44 @@ fun SwitchableContents(
     val prev = if (current in 1 until titles.size) current - 1 else null
     val next = if (current in 0 until titles.size - 1) current + 1 else null
 
+    Switcher(titles[current], prev, next, click)
+    content.forEachIndexed { i, block ->
+        SlideContent(last, current, current == i, block)
+    }
+}
+
+@Composable
+private fun SlideContent(
+    last: Int,
+    current: Int,
+    isVisible: Boolean,
+    content: @Composable () -> Unit,
+) {
     Style(SwitchableContentsStyle)
 
-    Switcher(titles[current], prev, next, click)
     Div({
-        classes(SwitchableContentsStyle.chevronRight)
-    }) { content[current]() }
+        style {
+            display(if (isVisible) DisplayStyle.Block else DisplayStyle.None)
+
+            when (last) {
+                -1 -> property("animation", "none")
+                current - 1 -> animation(SwitchableContentsStyle.slideInRight) {
+                    duration(0.5.s)
+                    fillMode(AnimationFillMode.Forwards)
+                }
+                current + 1 -> animation(SwitchableContentsStyle.slideInLeft) {
+                    duration(0.5.s)
+                    fillMode(AnimationFillMode.Forwards)
+                }
+                else -> property("animation", "none")
+            }
+        }
+    }) { content() }
 }
 
 private object SwitchableContentsStyle : StyleSheet() {
-    private val slideInRight by slide(true)
-    private val slideInLeft by slide(false)
-
-    val chevronRight by style {
-        animation(slideInRight) {
-            duration(0.5.s)
-            fillMode(AnimationFillMode.Forwards)
-        }
-    }
-
-    val chevronLeft by style {
-        animation(slideInLeft) {
-            duration(0.5.s)
-            fillMode(AnimationFillMode.Forwards)
-        }
-    }
-
+    val slideInRight by slide(true)
+    val slideInLeft by slide(false)
 
     @OptIn(ExperimentalComposeWebApi::class)
     private fun slide(right: Boolean) = keyframes {

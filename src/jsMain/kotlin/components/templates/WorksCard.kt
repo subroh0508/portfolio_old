@@ -9,6 +9,7 @@ import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
+import routes.Page
 import routes.Router
 import utilities.getIndex
 
@@ -24,7 +25,7 @@ fun WorksCard(router: Router, index: Int) = CardFrame {
 
     SwitchableContents(
         WORKS_TITLES,
-        currentIndex,
+        router.getLastIndex() to currentIndex,
         click = router::toWorks,
         { ColorMaster() },
         { KotlinMaterialUI() },
@@ -158,3 +159,7 @@ private fun ScreenShot(path: String) = Div({
 private fun Introduction(content: @Composable () -> Unit) = Div({
     style { width(50.percent) }
 }) { content() }
+
+private fun Router.getLastIndex() = routerState.value.backStack.lastOrNull()?.configuration?.let {
+    if (it is Page.Works) it.index else null
+} ?: -1
