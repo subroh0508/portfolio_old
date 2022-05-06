@@ -6,16 +6,16 @@ import com.arkivanov.decompose.router.navigate
 import com.arkivanov.decompose.router.router
 import com.arkivanov.decompose.router.webhistory.DefaultWebHistoryController
 import com.arkivanov.decompose.router.webhistory.WebHistoryController
+import org.w3c.dom.url.URL
 
 @OptIn(ExperimentalDecomposeApi::class)
 class Router(
     context: ComponentContext,
-    pathname: String? = null,
-    query: String? = null,
+    href: String?,
     webHistoryController: WebHistoryController = DefaultWebHistoryController(),
 ) : ComponentContext by context {
     private val router = context.router(
-        initialStack = { listOf(pathname?.let { Page(it, query) } ?: Page.Introduction) },
+        initialStack = { listOf(Page(href)) },
         handleBackButton = true,
         key = "router",
     ) { page, _ -> page }

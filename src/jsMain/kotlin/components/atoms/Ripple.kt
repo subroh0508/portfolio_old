@@ -1,6 +1,6 @@
 package components.atoms
 
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import externals.attachRippleTo
 import org.jetbrains.compose.web.attributes.AttrsScope
 import org.jetbrains.compose.web.css.Color
@@ -18,6 +18,12 @@ fun Ripple(
     unbounded: Boolean = false,
     content: @Composable () -> Unit,
 ) {
+    var element by remember { mutableStateOf<HTMLElement?>(null) }
+
+    SideEffect {
+        element?.let { attachRippleTo(it) { isUnbounded = unbounded } }
+    }
+
     Style(RippleStyle)
 
     TagElement(
@@ -27,13 +33,8 @@ fun Ripple(
 
             classes(RippleStyle.surface, "mdc-ripple-surface")
             ref {
-                val ripple = attachRippleTo(it).also { r ->
-                    r.unbounded = unbounded
-                }
-
-                onDispose {
-                    ripple.deactivate()
-                }
+                element = it
+                onDispose { element = null }
             }
         },
     ) { content() }

@@ -11,18 +11,23 @@ import org.jetbrains.compose.web.dom.Div
 @Composable
 fun SwitchableContents(
     titles: List<String>,
+    current: Int,
+    click: (Int) -> Unit,
     vararg content: @Composable () -> Unit,
 ) {
-    val index = 1
-    val prev = "?p=${index - 1}"
-    val next = "?p=${index + 1}"
+    if (current !in titles.indices) {
+        return
+    }
+
+    val prev = if (current in 1 until titles.size) current - 1 else null
+    val next = if (current in 0 until titles.size - 1) current + 1 else null
 
     Style(SwitchableContentsStyle)
 
-    Switcher(titles[index], prev, next)
+    Switcher(titles[current], prev, next, click)
     Div({
         classes(SwitchableContentsStyle.chevronRight)
-    }) { content[index]() }
+    }) { content[current]() }
 }
 
 private object SwitchableContentsStyle : StyleSheet() {

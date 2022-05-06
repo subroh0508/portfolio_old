@@ -18,7 +18,7 @@ external interface MDCRipple {
 }
 
 external interface RippleOption {
-    var unbounded: Boolean
+    var isUnbounded: Boolean
 }
 
 @Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")

@@ -11,8 +11,9 @@ import org.jetbrains.compose.web.dom.Span
 @Composable
 fun Switcher(
     label: String,
-    prev: String? = null,
-    next: String? = null,
+    prev: Int? = null,
+    next: Int? = null,
+    click: (Int) -> Unit,
 ) {
     Style(SwitcherStyle)
 
@@ -22,9 +23,13 @@ fun Switcher(
     Span({
         classes(SwitcherStyle.span)
     }) {
-        Ripple(tag = "a", unbounded = true) { ChevronLeft(chevronLeftClassName) }
+        Ripple({ classes(chevronLeftClassName) }, tag = "a", unbounded = true) {
+            ChevronLeft { prev?.let(click) }
+        }
         Subtitle(SwitcherStyle.subtitle, text = label)
-        Ripple(tag = "a", unbounded = true) { ChevronRight(chevronRightClassName) }
+        Ripple({ classes(chevronRightClassName) }, tag = "a", unbounded = true) {
+            ChevronRight { next?.let(click) }
+        }
     }
 }
 

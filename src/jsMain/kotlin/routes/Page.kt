@@ -1,13 +1,22 @@
 package routes
 
 import com.arkivanov.essenty.parcelable.Parcelable
+import com.arkivanov.essenty.parcelable.Parcelize
+import org.w3c.dom.url.URL
+import kotlin.random.Random
 
 sealed class Page private constructor(val path: String) : Parcelable {
+    @Parcelize
     object Introduction : Page(BasePath.INTRODUCTION.toString())
+    @Parcelize
     object Biography : Page(BasePath.BIOGRAPHY.toString())
+    @Parcelize
     object Skill : Page(BasePath.SKILL.toString())
+    @Parcelize
     data class Works(val index: Int = 0) : Page("${BasePath.WORKS}?p=$index")
+    @Parcelize
     data class Speaks(val index: Int = 0) : Page("${BasePath.SPEAKS}?p=$index")
+    @Parcelize
     object Link : Page(BasePath.LINK.toString())
 
     fun label() = when (this) {
@@ -15,14 +24,16 @@ sealed class Page private constructor(val path: String) : Parcelable {
         else -> this::class.simpleName ?: ""
     }
 
+
     companion object {
-        operator fun invoke(base: String, query: String?): Page {
-            val index = """p=(\d)""".toRegex().find(query ?: "")?.value?.toIntOrNull()
-            val basePath = BasePath.values().find {
-                base == "/${it.toString().split("?").first()}"
+        operator fun invoke(href: String?): Page {
+            href ?: return Introduction
+
+            val (base, index) = URL(href).let {
+                it.pathname to it.searchParams.get("p")?.toIntOrNull()
             }
 
-            return when (basePath) {
+            return when (BasePath.values().find { base == "/$it" }) {
                 BasePath.BIOGRAPHY -> Biography
                 BasePath.SKILL -> Skill
                 BasePath.WORKS -> Works(index ?: 0)
@@ -30,13 +41,6 @@ sealed class Page private constructor(val path: String) : Parcelable {
                 BasePath.LINK -> Link
                 else -> Introduction
             }
-        }
-        operator fun invoke(path: String): Page {
-            val (base, query) = path.split("?").let {
-                it.first() to it.lastOrNull()
-            }
-
-            return invoke(base, query)
         }
 
         fun forMenu() = listOf(

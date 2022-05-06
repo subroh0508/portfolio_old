@@ -20,10 +20,16 @@ fun HomeIcon(className: String? = null) { MaterialIcon(className, "home") }
 fun EMailIcon(className: String? = null) { MaterialIcon(className, "email") }
 
 @Composable
-fun ChevronLeft(className: String? = null) { MaterialIcon(className, "chevron_left") }
+fun ChevronLeft(
+    className: String? = null,
+    click: () -> Unit,
+) { MaterialIcon(className, "chevron_left", click) }
 
 @Composable
-fun ChevronRight(className: String? = null) { MaterialIcon(className, "chevron_right") }
+fun ChevronRight(
+    className: String? = null,
+    click: () -> Unit,
+) { MaterialIcon(className, "chevron_right", click) }
 
 @Composable
 fun TwitterIcon(className: String? = null) { SvgIcon(className, D_TWITTER) }
@@ -32,9 +38,14 @@ fun TwitterIcon(className: String? = null) { SvgIcon(className, D_TWITTER) }
 fun GitHubIcon(className: String? = null) { SvgIcon(className, D_GITHUB) }
 
 @Composable
-private fun MaterialIcon(className: String? = null, icon: String) {
+private fun MaterialIcon(
+    className: String? = null,
+    icon: String,
+    click: () -> Unit = {},
+) {
     I({
         classes(*listOfNotNull(className, "material-icons").toTypedArray())
+        onClick { click() }
     }) { Text(icon) }
 }
 

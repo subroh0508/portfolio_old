@@ -2,6 +2,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import components.atoms.MainDrawerListItems
 import components.templates.*
+import kotlinx.browser.window
 import routes.Page
 import routes.Router
 import utilities.subscribeAsState
@@ -21,13 +22,15 @@ fun Routing(
             )
         }
     ) {
-        when (routerState.activeChild.instance) {
-            is Page.Introduction -> IntroductionNameCard()
-            is Page.Biography -> BiographyCard()
-            is Page.Skill -> SkillCard()
-            is Page.Works -> WorksCard()
-            is Page.Speaks -> SpeaksCard()
-            is Page.Link -> LinksCard()
+        routerState.activeChild.instance.let { s ->
+            when (s) {
+                is Page.Introduction -> IntroductionNameCard()
+                is Page.Biography -> BiographyCard()
+                is Page.Skill -> SkillCard()
+                is Page.Works -> WorksCard(router, s.index)
+                is Page.Speaks -> SpeaksCard(router, s.index)
+                is Page.Link -> LinksCard()
+            }
         }
     }
 }

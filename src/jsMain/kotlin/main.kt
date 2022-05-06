@@ -10,8 +10,11 @@ import com.arkivanov.essenty.lifecycle.resume
 import kotlinx.browser.window
 import externals.VAR_COLOR_TEXT_PRIMARY_ON_DARK
 import externals.VAR_COLOR_TEXT_SECONDARY_ON_DARK
+import kotlinx.browser.document
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.renderComposable
+import org.w3c.dom.url.URL
+import org.w3c.dom.url.URLSearchParams
 import routes.Router
 import themes.MaterialTheme
 
@@ -27,8 +30,7 @@ private fun App() {
     val router = remember {
         Router(
             DefaultComponentContext(lifecycle = lifecycle),
-            window.location.pathname,
-            window.location.search,
+            window.location.href,
         )
     }
 

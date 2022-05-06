@@ -3,19 +3,31 @@
 package components.templates
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import components.atoms.Paragraph
 import components.atoms.LargeTitle
 import components.atoms.Link
 import components.organisms.CardFrame
 import components.organisms.SwitchableContents
+import kotlinx.browser.window
 import org.jetbrains.compose.web.dom.*
+import routes.Router
+import utilities.getIndex
+
+private val SPEAKS_TITLES = listOf("2020", "2019", "2018")
 
 @Composable
-fun SpeaksCard() = CardFrame {
+fun SpeaksCard(router: Router, index: Int) = CardFrame {
+    val currentIndex by getIndex(index, SPEAKS_TITLES.size) {
+        router.toSpeaks(0)
+    }
+
     LargeTitle(text = "Speaks")
 
     SwitchableContents(
-        listOf("2020", "2019", "2018"),
+        SPEAKS_TITLES,
+        currentIndex,
+        click = router::toSpeaks,
         { Speaks2020() },
         { Speaks2019() },
         { Speaks2018() },

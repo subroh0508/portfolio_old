@@ -3,18 +3,29 @@
 package components.templates
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import components.atoms.*
 import components.organisms.CardFrame
 import components.organisms.SwitchableContents
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
+import routes.Router
+import utilities.getIndex
+
+private val WORKS_TITLES = listOf("COLOR M@STER", "Kotlin Material-UI", "Otonashi")
 
 @Composable
-fun WorksCard() = CardFrame {
+fun WorksCard(router: Router, index: Int) = CardFrame {
+    val currentIndex by getIndex(index, WORKS_TITLES.size)  {
+        router.toWorks(0)
+    }
+
     LargeTitle(text = "Works")
 
     SwitchableContents(
-        listOf("COLOR M@STER", "Kotlin Material-UI", "Otonashi"),
+        WORKS_TITLES,
+        currentIndex,
+        click = router::toWorks,
         { ColorMaster() },
         { KotlinMaterialUI() },
         { Otonashi() },
