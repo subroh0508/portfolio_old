@@ -15,7 +15,7 @@ fun Footer() {
 
     Div({ classes(FooterStyle.container) }) {
         Span({ classes(FooterStyle.text) }) {
-            Text("Last Modified: 2022-04-13T01:34:09+0900")
+            Text("Last Modified: 2022-05-06T17:09:36+0900")
             Br {}
             Text("Copyright© 2022 subroh_0508 Official Website. All Rights Reserved.")
         }
