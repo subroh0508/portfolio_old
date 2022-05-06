@@ -3,14 +3,10 @@
 package components.atoms
 
 import androidx.compose.runtime.Composable
-import kotlinx.browser.document
 import externals.*
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
-import org.w3c.dom.Element
-import org.w3c.dom.HTMLElement
 import utilities.TagElementBuilder
-import utilities.getLetterSpacing
 
 @Composable
 fun LargeTitle(
